@@ -80,7 +80,7 @@ def acceptConnections(connectionsList, clientsList, sock):
           #Accept the connection from the address
           sock.setblocking(1)
           connection, address = sock.accept() 
-          printDebugL1("Accepted connection from {}".format(connection))
+          printDebugL3("Accepted connection from {}".format(connection))
           if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
                #Verify if id client belongs to database
                mcuid = getMCUID(connection, address)
@@ -108,7 +108,7 @@ def getMCUID(connection, address):
      printDebugL3("Server has received data from {}".format(address))
      mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData)
      if(len(mcuid) == 1):
-          return mcuid[0]
+          return mcuid[0].decode("utf-8")
      else:
           return UNFORMATTED_MCUID
 
