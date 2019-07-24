@@ -199,8 +199,8 @@ def sendUpdate(connection, address, mcuid, clientToUpdate, sock):
      sock.settimeout(TIMEOUT)
      for codechunk in clientToUpdate[0]['codelines']:
           if (validateCodeChunk(codechunk) == SUCCESSFUL):
-               printDebugL3("Data from server {}".format(codechunk))
-               connection.send(bytes(codechunk))
+               printDebugL3("Data from server {}".format(bytes(codechunk)))
+               connection.send(codechunk.encode())
                try:
                     receivedData = connection.recv(1024)
                     printDebugL3("Data from client: {}".format(receivedData))
