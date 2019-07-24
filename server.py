@@ -106,9 +106,10 @@ def verifyStartedConnection(connections, connection):
 def getMCUID(connection, address):
      receivedData = connection.recv(maxBytes)
      printDebugL3("Server has received data from {}".format(address))
-     mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData)
+     mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
+                        
      if(len(mcuid) == 1):
-          return mcuid[0].decode("utf-8")
+          return mcuid[0]
      else:
           return UNFORMATTED_MCUID
 
