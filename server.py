@@ -24,9 +24,9 @@ HOST = '' #The server hostname or IP address
 PORT = 4000 #Port selected from server side to run communication
 
 #Standard dataframes 
-allowedUpdate = "@4#" #Frame sent from server to ack MCUID provided by client
-bannedUpdate = "@0#"  #Frame sent from server to deny update to client that requested it
-ackClient = "@"
+allowedUpdate = b'@4#' #Frame sent from server to ack MCUID provided by client
+bannedUpdate = b'@0#'  #Frame sent from server to deny update to client that requested it
+ackClient = b'@'
 
 bufferSizeFile = 15 # Number of lines per file to buffered by server
 maxBytes = 1024     #Bytes to be received by connection
