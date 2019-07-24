@@ -20,7 +20,7 @@ BUFFERING_CODE_INCOMPLETE = 9
 READY_TO_UPDATE = 10
 
 TIMEOUT = 30 #Timeout for open sockets
-HOST = '127.0.0.1' #The server hostname or IP address
+HOST = '' #The server hostname or IP address
 PORT = 4000 #Port selected from server side to run communication
 
 #Standard dataframes 
