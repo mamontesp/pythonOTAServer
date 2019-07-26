@@ -19,8 +19,8 @@ import argparse
 DEBUG_ON = 1
 
 ##Defaults files to log
-LOG_PATH="/tmp"
-LOG_FILENAME_DEFAULT=LOG_PATH+"/otaserver.log"
+LOG_PATH_DEFAULT="/tmp"
+LOG_FILENAME_DEFAULT = "/otaserver.log"
 LOG_LEVEL =logging.INFO #Could be e.g "DEBUG" or "WARNING"
 
 #Constant definitions for returns
@@ -39,7 +39,6 @@ READY_TO_UPDATE = 10
 
 TIMEOUT = 30 #Timeout for open sockets
 HOST_DEFAULT = '' #The server hostname or IP address
-#HOST = '127.0.0.1' #The server hostname or IP address
 PORT_DEFAULT = 4000 #Port selected from server side to run communication
 
 PATH_BINARY_FILE_DEFAULT = "/root/fota/server/bin"
@@ -55,11 +54,9 @@ maxBytes = 1024     #Bytes to be received by connection
 
 #Binary file location
 pathBinaryFiles = ""
-#pathBinaryFiles = "/media/andreamontes/DATA/Personal/Freelancer/OTA_Server/Server/bin"
 
 #Database name file 
 databaseName = ""
-#databaseName = "/media/andreamontes/DATA/Personal/Freelancer/OTA_Server/Server/database/devices2update.txt"
 
 #Host
 host = ""
@@ -67,12 +64,16 @@ host = ""
 #Port 
 port = ""
 
+#Log path
+logPath = ""
+
 def readArgs():
      parser = argparse.ArgumentParser(description="OTA server in python")
      parser.add_argument("-db", "--dbname", help="Database file name (path included)", default=PATH_DATABASE_DEFAULT)
      parser.add_argument("-pbf", "--pathbinaryfiles", help="Binary files path", default=PATH_BINARY_FILE_DEFAULT)
      parser.add_argument("-ho", "--host", help="Host IP", default=HOST_DEFAULT)
      parser.add_argument("-p", "--port", help="Port to establish communication", default=PORT_DEFAULT)
+     parser.add_argument("-lp" "--logpath", help= "Path to save logging", default = LOG_PATH_DEFAULT)
      args = parser.parse_args()
      return args
 
@@ -123,8 +124,8 @@ def acceptConnections(connectionsList, clientsList, sock, logger):
           if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
                #Verify if id client belongs to database
                mcuid = getMCUID(connection, address, logger)
-               date = datetime.datetime.now().strftime("%d-%m-%y %H:%M")
-               logFile = LOG_PATH + "/" + str(mcuid) + "-" + date +".txt"
+               date = datetime.datetime.now().strftime("%d-%m-%y_%H:%M")
+               logFile = LOG_PATH_DEFAULT + "/" + str(mcuid) + "-" + date +".txt"
                 
                print("logfile {}".format(logFile))
                logger = configureLogger(logFile)
@@ -272,15 +273,14 @@ def  validateCodeChunk(codechunk):
      else:
           return INVALID_CODE_CHUNK
      
-
 if __name__ == "__main__":
-     
-     logFile =LOG_FILENAME_DEFAULT
      args = readArgs()
      databaseName = args.dbname
      pathBinaryFiles = args.pathbinaryfiles
      host=args.host
      port=int(args.port)
+     logpath=args.logpath
+     logFile = logPath + LOG_FILENAME_DEFAULT
      logger = configureLogger(logFile)
      
      connectionsList = [] # List of client connections being attended by the server in one moment
