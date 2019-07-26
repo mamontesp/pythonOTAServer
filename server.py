@@ -1,9 +1,27 @@
+#!/usr/bin/env python
+
 ##@package Server.py
 #Create a server and enable REST API for firmware updates
 
+from customlogger import CustomLogger
 import socket
 import re
 import os
+
+##Login libraries
+import logging
+import logging.handlers
+import datetime
+import sys
+import argparse
+
+##Enable 1 Disable 0 Debug
+DEBUG_ON = 1
+
+##Defaults files to log
+LOG_PATH="/tmp"
+LOG_FILENAME_DEFAULT=LOG_PATH+"/otaserver.log"
+LOG_LEVEL =logging.INFO #Could be e.g "DEBUG" or "WARNING"
 
 #Constant definitions for returns
 SUCCESSFUL = 0
@@ -20,8 +38,12 @@ BUFFERING_CODE_INCOMPLETE = 9
 READY_TO_UPDATE = 10
 
 TIMEOUT = 30 #Timeout for open sockets
-HOST = '' #The server hostname or IP address
-PORT = 4000 #Port selected from server side to run communication
+HOST_DEFAULT = '' #The server hostname or IP address
+#HOST = '127.0.0.1' #The server hostname or IP address
+PORT_DEFAULT = 4000 #Port selected from server side to run communication
+
+PATH_BINARY_FILE_DEFAULT = "/root/fota/server/bin"
+PATH_DATABASE_DEFAULT = "/root/fota/server/database/devices2update.txt"
 
 #Standard dataframes 
 allowedUpdate = b'@4#' #Frame sent from server to ack MCUID provided by client
@@ -30,71 +52,94 @@ ackClient = b'@'
 
 bufferSizeFile = 15 # Number of lines per file to buffered by server
 maxBytes = 1024     #Bytes to be received by connection
-pathBinaryFiles = "./bin"
 
-##Choose debug level of server
-# 0 Disabled 
-# 1 Error
-# 2 Alert
-# 3 Log
-debugLevel = 3
+#Binary file location
+pathBinaryFiles = ""
+#pathBinaryFiles = "/media/andreamontes/DATA/Personal/Freelancer/OTA_Server/Server/bin"
 
 #Database name file 
-databaseName = "./database/devices2update.txt"
+databaseName = ""
+#databaseName = "/media/andreamontes/DATA/Personal/Freelancer/OTA_Server/Server/database/devices2update.txt"
 
-def printDebugL1(message):
-     if (debugLevel >= 1):
-          print("Error: "+ message)
-     return SUCCESSFUL
-          
-def printDebugL2(message):
-     if (debugLevel >= 2):
-          print("Alert: "+ message)
-     return SUCCESSFUL
+#Host
+host = ""
 
-def printDebugL3(message):
-     if (debugLevel >= 3):
-          print("Log: "+ message)
-     return SUCCESSFUL
+#Port 
+port = ""
 
+def readArgs():
+     parser = argparse.ArgumentParser(description="OTA server in python")
+     parser.add_argument("-db", "--dbname", help="Database file name (path included)", default=PATH_DATABASE_DEFAULT)
+     parser.add_argument("-pbf", "--pathbinaryfiles", help="Binary files path", default=PATH_BINARY_FILE_DEFAULT)
+     parser.add_argument("-ho", "--host", help="Host IP", default=HOST_DEFAULT)
+     parser.add_argument("-p", "--port", help="Port to establish communication", default=PORT_DEFAULT)
+     args = parser.parse_args()
+     return args
+
+def configureLogger(logFile):
+     # Logger name
+     logger = logging.getLogger(logFile)
+     # Set the log level to LOG_LEVEL
+     logger.setLevel(LOG_LEVEL)
+     # Make a handler that wirtes to a file, making a new file at midnight and keeping
+     # 3 backups
+     handler = logging.handlers.TimedRotatingFileHandler(logFile, when="midnight", backupCount =3)
+     #Format each log message like this
+     formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+     #Attach the formatter to the handler
+     handler.setFormatter(formatter)
+     #Attach the handler to the logger
+     logger.addHandler(handler)
+     #Replacement of stdout with loggin to file at INFO level
+     sys.stdout = CustomLogger(logger, logging.INFO)
+     #Replacement of stdout with loggin to file at ERROR level
+     sys.stderr = CustomLogger(logger, logging.ERROR)
+     return logger
+     
 def createServer(connectionsList, clientsList):
      ## Create server
      # AF_INET: For Ipv4 connections
      # SOCK_STREAM: For use of TCP/IP stack
      sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-     host = socket.gethostname()
-     printDebugL3("Hostname {}".format(host))
+     hostname = socket.gethostname()
+     logger.info("Hostname {}".format(hostname))
      #Cleaning previous connections
      sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
      #For binding address and port
      # 0.0.0.0 because that makes our server available over any IP address
-     sock.bind((HOST,PORT))
+     sock.bind((host,port))
     
      #Listen argument: Maximum in queue pendings
      sock.listen(5)
-     printDebugL3("Server ready to listen")
-     acceptConnections(connectionsList, clientsList, sock)
+     logger.info("Server ready to listen")
+     acceptConnections(connectionsList, clientsList, sock, logger)
 
-def acceptConnections(connectionsList, clientsList, sock):
+def acceptConnections(connectionsList, clientsList, sock, logger):
      while True:
           #Accept the connection from the address
           sock.setblocking(1)
-          connection, address = sock.accept() 
-          printDebugL3("Accepted connection from {}".format(connection))
+          connection, address = sock.accept()
+          logger.info("Accepted connection from {}".format(connection))
           if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
                #Verify if id client belongs to database
-               mcuid = getMCUID(connection, address)
-               statusIdClient, clientInfo = verifyClientId(connection, mcuid)
+               mcuid = getMCUID(connection, address, logger)
+               date = datetime.datetime.now().strftime("%d-%m-%y %H:%M")
+               logFile = LOG_PATH + "/" + str(mcuid) + "-" + date +".txt"
+                
+               print("logfile {}".format(logFile))
+               logger = configureLogger(logFile)
+               statusIdClient, clientInfo = verifyClientId(connection, mcuid, logger)
                if (statusIdClient == SUCCESSFUL):
                     connection.send(allowedUpdate)
-                    printDebugL3("Allowing update to {}".format(mcuid))
-                    printDebugL3("Starting update to {}".format(mcuid))
-                    prepareUpdate(clientInfo, clientsList)
-                    sendUpdate(connection, address, mcuid, clientsList, sock)
+                    logger.info("Allowing update to {}".format(mcuid))
+                    logger.info("Starting update to {}".format(mcuid))
+                    prepareUpdate(clientInfo, clientsList, logger)
+                    sendUpdate(connection, address, mcuid, clientsList, sock, logger)
                else:
-                    printDebugL2("Banned connection from {}".format(address))
+                    logger.warning("Banned connection from {}".format(address))
+                    logger.error("Closing connection")
                     connection.send(bannedUpdate)
-                    connection.close()
+                    closeConnection(connection, logger)
 
 def verifyStartedConnection(connections, connection):
      for conn in connections:
@@ -103,9 +148,9 @@ def verifyStartedConnection(connections, connection):
      connections.append(connection)
      return NOT_STARTED_CONNECTION
 
-def getMCUID(connection, address):
+def getMCUID(connection, address, logger):
      receivedData = connection.recv(maxBytes)
-     printDebugL3("Server has received data from {}".format(address))
+     logger.info("Server has received data from {}".format(address))
      mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
                         
      if(len(mcuid) == 1):
@@ -113,24 +158,22 @@ def getMCUID(connection, address):
      else:
           return UNFORMATTED_MCUID
 
-def verifyClientId(connection, mcuid):
+def verifyClientId(connection, mcuid, logger):
      ## Verify client trying connection
      clientInfo = []
-     statusClient, clientInfo = lookForClientInDatabase(mcuid)
+     statusClient, clientInfo = lookForClientInDatabase(mcuid, logger)
      if(statusClient== SUCCESSFUL):
-          printDebugL3("Client Info {}".format(clientInfo))
-          printDebugL3("Client {} exists in database".format(mcuid))
+          logger.info("Client Info {}".format(clientInfo))
+          logger.info("Client {} exists in database".format(mcuid))
           return SUCCESSFUL, clientInfo
      else:
-          printDebugL1("Client {} does not exist in database".format(mcuid))
-          printDebugL1("Closing connection")
-          closeConnection(connection)
+          logger.error("Client {} does not exist in database".format(mcuid))
           return CLIENT_UNVERIFIED, clientInfo
                    
-def lookForClientInDatabase(mcuid):
+def lookForClientInDatabase(mcuid, logger):
      ##Verify existence of client in database for firmware update
      clientInfo = []
-     printDebugL3("Opening file {}, to verify MCUID {}".format(databaseName,mcuid))
+     logger.info("Opening file {}, to verify MCUID {}".format(databaseName,mcuid))
      try:
           with open(databaseName, 'r') as file:
                for line in file:
@@ -144,42 +187,42 @@ def lookForClientInDatabase(mcuid):
                          return UNPROPER_FILE_FORMAT, clientInfo
           file.close()
      except:
-          printDebugL1("Error opening file")
+          logger.error("Error opening file")
      return CLIENT_UNVERIFIED, clientInfo
 
-def closeConnection(connection):
-     printDebugL3("Close of connection has been requested")
+def closeConnection(connection, logger):
+     logger.info("Close of connection has been requested")
      connection.close()
      return SUCCESSFUL
 
-def prepareUpdate(clientInfo, clientsList):
-     printDebugL3("Preparing update for {}".format(clientInfo))
+def prepareUpdate(clientInfo, clientsList, logger):
+     logger.info("Preparing update for {}".format(clientInfo))
      #Buffer data from file to be sent to specific client
      binaryFileLines = []
-     bufferingStatus = bufferData(clientInfo[1], binaryFileLines)
-     printDebugL3("Status prepare update {}".format(bufferingStatus))
+     bufferingStatus = bufferData(clientInfo[1], binaryFileLines, logger)
+     logger.info("Status prepare update {}".format(bufferingStatus))
      if (bufferingStatus == SUCCESSFUL):
           FWVersion = re.findall(r"([0-9A-F]+)", clientInfo[2])
           binaryFileLines.append("@{}##".format(FWVersion[0]))
-          printDebugL3("Buffered code {}".format(binaryFileLines))
-          printDebugL3("Code buffer done successfully") 
+          logger.info("Buffered code {}".format(binaryFileLines))
+          logger.info("Code buffer done successfully") 
           clientsList.append({"mcuid":clientInfo[0], "filename":clientInfo[1], "codelines": binaryFileLines, "status": READY_TO_UPDATE})                 
           return SUCCESSFUL
      if (bufferingStatus == BUFFERING_CODE_INCOMPLETE):
           ##Pending development
-          printDebugL3("Incomplete buffering code")
+          logger.info("Incomplete buffering code")
           return BUFFERING_CODE_INCOMPLETE
      else:
           return UNABLE_BUFFERING_CODE
 
-def bufferData(filename, binaryFileLines):
+def bufferData(filename, binaryFileLines, logger):
      countLines = 0
      path = pathBinaryFiles+"/"+ filename
      if (os.path.exists(path)== False):
-          printDebugL1("Required file does not exist {}".format(path))
+          logger.error("Required file does not exist {}".format(path))
           return UNABLE_BUFFERING_CODE
      with open(path, 'r') as file:
-          printDebugL3("Opening file {}".format(path))
+          logger.info("Opening file {}".format(path))
           line = file.readline()
           countLines += 1
           while (line and countLines < bufferSizeFile):
@@ -195,26 +238,29 @@ def bufferData(filename, binaryFileLines):
           return BUFFERING_CODE_INCOMPLETE
      return UNABLE_BUFFERING_CODE
 
-def sendUpdate(connection, address, mcuid, clientToUpdate, sock):
+def sendUpdate(connection, address, mcuid, clientToUpdate, sock, logger):
      sock.settimeout(TIMEOUT)
      for codechunk in clientToUpdate[0]['codelines']:
           if (validateCodeChunk(codechunk) == SUCCESSFUL):
-               printDebugL3("Data from server {}".format(codechunk))
-               connection.send(codechunk.encode())
+               logger.info("Data from server {}".format(codechunk))
                try:
+                    connection.send(codechunk.encode())
                     receivedData = connection.recv(1024)
-                    printDebugL3("Data from client: {}".format(receivedData))
+                    logger.info("Data from client: {}".format(receivedData))
                     if (receivedData == ackClient):
                          continue
                     else:
                          connection.close()
                          return TIMEOUT_CONNECTION
                except socket.timeout as e:
-                         printDebugL1("Timeout exceed {}".format(e))
+                         logger.error("Timeout exceed {}".format(e))
+               except socket.error as e:
+                    logger.error("Error receiving data: {}".format(e))
+                    
           else:
                continue 
-     printDebugL3("Update finished")
-     closeConnection(connection)
+     logger.info("Update finished")
+     closeConnection(connection, logger)
      sock.setblocking(0)
      return SUCCESSFUL
 
@@ -228,6 +274,15 @@ def  validateCodeChunk(codechunk):
      
 
 if __name__ == "__main__":
+     
+     logFile =LOG_FILENAME_DEFAULT
+     args = readArgs()
+     databaseName = args.dbname
+     pathBinaryFiles = args.pathbinaryfiles
+     host=args.host
+     port=int(args.port)
+     logger = configureLogger(logFile)
+     
      connectionsList = [] # List of client connections being attended by the server in one moment
      clientsList = [] #List of mcuid, name of file and firmware version from devices being updated
      createServer(connectionsList, clientsList)
