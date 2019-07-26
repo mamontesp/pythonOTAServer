@@ -73,7 +73,7 @@ def readArgs():
      parser.add_argument("-pbf", "--pathbinaryfiles", help="Binary files path", default=PATH_BINARY_FILE_DEFAULT)
      parser.add_argument("-ho", "--host", help="Host IP", default=HOST_DEFAULT)
      parser.add_argument("-p", "--port", help="Port to establish communication", default=PORT_DEFAULT)
-     parser.add_argument("-lp" "--logpath", help= "Path to save logging", default = LOG_PATH_DEFAULT)
+     parser.add_argument("-lp", "--logpath", help="Path to save logging", default=LOG_PATH_DEFAULT)
      args = parser.parse_args()
      return args
 
@@ -279,7 +279,7 @@ if __name__ == "__main__":
      pathBinaryFiles = args.pathbinaryfiles
      host=args.host
      port=int(args.port)
-     logpath=args.logpath
+     logPath=args.logpath
      logFile = logPath + LOG_FILENAME_DEFAULT
      logger = configureLogger(logFile)
      
