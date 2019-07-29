@@ -7,7 +7,6 @@ from customlogger import CustomLogger
 import socket
 import re
 import os
-from thread import *
 
 ##Login libraries
 import logging
