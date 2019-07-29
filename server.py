@@ -42,8 +42,8 @@ TIMEOUT = 30 #Timeout for open sockets
 HOST_DEFAULT = '' #The server hostname or IP address
 PORT_DEFAULT = 4000 #Port selected from server side to run communication
 
-PATH_BINARY_FILE_DEFAULT = "/root/fota/server/bin"
-PATH_DATABASE_DEFAULT = "/root/fota/server/database/devices2update.txt"
+PATH_BINARY_FILE_DEFAULT = "/root/fota/otaserver/bin"
+PATH_DATABASE_DEFAULT = "/root/fota/otaserver/database/devices2update.txt"
 
 #Standard dataframes 
 allowedUpdate = b'@4#' #Frame sent from server to ack MCUID provided by client
