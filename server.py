@@ -7,6 +7,7 @@ from customlogger import CustomLogger
 import socket
 import re
 import os
+from thread import *
 
 ##Login libraries
 import logging
@@ -49,7 +50,7 @@ allowedUpdate = b'@4#' #Frame sent from server to ack MCUID provided by client
 bannedUpdate = b'@0#'  #Frame sent from server to deny update to client that requested it
 ackClient = b'@'
 
-bufferSizeFile = 15 # Number of lines per file to buffered by server
+bufferSizeFile = 300 # Number of lines per file to buffered by server
 maxBytes = 1024     #Bytes to be received by connection
 
 #Binary file location
@@ -66,6 +67,9 @@ port = ""
 
 #Log path
 logPath = ""
+
+#List of socket inputs
+inputs = []
 
 def readArgs():
      parser = argparse.ArgumentParser(description="OTA server in python")
@@ -96,7 +100,7 @@ def configureLogger(logFile):
      #Replacement of stdout with loggin to file at ERROR level
      sys.stderr = CustomLogger(logger, logging.ERROR)
      return logger
-     
+ 
 def createServer(connectionsList, clientsList):
      ## Create server
      # AF_INET: For Ipv4 connections
@@ -109,9 +113,9 @@ def createServer(connectionsList, clientsList):
      #For binding address and port
      # 0.0.0.0 because that makes our server available over any IP address
      sock.bind((host,port))
-    
      #Listen argument: Maximum in queue pendings
      sock.listen(5)
+     inputs.append(sock)
      logger.info("Server ready to listen")
      acceptConnections(connectionsList, clientsList, sock, logger)
 
@@ -122,10 +126,11 @@ def acceptConnections(connectionsList, clientsList, sock, logger):
           connection, address = sock.accept()
           logger.info("Accepted connection from {}".format(connection))
           if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
+               connectionsList.append(connection)
                #Verify if id client belongs to database
                mcuid = getMCUID(connection, address, logger)
-               date = datetime.datetime.now().strftime("%d-%m-%y_%H:%M")
-               logFile = LOG_PATH_DEFAULT + "/" + str(mcuid) + "-" + date +".txt"
+               date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
+               logFile = logPath + "/" + str(mcuid) + "-" + date +".txt"
                 
                print("logfile {}".format(logFile))
                logger = configureLogger(logFile)
@@ -141,7 +146,8 @@ def acceptConnections(connectionsList, clientsList, sock, logger):
                     logger.error("Closing connection")
                     connection.send(bannedUpdate)
                     closeConnection(connection, logger)
-
+     
+     
 def verifyStartedConnection(connections, connection):
      for conn in connections:
           if(conn == connection):
@@ -251,7 +257,7 @@ def sendUpdate(connection, address, mcuid, clientToUpdate, sock, logger):
                     if (receivedData == ackClient):
                          continue
                     else:
-                         connection.close()
+                         closeConnection()
                          return TIMEOUT_CONNECTION
                except socket.timeout as e:
                          logger.error("Timeout exceed {}".format(e))
