@@ -1,0 +1,183 @@
+\documentclass[11pt]{article}
+%\documentclass{standalone}
+
+\usepackage{mystyle}
+
+\graphicspath{{figures}{figures/}}
+\usepackage{textcomp,amsmath,longtable}
+\usepackage{latexsym}
+\usepackage[usestackEOL]{stackengine}
+\usepackage{longtable}
+\usepackage[shortlabels]{enumitem}
+\usepackage{tikz}
+\usepackage{pgf}
+\usepackage{listings}
+\usepackage{color}
+
+\usetikzlibrary{arrows,automata}
+
+\title{Servidor Firmware Over The Air (FOTA)}
+\author{Andrea Montes$^1$}
+\date{%
+    \today
+}
+
+\begin{document}
+\maketitle
+En el documento refman.pdf encuentran una documentación completa del script que corre el servidor. 
+
+A continuación se presentan las instrucciones para las siguientes tareas en el servidor:
+\begin{enumerate}
+\item Ejecutar script en localhost para hacer pruebas locales.
+\item Modificar archivo del servicio.
+\item Levantar el servicio.
+\item Conectarse al servidor desde un cliente para descargar un firmware determinado.
+\item Conectarse al servidor desde otro computador Linux.
+\end{enumerate}
+
+\section{Ejecución local del script del servidor}
+%\lstset{frame=tb, language=Python}
+\begin{verbatim}
+/usr/bin/python /root/fota/otaserver/server.py 
+-db "/root/fota/otaserver/database/devices2update.txt" 
+-pbf "/root/fota/otaserver/bin" 
+-ho "127.0.0.1" -p 4000
+\end{verbatim}
+Con esta línea en la consola de comandos se pondra disponible el servicio a nivel local. Los argumentos del script se pueden modificar de acuerdo a la ubicación de la base de datos y a la ubicación de los archivos binarios. El script cuenta con un menu de ayuda para identificar los parametros a modificar, como se muestra en seguida.
+\begin{verbatim}
+usage: server.py [-h] [-db DBNAME] [-pbf PATHBINARYFILES] [-ho HOST] [-p PORT]
+                 [-lp LOGPATH]
+
+OTA server in python
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -db DBNAME, --dbname DBNAME
+                        Database file name (path included)
+  -pbf PATHBINARYFILES, --pathbinaryfiles PATHBINARYFILES
+                        Binary files path
+  -ho HOST, --host HOST
+                        Host IP
+  -p PORT, --port PORT  Port to establish communication
+  -lp LOGPATH, --logpath LOGPATH
+                        Path to save logging
+
+\end{verbatim}
+
+
+Para probar la ejecución del servidor, se ejecuta el archivo ubicado /root/fota/otaserver/tests/client.py. En la consola en la que se ejecute el cliente, debe aparecer una salida como sigue:
+\begin{verbatim}
+First data @4#
+Update has been approved
+Received data S1130000F817002011040000091200000912000072
+Received data S11300100912000009120000091200000912000070
+Received data S11300200912000009120000091200000912000060
+\end{verbatim}
+
+\section{Modificar el archivo del servicio}
+El archivo del servicio está ubicado en /lib/systemd/system/otaserver.service.
+
+\begin{verbatim}
+[Unit]
+Description=Ota Service
+After=multi-user.target
+Conflicts=getty@tty1.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /root/fota/otaserver/server.py -db "/root/fota/otaserver/database/devices2update.txt" -pbf "/root/fota/otaserver/bin" -ho "" -p 4000
+StandardInput=tty-force
+
+[Install]
+WantedBy=multi-user.target
+\end{verbatim}
+
+Para modificar los parámetros del script como servicio se debe modificar la línea ExecStart.
+
+\section{Levantar el servicio.}
+El archivo /root/fota/otaserver/serverActivation contiene las instrucciones para levantar el servicio en caso de que se haya modificado el script o en su defecto se haya caído.
+
+\begin{verbatim}
+#//bin/bask
+clear
+echo "OTA server as service update"
+
+SERVICE=otaserver.service
+
+systemctl stop $SERVICE
+systemctl daemon-reload
+systemctl enable $SERVICE
+systemctl start $SERVICE
+systemctl status $SERVICE
+\end{verbatim}
+
+\section{Conectarse al servidor desde un cliente para descargar un firmware determinado.}
+El cliente debe enviar un mensaje con un paquete(estructura) que contenga:
+\begin{itemize}
+\item @[1 byte]: Indicador de inicio de trama
+\item MCUID [10 bytes]
+\item Modelo [1 byte]
+\item HW VER [1 byte]
+\item FW VER [1 byte]
+\item \#[1 byte]: Indicador de finalización de trama
+\end{itemize}
+
+Por ejemplo, el formato de la trama debe ser como se muestra a continuación
+\begin{itemize}
+\item $@000120004915215096595514111415\#$
+\item $@000110002359311096595514111415\#$
+\end{itemize}   
+
+\section{Conexión al servidor desde otro computador Linux}
+\begin{enumerate}
+\item Crear un archivo key a partir de un archivo ppk que contiene una clave privada para acceder al servidor fota (el ubicado en Digital Ocean).
+
+\begin{verbatim}
+puttygen fota_private_key.ppk -O private-openssh -o fotaserver.key
+\end{verbatim}
+
+\item Copiar el archivo .key a la ubicación /home/\emph{username}/.ssh.
+
+\item Crear un archivo config en la ubicación /home/\emph{username}/.ssh (De ya estar creado incuir estas lineas al final)
+
+\begin{verbatim}
+Host OTAServer
+HostName 209.97.145.137
+User root
+IdentityFile ~/.ssh/fotaserver.key
+\end{verbatim}
+
+\item Acceder al servidor desde la línea de comandos
+\begin{verbatim}
+ssh OTAServer
+\end{verbatim}
+Debe aparecer en la consola la siguiente respuesta:
+\begin{verbatim}
+Welcome to Ubuntu 18.04.2 LTS (GNU/Linux 4.15.0-52-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Tue Jul 30 03:24:34 UTC 2019
+
+  System load:  0.0                Processes:           85
+  Usage of /:   10.0% of 24.06GB   Users logged in:     0
+  Memory usage: 18%                IP address for eth0: 209.97.145.137
+  Swap usage:   0%                 IP address for eth1: 10.132.183.46
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+31 packages can be updated.
+0 updates are security updates.
+
+
+*** System restart required ***
+Last login: Mon Jul 29 21:43:57 2019 from 186.28.207.132
+root@rdaq-fota:~# 
+\end{verbatim}
+\end{enumerate}
+
+\end{document}

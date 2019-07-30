@@ -1,0 +1,96 @@
+\hypertarget{namespaceNoClient}{}\section{No\+Client Namespace Reference}
+\label{namespaceNoClient}\index{No\+Client@{No\+Client}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceNoClient_ac97f6af869f1514eb8ce4f1b205c2bd5}{verify\+Finished\+Update} (\hyperlink{namespaceNoClient_a3687413639bcde5799ea49121c61206d}{data})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespaceNoClient_afa59067c297f089b96e52a26cbe65e35}{ack\+Client} = b\char`\"{}@\char`\"{}
+\item 
+string \hyperlink{namespaceNoClient_a8a8f39cca298d07544827e3e590155f4}{approved\+Update} = b\char`\"{}@4\#\char`\"{}
+\item 
+string \hyperlink{namespaceNoClient_a6f89bd992508c504035304f4773518d3}{H\+O\+ST} = \textquotesingle{}209.\+97.\+145.\+137\textquotesingle{}
+\item 
+int \hyperlink{namespaceNoClient_abb61c9ed514d4ed04b9689a37b40ee80}{P\+O\+RT} = 4000
+\item 
+list \hyperlink{namespaceNoClient_a40004afa65328c18891bec9feca29dad}{binary\+Code} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{namespaceNoClient_a07aafa72fabaac63d60eb7397828e128}{s} = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)
+\item 
+\hyperlink{namespaceNoClient_a3687413639bcde5799ea49121c61206d}{data} = s.\+recv(1024)
+\item 
+def \hyperlink{namespaceNoClient_a408c6aa37feaeb4ce526cb6af66bdda2}{finished\+Update} = \hyperlink{namespaceNoClient_ac97f6af869f1514eb8ce4f1b205c2bd5}{verify\+Finished\+Update}(\hyperlink{namespaceNoClient_a3687413639bcde5799ea49121c61206d}{data})
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceNoClient_ac97f6af869f1514eb8ce4f1b205c2bd5}\label{namespaceNoClient_ac97f6af869f1514eb8ce4f1b205c2bd5}} 
+\index{No\+Client@{No\+Client}!verify\+Finished\+Update@{verify\+Finished\+Update}}
+\index{verify\+Finished\+Update@{verify\+Finished\+Update}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{verify\+Finished\+Update()}{verifyFinishedUpdate()}}
+{\footnotesize\ttfamily def No\+Client.\+verify\+Finished\+Update (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+21 \textcolor{keyword}{def }\hyperlink{namespaceNoClient_ac97f6af869f1514eb8ce4f1b205c2bd5}{verifyFinishedUpdate}(data):
+22      match = re.search(\textcolor{stringliteral}{r'^@([0-9A-F]\{1,2\})##$'}, data)
+23      \textcolor{keywordflow}{if} match:
+24           \textcolor{keywordflow}{return} 0
+25      \textcolor{keywordflow}{else}:
+26           \textcolor{keywordflow}{return} 1
+27      
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceNoClient_afa59067c297f089b96e52a26cbe65e35}\label{namespaceNoClient_afa59067c297f089b96e52a26cbe65e35}} 
+\index{No\+Client@{No\+Client}!ack\+Client@{ack\+Client}}
+\index{ack\+Client@{ack\+Client}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{ack\+Client}{ackClient}}
+{\footnotesize\ttfamily string No\+Client.\+ack\+Client = b\char`\"{}@\char`\"{}}
+
+\mbox{\Hypertarget{namespaceNoClient_a8a8f39cca298d07544827e3e590155f4}\label{namespaceNoClient_a8a8f39cca298d07544827e3e590155f4}} 
+\index{No\+Client@{No\+Client}!approved\+Update@{approved\+Update}}
+\index{approved\+Update@{approved\+Update}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{approved\+Update}{approvedUpdate}}
+{\footnotesize\ttfamily string No\+Client.\+approved\+Update = b\char`\"{}@4\#\char`\"{}}
+
+\mbox{\Hypertarget{namespaceNoClient_a40004afa65328c18891bec9feca29dad}\label{namespaceNoClient_a40004afa65328c18891bec9feca29dad}} 
+\index{No\+Client@{No\+Client}!binary\+Code@{binary\+Code}}
+\index{binary\+Code@{binary\+Code}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{binary\+Code}{binaryCode}}
+{\footnotesize\ttfamily list No\+Client.\+binary\+Code = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceNoClient_a3687413639bcde5799ea49121c61206d}\label{namespaceNoClient_a3687413639bcde5799ea49121c61206d}} 
+\index{No\+Client@{No\+Client}!data@{data}}
+\index{data@{data}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily string No\+Client.\+data = s.\+recv(1024)}
+
+\mbox{\Hypertarget{namespaceNoClient_a408c6aa37feaeb4ce526cb6af66bdda2}\label{namespaceNoClient_a408c6aa37feaeb4ce526cb6af66bdda2}} 
+\index{No\+Client@{No\+Client}!finished\+Update@{finished\+Update}}
+\index{finished\+Update@{finished\+Update}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{finished\+Update}{finishedUpdate}}
+{\footnotesize\ttfamily def No\+Client.\+finished\+Update = \hyperlink{namespaceNoClient_ac97f6af869f1514eb8ce4f1b205c2bd5}{verify\+Finished\+Update}(\hyperlink{namespaceNoClient_a3687413639bcde5799ea49121c61206d}{data})}
+
+\mbox{\Hypertarget{namespaceNoClient_a6f89bd992508c504035304f4773518d3}\label{namespaceNoClient_a6f89bd992508c504035304f4773518d3}} 
+\index{No\+Client@{No\+Client}!H\+O\+ST@{H\+O\+ST}}
+\index{H\+O\+ST@{H\+O\+ST}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{H\+O\+ST}{HOST}}
+{\footnotesize\ttfamily string No\+Client.\+H\+O\+ST = \textquotesingle{}209.\+97.\+145.\+137\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceNoClient_abb61c9ed514d4ed04b9689a37b40ee80}\label{namespaceNoClient_abb61c9ed514d4ed04b9689a37b40ee80}} 
+\index{No\+Client@{No\+Client}!P\+O\+RT@{P\+O\+RT}}
+\index{P\+O\+RT@{P\+O\+RT}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{P\+O\+RT}{PORT}}
+{\footnotesize\ttfamily int No\+Client.\+P\+O\+RT = 4000}
+
+\mbox{\Hypertarget{namespaceNoClient_a07aafa72fabaac63d60eb7397828e128}\label{namespaceNoClient_a07aafa72fabaac63d60eb7397828e128}} 
+\index{No\+Client@{No\+Client}!s@{s}}
+\index{s@{s}!No\+Client@{No\+Client}}
+\subsubsection{\texorpdfstring{s}{s}}
+{\footnotesize\ttfamily No\+Client.\+s = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)}
+

@@ -1,0 +1,136 @@
+\hypertarget{namespaceclient}{}\section{client Namespace Reference}
+\label{namespaceclient}\index{client@{client}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceclient_aa133740df708d11451616cdd39a08b91}{verify\+Finished\+Update} (\hyperlink{namespaceclient_ade2c74246e97a6a8badb63b11888eb96}{data})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{namespaceclient_a25ca49ee73998b47f449af9549f4634e}{ack\+Client} = b\char`\"{}@\char`\"{}
+\item 
+string \hyperlink{namespaceclient_a245a3a9a5536dcbb58fd7a83934854d3}{approved\+Update} = b\char`\"{}@4\#\char`\"{}
+\item 
+string \hyperlink{namespaceclient_ad39c4666bbab8c2e37b88274a0eaf7ba}{H\+O\+ST} = \textquotesingle{}209.\+97.\+145.\+137\textquotesingle{}
+\item 
+int \hyperlink{namespaceclient_acd2f280864b8945bb46e196ed2b0990a}{P\+O\+RT} = 4000
+\item 
+list \hyperlink{namespaceclient_abf9b35467956bfa36acd984aace33449}{binary\+Code} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{namespaceclient_ad4a7c4191c3c65a9bdc2ac03d3464f13}{s} = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)
+\item 
+\hyperlink{namespaceclient_ade2c74246e97a6a8badb63b11888eb96}{data} = s.\+recv(1024)
+\item 
+def \hyperlink{namespaceclient_acb1b64fab7439cf2fdc191f31daa8353}{finished\+Update} = \hyperlink{namespaceclient_aa133740df708d11451616cdd39a08b91}{verify\+Finished\+Update}(\hyperlink{namespaceclient_ade2c74246e97a6a8badb63b11888eb96}{data})
+\item 
+int \hyperlink{namespaceclient_a1e07168544409bc8bf0b656eebc8e888}{T\+I\+M\+E\+O\+UT} = 5
+\item 
+string \hyperlink{namespaceclient_affd1b2de2616b92fa875ddb4f94f21a0}{host} = \textquotesingle{}127.\+0.\+0.\+1\textquotesingle{}
+\item 
+int \hyperlink{namespaceclient_ad13ec39ec5b973ae74c855e52b1e5652}{port} = 10000
+\item 
+\hyperlink{namespaceclient_ad8df363cc6c2fdd1e4f4f3b3d9d0c8fd}{sock} = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)
+\item 
+\hyperlink{namespaceclient_a09b2af09e6bb63b2b014637b5b4e2936}{buf} = sock.\+recv(1024)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceclient_aa133740df708d11451616cdd39a08b91}\label{namespaceclient_aa133740df708d11451616cdd39a08b91}} 
+\index{client@{client}!verify\+Finished\+Update@{verify\+Finished\+Update}}
+\index{verify\+Finished\+Update@{verify\+Finished\+Update}!client@{client}}
+\subsubsection{\texorpdfstring{verify\+Finished\+Update()}{verifyFinishedUpdate()}}
+{\footnotesize\ttfamily def client.\+verify\+Finished\+Update (\begin{DoxyParamCaption}\item[{}]{data }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+21 \textcolor{keyword}{def }\hyperlink{namespaceclient_aa133740df708d11451616cdd39a08b91}{verifyFinishedUpdate}(data):
+22      match = re.search(\textcolor{stringliteral}{r'^@([0-9A-F]\{1,2\})##$'}, data)
+23      \textcolor{keywordflow}{if} match:
+24           \textcolor{keywordflow}{return} 0
+25      \textcolor{keywordflow}{else}:
+26           \textcolor{keywordflow}{return} 1
+27      
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceclient_a25ca49ee73998b47f449af9549f4634e}\label{namespaceclient_a25ca49ee73998b47f449af9549f4634e}} 
+\index{client@{client}!ack\+Client@{ack\+Client}}
+\index{ack\+Client@{ack\+Client}!client@{client}}
+\subsubsection{\texorpdfstring{ack\+Client}{ackClient}}
+{\footnotesize\ttfamily string client.\+ack\+Client = b\char`\"{}@\char`\"{}}
+
+\mbox{\Hypertarget{namespaceclient_a245a3a9a5536dcbb58fd7a83934854d3}\label{namespaceclient_a245a3a9a5536dcbb58fd7a83934854d3}} 
+\index{client@{client}!approved\+Update@{approved\+Update}}
+\index{approved\+Update@{approved\+Update}!client@{client}}
+\subsubsection{\texorpdfstring{approved\+Update}{approvedUpdate}}
+{\footnotesize\ttfamily string client.\+approved\+Update = b\char`\"{}@4\#\char`\"{}}
+
+\mbox{\Hypertarget{namespaceclient_abf9b35467956bfa36acd984aace33449}\label{namespaceclient_abf9b35467956bfa36acd984aace33449}} 
+\index{client@{client}!binary\+Code@{binary\+Code}}
+\index{binary\+Code@{binary\+Code}!client@{client}}
+\subsubsection{\texorpdfstring{binary\+Code}{binaryCode}}
+{\footnotesize\ttfamily list client.\+binary\+Code = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceclient_a09b2af09e6bb63b2b014637b5b4e2936}\label{namespaceclient_a09b2af09e6bb63b2b014637b5b4e2936}} 
+\index{client@{client}!buf@{buf}}
+\index{buf@{buf}!client@{client}}
+\subsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily client.\+buf = sock.\+recv(1024)}
+
+\mbox{\Hypertarget{namespaceclient_ade2c74246e97a6a8badb63b11888eb96}\label{namespaceclient_ade2c74246e97a6a8badb63b11888eb96}} 
+\index{client@{client}!data@{data}}
+\index{data@{data}!client@{client}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily string client.\+data = s.\+recv(1024)}
+
+\mbox{\Hypertarget{namespaceclient_acb1b64fab7439cf2fdc191f31daa8353}\label{namespaceclient_acb1b64fab7439cf2fdc191f31daa8353}} 
+\index{client@{client}!finished\+Update@{finished\+Update}}
+\index{finished\+Update@{finished\+Update}!client@{client}}
+\subsubsection{\texorpdfstring{finished\+Update}{finishedUpdate}}
+{\footnotesize\ttfamily def client.\+finished\+Update = \hyperlink{namespaceclient_aa133740df708d11451616cdd39a08b91}{verify\+Finished\+Update}(\hyperlink{namespaceclient_ade2c74246e97a6a8badb63b11888eb96}{data})}
+
+\mbox{\Hypertarget{namespaceclient_affd1b2de2616b92fa875ddb4f94f21a0}\label{namespaceclient_affd1b2de2616b92fa875ddb4f94f21a0}} 
+\index{client@{client}!host@{host}}
+\index{host@{host}!client@{client}}
+\subsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily string client.\+host = \textquotesingle{}127.\+0.\+0.\+1\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceclient_ad39c4666bbab8c2e37b88274a0eaf7ba}\label{namespaceclient_ad39c4666bbab8c2e37b88274a0eaf7ba}} 
+\index{client@{client}!H\+O\+ST@{H\+O\+ST}}
+\index{H\+O\+ST@{H\+O\+ST}!client@{client}}
+\subsubsection{\texorpdfstring{H\+O\+ST}{HOST}}
+{\footnotesize\ttfamily string client.\+H\+O\+ST = \textquotesingle{}209.\+97.\+145.\+137\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceclient_ad13ec39ec5b973ae74c855e52b1e5652}\label{namespaceclient_ad13ec39ec5b973ae74c855e52b1e5652}} 
+\index{client@{client}!port@{port}}
+\index{port@{port}!client@{client}}
+\subsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily int client.\+port = 10000}
+
+\mbox{\Hypertarget{namespaceclient_acd2f280864b8945bb46e196ed2b0990a}\label{namespaceclient_acd2f280864b8945bb46e196ed2b0990a}} 
+\index{client@{client}!P\+O\+RT@{P\+O\+RT}}
+\index{P\+O\+RT@{P\+O\+RT}!client@{client}}
+\subsubsection{\texorpdfstring{P\+O\+RT}{PORT}}
+{\footnotesize\ttfamily int client.\+P\+O\+RT = 4000}
+
+\mbox{\Hypertarget{namespaceclient_ad4a7c4191c3c65a9bdc2ac03d3464f13}\label{namespaceclient_ad4a7c4191c3c65a9bdc2ac03d3464f13}} 
+\index{client@{client}!s@{s}}
+\index{s@{s}!client@{client}}
+\subsubsection{\texorpdfstring{s}{s}}
+{\footnotesize\ttfamily client.\+s = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)}
+
+\mbox{\Hypertarget{namespaceclient_ad8df363cc6c2fdd1e4f4f3b3d9d0c8fd}\label{namespaceclient_ad8df363cc6c2fdd1e4f4f3b3d9d0c8fd}} 
+\index{client@{client}!sock@{sock}}
+\index{sock@{sock}!client@{client}}
+\subsubsection{\texorpdfstring{sock}{sock}}
+{\footnotesize\ttfamily client.\+sock = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)}
+
+\mbox{\Hypertarget{namespaceclient_a1e07168544409bc8bf0b656eebc8e888}\label{namespaceclient_a1e07168544409bc8bf0b656eebc8e888}} 
+\index{client@{client}!T\+I\+M\+E\+O\+UT@{T\+I\+M\+E\+O\+UT}}
+\index{T\+I\+M\+E\+O\+UT@{T\+I\+M\+E\+O\+UT}!client@{client}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+O\+UT}{TIMEOUT}}
+{\footnotesize\ttfamily int client.\+T\+I\+M\+E\+O\+UT = 5}
+

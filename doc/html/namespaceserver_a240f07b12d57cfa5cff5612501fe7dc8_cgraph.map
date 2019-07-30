@@ -1,0 +1,14 @@
+<map id="server.createServer" name="server.createServer">
+<area shape="rect" id="node2" href="$namespaceserver.html#ac1ec62c626a3425033381ef5718ce12b" title="server.acceptConnections" alt="" coords="189,157,364,184"/>
+<area shape="rect" id="node3" href="$namespaceserver.html#a4e6504daf55d2ef34d4d2ea5b30074f3" title="server.verifyStartedConnection" alt="" coords="412,5,615,32"/>
+<area shape="rect" id="node4" href="$namespaceserver.html#a26f3a1d49ee9e013ed77fbcb273a99be" title="server.getMCUID" alt="" coords="451,56,576,83"/>
+<area shape="rect" id="node5" href="$namespaceserver.html#a44a7428717edc164d7dd564478da2da3" title="server.configureLogger" alt="" coords="436,107,591,133"/>
+<area shape="rect" id="node6" href="$namespaceserver.html#a4c51be10ba9f982375f4c0a426078a96" title="server.verifyClientId" alt="" coords="444,157,583,184"/>
+<area shape="rect" id="node8" href="$namespaceserver.html#a2e99d18201fed087163454b021b7c007" title="server.closeConnection" alt="" coords="917,208,1076,235"/>
+<area shape="rect" id="node9" href="$namespaceserver.html#a4ab7e63c5f934dfea50b006468f9efca" title="server.prepareUpdate" alt="" coords="1124,259,1271,285"/>
+<area shape="rect" id="node11" href="$namespaceserver.html#a4889d0db3f3503cc61340252fabc2c24" title="server.sendUpdate" alt="" coords="1489,259,1621,285"/>
+<area shape="rect" id="node7" href="$namespaceserver.html#a998e5671e2ab0c79b9abe44e87e203a0" title="server.lookForClientInDatabase" alt="" coords="663,157,869,184"/>
+<area shape="rect" id="node10" href="$namespaceserver.html#a6098d5cffff301a01e793c84215c4512" title="server.bufferData" alt="" coords="1319,259,1441,285"/>
+<area shape="rect" id="node12" href="$namespaceserver.html#ad6f5a9a8c8e233d0537dc69dc6de98f6" title="server.validateCodeChunk" alt="" coords="1669,259,1845,285"/>
+<area shape="rect" id="node13" href="$namespaceserver.html#aa317dc86338d02253076787cc8e5d997" title="server.readArgs" alt="" coords="1893,259,2008,285"/>
+</map>

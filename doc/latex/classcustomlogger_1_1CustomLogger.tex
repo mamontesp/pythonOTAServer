@@ -1,0 +1,89 @@
+\hypertarget{classcustomlogger_1_1CustomLogger}{}\section{customlogger.\+Custom\+Logger Class Reference}
+\label{classcustomlogger_1_1CustomLogger}\index{customlogger.\+Custom\+Logger@{customlogger.\+Custom\+Logger}}
+
+
+Inheritance diagram for customlogger.\+Custom\+Logger\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classcustomlogger_1_1CustomLogger__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for customlogger.\+Custom\+Logger\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{classcustomlogger_1_1CustomLogger__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classcustomlogger_1_1CustomLogger_ad0fa3a11a371fa6b445768b0b9e8fe03}{\+\_\+\+\_\+init\+\_\+\+\_\+} (self, \hyperlink{classcustomlogger_1_1CustomLogger_a800aa033e5fd2a8fc1e108a6046fd7fe}{logger}, \hyperlink{classcustomlogger_1_1CustomLogger_aa1e8b5f7e7dd6b9a1c2db6e66f3c3da6}{level})
+\item 
+def \hyperlink{classcustomlogger_1_1CustomLogger_ae4e52add9e53df464b370744233b16f7}{write} (self, message)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcustomlogger_1_1CustomLogger_a800aa033e5fd2a8fc1e108a6046fd7fe}{logger}
+\item 
+\hyperlink{classcustomlogger_1_1CustomLogger_aa1e8b5f7e7dd6b9a1c2db6e66f3c3da6}{level}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classcustomlogger_1_1CustomLogger_ad0fa3a11a371fa6b445768b0b9e8fe03}\label{classcustomlogger_1_1CustomLogger_ad0fa3a11a371fa6b445768b0b9e8fe03}} 
+\index{customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}!\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}}
+\index{\+\_\+\+\_\+init\+\_\+\+\_\+@{\+\_\+\+\_\+init\+\_\+\+\_\+}!customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}}
+\subsubsection{\texorpdfstring{\+\_\+\+\_\+init\+\_\+\+\_\+()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily def customlogger.\+Custom\+Logger.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{logger,  }\item[{}]{level }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+9      \textcolor{keyword}{def }\_\_init\_\_(self, logger, level):
+10           \textcolor{comment}{#Needs a logger and a logger level}
+11           self.logger = logger
+12           self.level = level
+13           
+\end{DoxyCode}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classcustomlogger_1_1CustomLogger_ae4e52add9e53df464b370744233b16f7}\label{classcustomlogger_1_1CustomLogger_ae4e52add9e53df464b370744233b16f7}} 
+\index{customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}!write@{write}}
+\index{write@{write}!customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily def customlogger.\+Custom\+Logger.\+write (\begin{DoxyParamCaption}\item[{}]{self,  }\item[{}]{message }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+14      \textcolor{keyword}{def }write(self, message):
+15           \textcolor{comment}{#Only log if there is a message (not just a new line)}
+16           \textcolor{keywordflow}{if} message.rstrip() != \textcolor{stringliteral}{""}:
+17                self.logger.log(self.level, message.rstrip())
+18 \end{DoxyCode}
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{classcustomlogger_1_1CustomLogger_aa1e8b5f7e7dd6b9a1c2db6e66f3c3da6}\label{classcustomlogger_1_1CustomLogger_aa1e8b5f7e7dd6b9a1c2db6e66f3c3da6}} 
+\index{customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}!level@{level}}
+\index{level@{level}!customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}}
+\subsubsection{\texorpdfstring{level}{level}}
+{\footnotesize\ttfamily customlogger.\+Custom\+Logger.\+level}
+
+\mbox{\Hypertarget{classcustomlogger_1_1CustomLogger_a800aa033e5fd2a8fc1e108a6046fd7fe}\label{classcustomlogger_1_1CustomLogger_a800aa033e5fd2a8fc1e108a6046fd7fe}} 
+\index{customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}!logger@{logger}}
+\index{logger@{logger}!customlogger\+::\+Custom\+Logger@{customlogger\+::\+Custom\+Logger}}
+\subsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily customlogger.\+Custom\+Logger.\+logger}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{customlogger_8py}{customlogger.\+py}\end{DoxyCompactItemize}

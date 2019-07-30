@@ -1,0 +1,983 @@
+\hypertarget{namespaceserver}{}\section{server Namespace Reference}
+\label{namespaceserver}\index{server@{server}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceserver_aa317dc86338d02253076787cc8e5d997}{read\+Args} ()
+\item 
+def \hyperlink{namespaceserver_a44a7428717edc164d7dd564478da2da3}{configure\+Logger} (\hyperlink{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}{log\+File})
+\item 
+def \hyperlink{namespaceserver_a240f07b12d57cfa5cff5612501fe7dc8}{create\+Server} (\hyperlink{namespaceserver_a734e47a5cf907dc2e128358488a9c3e7}{connections\+List}, \hyperlink{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}{clients\+List})
+\item 
+def \hyperlink{namespaceserver_ac1ec62c626a3425033381ef5718ce12b}{accept\+Connections} (\hyperlink{namespaceserver_a734e47a5cf907dc2e128358488a9c3e7}{connections\+List}, \hyperlink{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}{clients\+List}, \hyperlink{namespaceserver_a995df52292d049e26620aefae8eb4e1d}{sock}, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3}{verify\+Started\+Connection} (connections, connection)
+\item 
+def \hyperlink{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be}{get\+M\+C\+U\+ID} (connection, address, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a4c51be10ba9f982375f4c0a426078a96}{verify\+Client\+Id} (connection, mcuid, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}{look\+For\+Client\+In\+Database} (mcuid, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a2e99d18201fed087163454b021b7c007}{close\+Connection} (connection, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}{prepare\+Update} (client\+Info, \hyperlink{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}{clients\+List}, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a6098d5cffff301a01e793c84215c4512}{buffer\+Data} (filename, binary\+File\+Lines, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_a4889d0db3f3503cc61340252fabc2c24}{send\+Update} (connection, address, mcuid, client\+To\+Update, \hyperlink{namespaceserver_a995df52292d049e26620aefae8eb4e1d}{sock}, \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger})
+\item 
+def \hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{validate\+Code\+Chunk} (codechunk)
+\item 
+def \hyperlink{namespaceserver_a5dce7c3abe85653dccf395dfb4f4b664}{connect\+Socket} (socket)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceserver_a3ae1ac2f6b7f0e83705066a294c6af9b}{D\+E\+B\+U\+G\+\_\+\+ON} = 1
+\begin{DoxyCompactList}\small\item\em Enable 1 Disable 0 Debug. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceserver_a6e3160a2459a5f5c0b05d31bea269c07}{L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/tmp\char`\"{}
+\begin{DoxyCompactList}\small\item\em Defaults files to log. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceserver_ae9611c1fa51131280e6b7c2e7ea199af}{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/otaserver.\+log\char`\"{}
+\item 
+\hyperlink{namespaceserver_a623756b923995322c8ea575f3b9e70ba}{L\+O\+G\+\_\+\+L\+E\+V\+EL} = logging.\+I\+N\+FO
+\item 
+int \hyperlink{namespaceserver_ac636d4745eb8df94294d20a79e9736c2}{S\+U\+C\+C\+E\+S\+S\+F\+UL} = 0
+\item 
+int \hyperlink{namespaceserver_aa1f32b90430e9bda83de3d5e601402d5}{C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED} = 1
+\item 
+int \hyperlink{namespaceserver_abd54d09502b28ddf1b7c67d7128f0770}{M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME} = 2
+\item 
+int \hyperlink{namespaceserver_ae93172172b034664ce8a47255943b867}{U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID} = 3
+\item 
+int \hyperlink{namespaceserver_a02bffbe3ff309c8cca6cfdc9fe84b335}{A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON} = 4
+\item 
+int \hyperlink{namespaceserver_ac3607b92a19b8b6e55eec69cd0e45e6d}{N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON} = 4
+\item 
+int \hyperlink{namespaceserver_a6d2a5626a7ca491da6005e14db1de116}{U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE} = 5
+\item 
+int \hyperlink{namespaceserver_ae355ef915b96ba835f2a760f4b441679}{U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT} = 6
+\item 
+int \hyperlink{namespaceserver_a91d094730b5907a9e14d0f4098b490b9}{T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON} = 7
+\item 
+int \hyperlink{namespaceserver_a4782abb5e785dbf608b8b8d553bbac12}{I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK} = 8
+\item 
+int \hyperlink{namespaceserver_aabc8079ca922bed2eba00ad2cbc5d354}{B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE} = 9
+\item 
+int \hyperlink{namespaceserver_a1da647756067c40eea52b91451e82ad5}{R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE} = 10
+\item 
+int \hyperlink{namespaceserver_abcf4d8f2c33b95345413f5e15c24a01e}{T\+I\+M\+E\+O\+UT} = 30
+\item 
+string \hyperlink{namespaceserver_abad27332b11c625d6b59b5fc1ca4b2b2}{H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT} = \textquotesingle{}\textquotesingle{}
+\item 
+int \hyperlink{namespaceserver_aa0fba16fbbcb0260d63ddce950cecb42}{P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT} = 4000
+\item 
+string \hyperlink{namespaceserver_a064d84330983ae4788826100a0238c78}{P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/root/fota/otaserver/bin\char`\"{}
+\item 
+string \hyperlink{namespaceserver_aa3f9ad91c62b5372a5e677c50b853605}{P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/root/fota/otaserver/database/devices2update.\+txt\char`\"{}
+\item 
+string \hyperlink{namespaceserver_a097162d68fd6d2855bf5eb81507db414}{allowed\+Update} = b\textquotesingle{}@4\#\textquotesingle{}
+\item 
+string \hyperlink{namespaceserver_ae86ca5f489b3b8161c0ab91cbef0d8e6}{banned\+Update} = b\textquotesingle{}@0\#\textquotesingle{}
+\item 
+string \hyperlink{namespaceserver_ad00458dfe9ab743680203b756f8345bf}{ack\+Client} = b\textquotesingle{}@\textquotesingle{}
+\item 
+int \hyperlink{namespaceserver_a49c2646e7b6a517fe077d830219c58d4}{buffer\+Size\+File} = 300
+\item 
+int \hyperlink{namespaceserver_a100b5332a3005033a437d4240302698d}{max\+Bytes} = 1024
+\item 
+string \hyperlink{namespaceserver_a34ef43a269b2139fb82ac42e3d9e525a}{path\+Binary\+Files} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_ad56bacd311418978d78a8d1467a221a0}{database\+Name} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_a4230afe85d97e78a1df6181d40cbe0b7}{host} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_accc83f0ac9fb96c740cb3df16517e927}{port} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_a45d593b7c621a117aaef105bf59d9fd5}{log\+Path} = \char`\"{}\char`\"{}
+\item 
+list \hyperlink{namespaceserver_acc620e319dd97213c1d3758ea4de7f68}{inputs} = \mbox{[}$\,$\mbox{]}
+\item 
+def \hyperlink{namespaceserver_aea7e1efc19535ee9bab8400a812b43a9}{args} = \hyperlink{namespaceserver_aa317dc86338d02253076787cc8e5d997}{read\+Args}()
+\item 
+string \hyperlink{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}{log\+File} = \hyperlink{namespaceserver_a45d593b7c621a117aaef105bf59d9fd5}{log\+Path} + \hyperlink{namespaceserver_ae9611c1fa51131280e6b7c2e7ea199af}{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}
+\item 
+def \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{logger} = \hyperlink{namespaceserver_a44a7428717edc164d7dd564478da2da3}{configure\+Logger}(\hyperlink{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}{log\+File})
+\item 
+list \hyperlink{namespaceserver_a734e47a5cf907dc2e128358488a9c3e7}{connections\+List} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}{clients\+List} = \mbox{[}$\,$\mbox{]}
+\item 
+int \hyperlink{namespaceserver_a8f2c905b49be657a873ebe6d354d4b47}{M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS} = 5
+\item 
+int \hyperlink{namespaceserver_ab9cbbed2baf7ef46dcd7d67fcb351ac7}{connected\+Clients} = 0
+\item 
+list \hyperlink{namespaceserver_a0d0a0c96488e0f2fb395618dd4658135}{open\+Connections} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{namespaceserver_ae005445cadfc079ed27cd779020f5f32}{serversocket} = socket.\+socket (socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)
+\item 
+\hyperlink{namespaceserver_a6c2bf59cef00216ae7fee937e55f013d}{target}
+\item 
+\hyperlink{namespaceserver_ace8bd717303af3e13cd4dba46b2cd5f1}{connect\+Socket}
+\item 
+\hyperlink{namespaceserver_a995df52292d049e26620aefae8eb4e1d}{sock} = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)
+\item 
+list \hyperlink{namespaceserver_af6312e19169c5addc1dafc4954287d67}{outputs} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{namespaceserver_a8a14948c5211d04b3a2b33b730b991b2}{excepts} = \mbox{[}$\,$\mbox{]}
+\item 
+\hyperlink{namespaceserver_accef440b565edfb162319da0f775b284}{readable}
+\item 
+\hyperlink{namespaceserver_accc7fda5853169f8f74f25dfb423b576}{writable}
+\item 
+\hyperlink{namespaceserver_aa9a1622b227ab6db4b65781454c92504}{exceptional}
+\item 
+\hyperlink{namespaceserver_ab8d0bbcdb7423e60b0d370a6d21a1781}{clientsock}
+\item 
+\hyperlink{namespaceserver_a90279b585d4f187d0908de4962d5cb8d}{clientaddr}
+\item 
+\hyperlink{namespaceserver_a8b7790a9997c09aa90cf4a121a310d5c}{data} = readable\+Socket.\+recv(1024)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespaceserver_ac1ec62c626a3425033381ef5718ce12b}\label{namespaceserver_ac1ec62c626a3425033381ef5718ce12b}} 
+\index{server@{server}!accept\+Connections@{accept\+Connections}}
+\index{accept\+Connections@{accept\+Connections}!server@{server}}
+\subsubsection{\texorpdfstring{accept\+Connections()}{acceptConnections()}}
+{\footnotesize\ttfamily def server.\+accept\+Connections (\begin{DoxyParamCaption}\item[{}]{connections\+List,  }\item[{}]{clients\+List,  }\item[{}]{sock,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+121 \textcolor{keyword}{def }\hyperlink{namespaceserver_ac1ec62c626a3425033381ef5718ce12b}{acceptConnections}(connectionsList, clientsList, sock, logger):
+122      \textcolor{keywordflow}{while} \textcolor{keyword}{True}:
+123           \textcolor{comment}{#Accept the connection from the address}
+124           sock.setblocking(1)
+125           connection, address = sock.accept()
+126           logger.info(\textcolor{stringliteral}{"Accepted connection from \{\}"}.format(connection))
+127           \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3}{verifyStartedConnection}(connectionsList, connection) == 
+      NOT\_STARTED\_CONNECTION):
+128                connectionsList.append(connection)
+129                \textcolor{comment}{#Verify if id client belongs to database}
+130                mcuid = \hyperlink{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be}{getMCUID}(connection, address, logger)
+131                date = datetime.datetime.now().strftime(\textcolor{stringliteral}{"%d-%m-%y\_%H-%M"})
+132                logFile = logPath + \textcolor{stringliteral}{"/"} + str(mcuid) + \textcolor{stringliteral}{"-"} + date +\textcolor{stringliteral}{".txt"}
+133                 
+134                print(\textcolor{stringliteral}{"logfile \{\}"}.format(logFile))
+135                logger = \hyperlink{namespaceserver_a44a7428717edc164d7dd564478da2da3}{configureLogger}(logFile)
+136                statusIdClient, clientInfo = \hyperlink{namespaceserver_a4c51be10ba9f982375f4c0a426078a96}{verifyClientId}(connection, mcuid, logger)
+137                \textcolor{keywordflow}{if} (statusIdClient == SUCCESSFUL):
+138                     connection.send(allowedUpdate)
+139                     logger.info(\textcolor{stringliteral}{"Allowing update to \{\}"}.format(mcuid))
+140                     logger.info(\textcolor{stringliteral}{"Starting update to \{\}"}.format(mcuid))
+141                     \hyperlink{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}{prepareUpdate}(clientInfo, clientsList, logger)
+142                     \hyperlink{namespaceserver_a4889d0db3f3503cc61340252fabc2c24}{sendUpdate}(connection, address, mcuid, clientsList, sock, logger)
+143                \textcolor{keywordflow}{else}:
+144                     logger.warning(\textcolor{stringliteral}{"Banned connection from \{\}"}.format(address))
+145                     logger.error(\textcolor{stringliteral}{"Closing connection"})
+146                     connection.send(bannedUpdate)
+147                     \hyperlink{namespaceserver_a2e99d18201fed087163454b021b7c007}{closeConnection}(connection, logger)
+148      
+149      
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_ac1ec62c626a3425033381ef5718ce12b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{namespaceserver_ac1ec62c626a3425033381ef5718ce12b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a6098d5cffff301a01e793c84215c4512}\label{namespaceserver_a6098d5cffff301a01e793c84215c4512}} 
+\index{server@{server}!buffer\+Data@{buffer\+Data}}
+\index{buffer\+Data@{buffer\+Data}!server@{server}}
+\subsubsection{\texorpdfstring{buffer\+Data()}{bufferData()}}
+{\footnotesize\ttfamily def server.\+buffer\+Data (\begin{DoxyParamCaption}\item[{}]{filename,  }\item[{}]{binary\+File\+Lines,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+224 \textcolor{keyword}{def }\hyperlink{namespaceserver_a6098d5cffff301a01e793c84215c4512}{bufferData}(filename, binaryFileLines, logger):
+225      countLines = 0
+226      path = pathBinaryFiles+\textcolor{stringliteral}{"/"}+ filename
+227      \textcolor{keywordflow}{if} (os.path.exists(path)== \textcolor{keyword}{False}):
+228           logger.error(\textcolor{stringliteral}{"Required file does not exist \{\}"}.format(path))
+229           \textcolor{keywordflow}{return} UNABLE\_BUFFERING\_CODE
+230      with open(path, \textcolor{stringliteral}{'r') as file:}
+231 \textcolor{stringliteral}{          logger.info("Opening file \{\}"}.format(path))
+232           line = file.readline()
+233           countLines += 1
+234           \textcolor{keywordflow}{while} (line \textcolor{keywordflow}{and} countLines < bufferSizeFile):
+235                line = file.readline()
+236                chunk = re.findall(\textcolor{stringliteral}{r'^S1+[0-9A-F]+\(\backslash\)w|^S2+[0-9A-F]+\(\backslash\)w|^S3+[0-9A-F]+\(\backslash\)w'}, line)
+237                \textcolor{keywordflow}{if} (len(chunk)>0):
+238                     binaryFileLines.append(chunk[0])
+239                countLines += 1
+240           if(file.readline() == \textcolor{stringliteral}{''}):
+241                file.close()
+242                \textcolor{keywordflow}{return} SUCCESSFUL
+243           file.close()
+244           \textcolor{keywordflow}{return} BUFFERING\_CODE\_INCOMPLETE
+245      \textcolor{keywordflow}{return} UNABLE\_BUFFERING\_CODE
+246 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a6098d5cffff301a01e793c84215c4512_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a6098d5cffff301a01e793c84215c4512_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a2e99d18201fed087163454b021b7c007}\label{namespaceserver_a2e99d18201fed087163454b021b7c007}} 
+\index{server@{server}!close\+Connection@{close\+Connection}}
+\index{close\+Connection@{close\+Connection}!server@{server}}
+\subsubsection{\texorpdfstring{close\+Connection()}{closeConnection()}}
+{\footnotesize\ttfamily def server.\+close\+Connection (\begin{DoxyParamCaption}\item[{}]{connection,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+199 \textcolor{keyword}{def }\hyperlink{namespaceserver_a2e99d18201fed087163454b021b7c007}{closeConnection}(connection, logger):
+200      logger.info(\textcolor{stringliteral}{"Close of connection has been requested"})
+201      connection.close()
+202      \textcolor{keywordflow}{return} SUCCESSFUL
+203 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a2e99d18201fed087163454b021b7c007_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a2e99d18201fed087163454b021b7c007_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a44a7428717edc164d7dd564478da2da3}\label{namespaceserver_a44a7428717edc164d7dd564478da2da3}} 
+\index{server@{server}!configure\+Logger@{configure\+Logger}}
+\index{configure\+Logger@{configure\+Logger}!server@{server}}
+\subsubsection{\texorpdfstring{configure\+Logger()}{configureLogger()}}
+{\footnotesize\ttfamily def server.\+configure\+Logger (\begin{DoxyParamCaption}\item[{}]{log\+File }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+83 \textcolor{keyword}{def }\hyperlink{namespaceserver_a44a7428717edc164d7dd564478da2da3}{configureLogger}(logFile):
+84      \textcolor{comment}{# Logger name}
+85      logger = logging.getLogger(logFile)
+86      \textcolor{comment}{# Set the log level to LOG\_LEVEL}
+87      logger.setLevel(LOG\_LEVEL)
+88      \textcolor{comment}{# Make a handler that wirtes to a file, making a new file at midnight and keeping}
+89      \textcolor{comment}{# 3 backups}
+90      handler = logging.handlers.TimedRotatingFileHandler(logFile, when=\textcolor{stringliteral}{"midnight"}, backupCount =3)
+91      \textcolor{comment}{#Format each log message like this}
+92      formatter = logging.Formatter(\textcolor{stringliteral}{'%(asctime)s %(levelname)-8s %(message)s'})
+93      \textcolor{comment}{#Attach the formatter to the handler}
+94      handler.setFormatter(formatter)
+95      \textcolor{comment}{#Attach the handler to the logger}
+96      logger.addHandler(handler)
+97      \textcolor{comment}{#Replacement of stdout with loggin to file at INFO level}
+98      sys.stdout = CustomLogger(logger, logging.INFO)
+99      \textcolor{comment}{#Replacement of stdout with loggin to file at ERROR level}
+100      sys.stderr = CustomLogger(logger, logging.ERROR)
+101      \textcolor{keywordflow}{return} logger
+102  
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a44a7428717edc164d7dd564478da2da3_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a5dce7c3abe85653dccf395dfb4f4b664}\label{namespaceserver_a5dce7c3abe85653dccf395dfb4f4b664}} 
+\index{server@{server}!connect\+Socket@{connect\+Socket}}
+\index{connect\+Socket@{connect\+Socket}!server@{server}}
+\subsubsection{\texorpdfstring{connect\+Socket()}{connectSocket()}}
+{\footnotesize\ttfamily def server.\+connect\+Socket (\begin{DoxyParamCaption}\item[{}]{socket }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+20 \textcolor{keyword}{def }\hyperlink{namespaceserver_a5dce7c3abe85653dccf395dfb4f4b664}{connectSocket}(socket):
+21      data = \textcolor{stringliteral}{""}
+22      client, address = socket.accept()
+23      client.settimeout(TIMEOUT)
+24      data =  client.recv()
+25      openConnections.append(client)
+26      \textcolor{keywordflow}{if} data != \textcolor{stringliteral}{"@"}:
+27           logger.debug(\textcolor{stringliteral}{"\{u\} connected"}.format(u=address))
+28           client.send(\textcolor{stringliteral}{"OK"})
+29      openConnections.remove()
+30      client.close()
+31      
+32      
+33 
+\end{DoxyCode}
+\mbox{\Hypertarget{namespaceserver_a240f07b12d57cfa5cff5612501fe7dc8}\label{namespaceserver_a240f07b12d57cfa5cff5612501fe7dc8}} 
+\index{server@{server}!create\+Server@{create\+Server}}
+\index{create\+Server@{create\+Server}!server@{server}}
+\subsubsection{\texorpdfstring{create\+Server()}{createServer()}}
+{\footnotesize\ttfamily def server.\+create\+Server (\begin{DoxyParamCaption}\item[{}]{connections\+List,  }\item[{}]{clients\+List }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+103 \textcolor{keyword}{def }\hyperlink{namespaceserver_a240f07b12d57cfa5cff5612501fe7dc8}{createServer}(connectionsList, clientsList):
+104      
+107      sock = socket.socket(socket.AF\_INET, socket.SOCK\_STREAM)
+108      hostname = socket.gethostname()
+109      logger.info(\textcolor{stringliteral}{"Hostname \{\}"}.format(hostname))
+110      \textcolor{comment}{#Cleaning previous connections}
+111      sock.setsockopt(socket.SOL\_SOCKET, socket.SO\_REUSEADDR,1)
+112      \textcolor{comment}{#For binding address and port}
+113      \textcolor{comment}{# 0.0.0.0 because that makes our server available over any IP address}
+114      sock.bind((host,port))
+115      \textcolor{comment}{#Listen argument: Maximum in queue pendings}
+116      sock.listen(5)
+117      inputs.append(sock)
+118      logger.info(\textcolor{stringliteral}{"Server ready to listen"})
+119      \hyperlink{namespaceserver_ac1ec62c626a3425033381ef5718ce12b}{acceptConnections}(connectionsList, clientsList, sock, logger)
+120 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a240f07b12d57cfa5cff5612501fe7dc8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be}\label{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be}} 
+\index{server@{server}!get\+M\+C\+U\+ID@{get\+M\+C\+U\+ID}}
+\index{get\+M\+C\+U\+ID@{get\+M\+C\+U\+ID}!server@{server}}
+\subsubsection{\texorpdfstring{get\+M\+C\+U\+I\+D()}{getMCUID()}}
+{\footnotesize\ttfamily def server.\+get\+M\+C\+U\+ID (\begin{DoxyParamCaption}\item[{}]{connection,  }\item[{}]{address,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+157 \textcolor{keyword}{def }\hyperlink{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be}{getMCUID}(connection, address, logger):
+158      receivedData = connection.recv(maxBytes)
+159      logger.info(\textcolor{stringliteral}{"Server has received data from \{\}"}.format(address))
+160      mcuid = re.findall(\textcolor{stringliteral}{"^\(\backslash\)@(\(\backslash\)d\{25\})[0-9]*#$"}, receivedData.decode(\textcolor{stringliteral}{"utf-8"}))
+161                         
+162      if(len(mcuid) == 1):
+163           \textcolor{keywordflow}{return} mcuid[0]
+164      \textcolor{keywordflow}{else}:
+165           \textcolor{keywordflow}{return} UNFORMATTED\_MCUID
+166 
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}\label{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}} 
+\index{server@{server}!look\+For\+Client\+In\+Database@{look\+For\+Client\+In\+Database}}
+\index{look\+For\+Client\+In\+Database@{look\+For\+Client\+In\+Database}!server@{server}}
+\subsubsection{\texorpdfstring{look\+For\+Client\+In\+Database()}{lookForClientInDatabase()}}
+{\footnotesize\ttfamily def server.\+look\+For\+Client\+In\+Database (\begin{DoxyParamCaption}\item[{}]{mcuid,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+179 \textcolor{keyword}{def }\hyperlink{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}{lookForClientInDatabase}(mcuid, logger):
+180      
+181      clientInfo = []
+182      logger.info(\textcolor{stringliteral}{"Opening file \{\}, to verify MCUID \{\}"}.format(databaseName,mcuid))
+183      \textcolor{keywordflow}{try}:
+184           with open(databaseName, \textcolor{stringliteral}{'r') as file:               }\textcolor{keywordflow}{for} line \textcolor{keywordflow}{in} file:
+185                     clientInfo = line.split(\textcolor{stringliteral}{','})
+186                     \textcolor{keywordflow}{if} (len(clientInfo) == 3):
+187                          \textcolor{keywordflow}{if} (clientInfo[0] == mcuid):
+188                              \textcolor{keywordflow}{return} SUCCESSFUL, clientInfo
+189                          \textcolor{keywordflow}{else}:
+190                               \textcolor{keywordflow}{continue}
+191                     \textcolor{keywordflow}{else}:
+192                          \textcolor{keywordflow}{return} UNPROPER\_FILE\_FORMAT, clientInfo
+193           file.close()
+194      \textcolor{keywordflow}{except}:
+195           logger.error(\textcolor{stringliteral}{"Error opening file"})
+196      \textcolor{keywordflow}{return} CLIENT\_UNVERIFIED, clientInfo
+197 
+198 \end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}\label{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}} 
+\index{server@{server}!prepare\+Update@{prepare\+Update}}
+\index{prepare\+Update@{prepare\+Update}!server@{server}}
+\subsubsection{\texorpdfstring{prepare\+Update()}{prepareUpdate()}}
+{\footnotesize\ttfamily def server.\+prepare\+Update (\begin{DoxyParamCaption}\item[{}]{client\+Info,  }\item[{}]{clients\+List,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+204 \textcolor{keyword}{def }\hyperlink{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}{prepareUpdate}(clientInfo, clientsList, logger):
+205      logger.info(\textcolor{stringliteral}{"Preparing update for \{\}"}.format(clientInfo))
+206      \textcolor{comment}{#Buffer data from file to be sent to specific client}
+207      binaryFileLines = []
+208      bufferingStatus = \hyperlink{namespaceserver_a6098d5cffff301a01e793c84215c4512}{bufferData}(clientInfo[1], binaryFileLines, logger)
+209      logger.info(\textcolor{stringliteral}{"Status prepare update \{\}"}.format(bufferingStatus))
+210      \textcolor{keywordflow}{if} (bufferingStatus == SUCCESSFUL):
+211           FWVersion = re.findall(\textcolor{stringliteral}{r"([0-9A-F]+)"}, clientInfo[2])
+212           binaryFileLines.append(\textcolor{stringliteral}{"@\{\}##"}.format(FWVersion[0]))
+213           logger.info(\textcolor{stringliteral}{"Buffered code \{\}"}.format(binaryFileLines))
+214           logger.info(\textcolor{stringliteral}{"Code buffer done successfully"}) 
+215           clientsList.append(\{\textcolor{stringliteral}{"mcuid"}:clientInfo[0], \textcolor{stringliteral}{"filename"}:clientInfo[1], \textcolor{stringliteral}{"codelines"}: binaryFileLines
+      , \textcolor{stringliteral}{"status"}: READY\_TO\_UPDATE\})                 
+216           \textcolor{keywordflow}{return} SUCCESSFUL
+217      \textcolor{keywordflow}{if} (bufferingStatus == BUFFERING\_CODE\_INCOMPLETE):
+218           
+219           logger.info(\textcolor{stringliteral}{"Incomplete buffering code"})
+220           \textcolor{keywordflow}{return} BUFFERING\_CODE\_INCOMPLETE
+221      \textcolor{keywordflow}{else}:
+222           \textcolor{keywordflow}{return} UNABLE\_BUFFERING\_CODE
+223 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_aa317dc86338d02253076787cc8e5d997}\label{namespaceserver_aa317dc86338d02253076787cc8e5d997}} 
+\index{server@{server}!read\+Args@{read\+Args}}
+\index{read\+Args@{read\+Args}!server@{server}}
+\subsubsection{\texorpdfstring{read\+Args()}{readArgs()}}
+{\footnotesize\ttfamily def server.\+read\+Args (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+73 \textcolor{keyword}{def }\hyperlink{namespaceserver_aa317dc86338d02253076787cc8e5d997}{readArgs}():
+74      parser = argparse.ArgumentParser(description=\textcolor{stringliteral}{"OTA server in python"})
+75      parser.add\_argument(\textcolor{stringliteral}{"-db"}, \textcolor{stringliteral}{"--dbname"}, help=\textcolor{stringliteral}{"Database file name (path included)"}, default=
+      PATH\_DATABASE\_DEFAULT)
+76      parser.add\_argument(\textcolor{stringliteral}{"-pbf"}, \textcolor{stringliteral}{"--pathbinaryfiles"}, help=\textcolor{stringliteral}{"Binary files path"}, default=
+      PATH\_BINARY\_FILE\_DEFAULT)
+77      parser.add\_argument(\textcolor{stringliteral}{"-ho"}, \textcolor{stringliteral}{"--host"}, help=\textcolor{stringliteral}{"Host IP"}, default=HOST\_DEFAULT)
+78      parser.add\_argument(\textcolor{stringliteral}{"-p"}, \textcolor{stringliteral}{"--port"}, help=\textcolor{stringliteral}{"Port to establish communication"}, default=PORT\_DEFAULT)
+79      parser.add\_argument(\textcolor{stringliteral}{"-lp"}, \textcolor{stringliteral}{"--logpath"}, help=\textcolor{stringliteral}{"Path to save logging"}, default=LOG\_PATH\_DEFAULT)
+80      args = parser.parse\_args()
+81      \textcolor{keywordflow}{return} args
+82 
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_aa317dc86338d02253076787cc8e5d997_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a4889d0db3f3503cc61340252fabc2c24}\label{namespaceserver_a4889d0db3f3503cc61340252fabc2c24}} 
+\index{server@{server}!send\+Update@{send\+Update}}
+\index{send\+Update@{send\+Update}!server@{server}}
+\subsubsection{\texorpdfstring{send\+Update()}{sendUpdate()}}
+{\footnotesize\ttfamily def server.\+send\+Update (\begin{DoxyParamCaption}\item[{}]{connection,  }\item[{}]{address,  }\item[{}]{mcuid,  }\item[{}]{client\+To\+Update,  }\item[{}]{sock,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+247 \textcolor{keyword}{def }\hyperlink{namespaceserver_a4889d0db3f3503cc61340252fabc2c24}{sendUpdate}(connection, address, mcuid, clientToUpdate, sock, logger):
+248      sock.settimeout(TIMEOUT)
+249      \textcolor{keywordflow}{for} codechunk \textcolor{keywordflow}{in} clientToUpdate[0][\textcolor{stringliteral}{'codelines'}]:
+250           \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{validateCodeChunk}(codechunk) == SUCCESSFUL):
+251                logger.info(\textcolor{stringliteral}{"Data from server \{\}"}.format(codechunk))
+252                \textcolor{keywordflow}{try}:
+253                     connection.send(codechunk.encode())
+254                     receivedData = connection.recv(1024)
+255                     logger.info(\textcolor{stringliteral}{"Data from client: \{\}"}.format(receivedData))
+256                     \textcolor{keywordflow}{if} (receivedData == ackClient):
+257                          \textcolor{keywordflow}{continue}
+258                     \textcolor{keywordflow}{else}:
+259                          \hyperlink{namespaceserver_a2e99d18201fed087163454b021b7c007}{closeConnection}()
+260                          \textcolor{keywordflow}{return} TIMEOUT\_CONNECTION
+261                \textcolor{keywordflow}{except} socket.timeout \textcolor{keyword}{as} e:
+262                          logger.error(\textcolor{stringliteral}{"Timeout exceed \{\}"}.format(e))
+263                \textcolor{keywordflow}{except} socket.error \textcolor{keyword}{as} e:
+264                     logger.error(\textcolor{stringliteral}{"Error receiving data: \{\}"}.format(e))
+265                     
+266           \textcolor{keywordflow}{else}:
+267                \textcolor{keywordflow}{continue} 
+268      logger.info(\textcolor{stringliteral}{"Update finished"})
+269      \hyperlink{namespaceserver_a2e99d18201fed087163454b021b7c007}{closeConnection}(connection, logger)
+270      sock.setblocking(0)
+271      \textcolor{keywordflow}{return} SUCCESSFUL
+272 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4889d0db3f3503cc61340252fabc2c24_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4889d0db3f3503cc61340252fabc2c24_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}\label{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}} 
+\index{server@{server}!validate\+Code\+Chunk@{validate\+Code\+Chunk}}
+\index{validate\+Code\+Chunk@{validate\+Code\+Chunk}!server@{server}}
+\subsubsection{\texorpdfstring{validate\+Code\+Chunk()}{validateCodeChunk()}}
+{\footnotesize\ttfamily def server.\+validate\+Code\+Chunk (\begin{DoxyParamCaption}\item[{}]{codechunk }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+273 \textcolor{keyword}{def  }\hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{validateCodeChunk}(codechunk):
+274      match1 = re.search(\textcolor{stringliteral}{r'^S1+[0-9A-F]+\(\backslash\)w|^S2+[0-9A-F]+\(\backslash\)w|^S3+[0-9A-F]+\(\backslash\)w'}, codechunk)
+275      match2 = re.search(\textcolor{stringliteral}{r'^@([0-9A-F]\{1,2\})##$'}, codechunk)
+276      \textcolor{keywordflow}{if} match1 \textcolor{keywordflow}{or} match2:
+277           \textcolor{keywordflow}{return} SUCCESSFUL
+278      \textcolor{keywordflow}{else}:
+279           \textcolor{keywordflow}{return} INVALID\_CODE\_CHUNK
+280      
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a4c51be10ba9f982375f4c0a426078a96}\label{namespaceserver_a4c51be10ba9f982375f4c0a426078a96}} 
+\index{server@{server}!verify\+Client\+Id@{verify\+Client\+Id}}
+\index{verify\+Client\+Id@{verify\+Client\+Id}!server@{server}}
+\subsubsection{\texorpdfstring{verify\+Client\+Id()}{verifyClientId()}}
+{\footnotesize\ttfamily def server.\+verify\+Client\+Id (\begin{DoxyParamCaption}\item[{}]{connection,  }\item[{}]{mcuid,  }\item[{}]{logger }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+167 \textcolor{keyword}{def }\hyperlink{namespaceserver_a4c51be10ba9f982375f4c0a426078a96}{verifyClientId}(connection, mcuid, logger):
+168      
+169      clientInfo = []
+170      statusClient, clientInfo = \hyperlink{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}{lookForClientInDatabase}(mcuid, logger)
+171      if(statusClient== SUCCESSFUL):
+172           logger.info(\textcolor{stringliteral}{"Client Info \{\}"}.format(clientInfo))
+173           logger.info(\textcolor{stringliteral}{"Client \{\} exists in database"}.format(mcuid))
+174           \textcolor{keywordflow}{return} SUCCESSFUL, clientInfo
+175      \textcolor{keywordflow}{else}:
+176           logger.error(\textcolor{stringliteral}{"Client \{\} does not exist in database"}.format(mcuid))
+177           \textcolor{keywordflow}{return} CLIENT\_UNVERIFIED, clientInfo
+178                    
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4c51be10ba9f982375f4c0a426078a96_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4c51be10ba9f982375f4c0a426078a96_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3}\label{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3}} 
+\index{server@{server}!verify\+Started\+Connection@{verify\+Started\+Connection}}
+\index{verify\+Started\+Connection@{verify\+Started\+Connection}!server@{server}}
+\subsubsection{\texorpdfstring{verify\+Started\+Connection()}{verifyStartedConnection()}}
+{\footnotesize\ttfamily def server.\+verify\+Started\+Connection (\begin{DoxyParamCaption}\item[{}]{connections,  }\item[{}]{connection }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+150 \textcolor{keyword}{def }\hyperlink{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3}{verifyStartedConnection}(connections, connection):
+151      \textcolor{keywordflow}{for} conn \textcolor{keywordflow}{in} connections:
+152           if(conn == connection):
+153                \textcolor{keywordflow}{return} ALREADY\_STARTED\_CONNECTION
+154      connections.append(connection)
+155      \textcolor{keywordflow}{return} NOT\_STARTED\_CONNECTION
+156 
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3_icgraph}
+\end{center}
+\end{figure}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{namespaceserver_ad00458dfe9ab743680203b756f8345bf}\label{namespaceserver_ad00458dfe9ab743680203b756f8345bf}} 
+\index{server@{server}!ack\+Client@{ack\+Client}}
+\index{ack\+Client@{ack\+Client}!server@{server}}
+\subsubsection{\texorpdfstring{ack\+Client}{ackClient}}
+{\footnotesize\ttfamily string server.\+ack\+Client = b\textquotesingle{}@\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceserver_a097162d68fd6d2855bf5eb81507db414}\label{namespaceserver_a097162d68fd6d2855bf5eb81507db414}} 
+\index{server@{server}!allowed\+Update@{allowed\+Update}}
+\index{allowed\+Update@{allowed\+Update}!server@{server}}
+\subsubsection{\texorpdfstring{allowed\+Update}{allowedUpdate}}
+{\footnotesize\ttfamily string server.\+allowed\+Update = b\textquotesingle{}@4\#\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceserver_a02bffbe3ff309c8cca6cfdc9fe84b335}\label{namespaceserver_a02bffbe3ff309c8cca6cfdc9fe84b335}} 
+\index{server@{server}!A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON@{A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}}
+\index{A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON@{A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}!server@{server}}
+\subsubsection{\texorpdfstring{A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}{ALREADY\_STARTED\_CONNECTION}}
+{\footnotesize\ttfamily int server.\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON = 4}
+
+\mbox{\Hypertarget{namespaceserver_aea7e1efc19535ee9bab8400a812b43a9}\label{namespaceserver_aea7e1efc19535ee9bab8400a812b43a9}} 
+\index{server@{server}!args@{args}}
+\index{args@{args}!server@{server}}
+\subsubsection{\texorpdfstring{args}{args}}
+{\footnotesize\ttfamily server.\+args = \hyperlink{namespaceserver_aa317dc86338d02253076787cc8e5d997}{read\+Args}()}
+
+\mbox{\Hypertarget{namespaceserver_ae86ca5f489b3b8161c0ab91cbef0d8e6}\label{namespaceserver_ae86ca5f489b3b8161c0ab91cbef0d8e6}} 
+\index{server@{server}!banned\+Update@{banned\+Update}}
+\index{banned\+Update@{banned\+Update}!server@{server}}
+\subsubsection{\texorpdfstring{banned\+Update}{bannedUpdate}}
+{\footnotesize\ttfamily string server.\+banned\+Update = b\textquotesingle{}@0\#\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceserver_aabc8079ca922bed2eba00ad2cbc5d354}\label{namespaceserver_aabc8079ca922bed2eba00ad2cbc5d354}} 
+\index{server@{server}!B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE@{B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE}}
+\index{B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE@{B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE}!server@{server}}
+\subsubsection{\texorpdfstring{B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE}{BUFFERING\_CODE\_INCOMPLETE}}
+{\footnotesize\ttfamily int server.\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE = 9}
+
+\mbox{\Hypertarget{namespaceserver_a49c2646e7b6a517fe077d830219c58d4}\label{namespaceserver_a49c2646e7b6a517fe077d830219c58d4}} 
+\index{server@{server}!buffer\+Size\+File@{buffer\+Size\+File}}
+\index{buffer\+Size\+File@{buffer\+Size\+File}!server@{server}}
+\subsubsection{\texorpdfstring{buffer\+Size\+File}{bufferSizeFile}}
+{\footnotesize\ttfamily int server.\+buffer\+Size\+File = 300}
+
+\mbox{\Hypertarget{namespaceserver_aa1f32b90430e9bda83de3d5e601402d5}\label{namespaceserver_aa1f32b90430e9bda83de3d5e601402d5}} 
+\index{server@{server}!C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED@{C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED}}
+\index{C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED@{C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED}!server@{server}}
+\subsubsection{\texorpdfstring{C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED}{CLIENT\_UNVERIFIED}}
+{\footnotesize\ttfamily int server.\+C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED = 1}
+
+\mbox{\Hypertarget{namespaceserver_a90279b585d4f187d0908de4962d5cb8d}\label{namespaceserver_a90279b585d4f187d0908de4962d5cb8d}} 
+\index{server@{server}!clientaddr@{clientaddr}}
+\index{clientaddr@{clientaddr}!server@{server}}
+\subsubsection{\texorpdfstring{clientaddr}{clientaddr}}
+{\footnotesize\ttfamily server.\+clientaddr}
+
+\mbox{\Hypertarget{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}\label{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}} 
+\index{server@{server}!clients\+List@{clients\+List}}
+\index{clients\+List@{clients\+List}!server@{server}}
+\subsubsection{\texorpdfstring{clients\+List}{clientsList}}
+{\footnotesize\ttfamily list server.\+clients\+List = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceserver_ab8d0bbcdb7423e60b0d370a6d21a1781}\label{namespaceserver_ab8d0bbcdb7423e60b0d370a6d21a1781}} 
+\index{server@{server}!clientsock@{clientsock}}
+\index{clientsock@{clientsock}!server@{server}}
+\subsubsection{\texorpdfstring{clientsock}{clientsock}}
+{\footnotesize\ttfamily server.\+clientsock}
+
+\mbox{\Hypertarget{namespaceserver_ab9cbbed2baf7ef46dcd7d67fcb351ac7}\label{namespaceserver_ab9cbbed2baf7ef46dcd7d67fcb351ac7}} 
+\index{server@{server}!connected\+Clients@{connected\+Clients}}
+\index{connected\+Clients@{connected\+Clients}!server@{server}}
+\subsubsection{\texorpdfstring{connected\+Clients}{connectedClients}}
+{\footnotesize\ttfamily int server.\+connected\+Clients = 0}
+
+\mbox{\Hypertarget{namespaceserver_a734e47a5cf907dc2e128358488a9c3e7}\label{namespaceserver_a734e47a5cf907dc2e128358488a9c3e7}} 
+\index{server@{server}!connections\+List@{connections\+List}}
+\index{connections\+List@{connections\+List}!server@{server}}
+\subsubsection{\texorpdfstring{connections\+List}{connectionsList}}
+{\footnotesize\ttfamily list server.\+connections\+List = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceserver_ace8bd717303af3e13cd4dba46b2cd5f1}\label{namespaceserver_ace8bd717303af3e13cd4dba46b2cd5f1}} 
+\index{server@{server}!connect\+Socket@{connect\+Socket}}
+\index{connect\+Socket@{connect\+Socket}!server@{server}}
+\subsubsection{\texorpdfstring{connect\+Socket}{connectSocket}}
+{\footnotesize\ttfamily server.\+connect\+Socket}
+
+\mbox{\Hypertarget{namespaceserver_a8b7790a9997c09aa90cf4a121a310d5c}\label{namespaceserver_a8b7790a9997c09aa90cf4a121a310d5c}} 
+\index{server@{server}!data@{data}}
+\index{data@{data}!server@{server}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily server.\+data = readable\+Socket.\+recv(1024)}
+
+\mbox{\Hypertarget{namespaceserver_ad56bacd311418978d78a8d1467a221a0}\label{namespaceserver_ad56bacd311418978d78a8d1467a221a0}} 
+\index{server@{server}!database\+Name@{database\+Name}}
+\index{database\+Name@{database\+Name}!server@{server}}
+\subsubsection{\texorpdfstring{database\+Name}{databaseName}}
+{\footnotesize\ttfamily def server.\+database\+Name = \char`\"{}\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_a3ae1ac2f6b7f0e83705066a294c6af9b}\label{namespaceserver_a3ae1ac2f6b7f0e83705066a294c6af9b}} 
+\index{server@{server}!D\+E\+B\+U\+G\+\_\+\+ON@{D\+E\+B\+U\+G\+\_\+\+ON}}
+\index{D\+E\+B\+U\+G\+\_\+\+ON@{D\+E\+B\+U\+G\+\_\+\+ON}!server@{server}}
+\subsubsection{\texorpdfstring{D\+E\+B\+U\+G\+\_\+\+ON}{DEBUG\_ON}}
+{\footnotesize\ttfamily int server.\+D\+E\+B\+U\+G\+\_\+\+ON = 1}
+
+
+
+Enable 1 Disable 0 Debug. 
+
+\mbox{\Hypertarget{namespaceserver_aa9a1622b227ab6db4b65781454c92504}\label{namespaceserver_aa9a1622b227ab6db4b65781454c92504}} 
+\index{server@{server}!exceptional@{exceptional}}
+\index{exceptional@{exceptional}!server@{server}}
+\subsubsection{\texorpdfstring{exceptional}{exceptional}}
+{\footnotesize\ttfamily server.\+exceptional}
+
+\mbox{\Hypertarget{namespaceserver_a8a14948c5211d04b3a2b33b730b991b2}\label{namespaceserver_a8a14948c5211d04b3a2b33b730b991b2}} 
+\index{server@{server}!excepts@{excepts}}
+\index{excepts@{excepts}!server@{server}}
+\subsubsection{\texorpdfstring{excepts}{excepts}}
+{\footnotesize\ttfamily list server.\+excepts = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceserver_a4230afe85d97e78a1df6181d40cbe0b7}\label{namespaceserver_a4230afe85d97e78a1df6181d40cbe0b7}} 
+\index{server@{server}!host@{host}}
+\index{host@{host}!server@{server}}
+\subsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily string server.\+host = \char`\"{}\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_abad27332b11c625d6b59b5fc1ca4b2b2}\label{namespaceserver_abad27332b11c625d6b59b5fc1ca4b2b2}} 
+\index{server@{server}!H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT@{H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\index{H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT@{H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT}!server@{server}}
+\subsubsection{\texorpdfstring{H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT}{HOST\_DEFAULT}}
+{\footnotesize\ttfamily string server.\+H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT = \textquotesingle{}\textquotesingle{}}
+
+\mbox{\Hypertarget{namespaceserver_acc620e319dd97213c1d3758ea4de7f68}\label{namespaceserver_acc620e319dd97213c1d3758ea4de7f68}} 
+\index{server@{server}!inputs@{inputs}}
+\index{inputs@{inputs}!server@{server}}
+\subsubsection{\texorpdfstring{inputs}{inputs}}
+{\footnotesize\ttfamily list server.\+inputs = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceserver_a4782abb5e785dbf608b8b8d553bbac12}\label{namespaceserver_a4782abb5e785dbf608b8b8d553bbac12}} 
+\index{server@{server}!I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK@{I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK}}
+\index{I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK@{I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK}!server@{server}}
+\subsubsection{\texorpdfstring{I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK}{INVALID\_CODE\_CHUNK}}
+{\footnotesize\ttfamily int server.\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK = 8}
+
+\mbox{\Hypertarget{namespaceserver_ae9611c1fa51131280e6b7c2e7ea199af}\label{namespaceserver_ae9611c1fa51131280e6b7c2e7ea199af}} 
+\index{server@{server}!L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT@{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\index{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT@{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}!server@{server}}
+\subsubsection{\texorpdfstring{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}{LOG\_FILENAME\_DEFAULT}}
+{\footnotesize\ttfamily string server.\+L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT = \char`\"{}/otaserver.\+log\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_a623756b923995322c8ea575f3b9e70ba}\label{namespaceserver_a623756b923995322c8ea575f3b9e70ba}} 
+\index{server@{server}!L\+O\+G\+\_\+\+L\+E\+V\+EL@{L\+O\+G\+\_\+\+L\+E\+V\+EL}}
+\index{L\+O\+G\+\_\+\+L\+E\+V\+EL@{L\+O\+G\+\_\+\+L\+E\+V\+EL}!server@{server}}
+\subsubsection{\texorpdfstring{L\+O\+G\+\_\+\+L\+E\+V\+EL}{LOG\_LEVEL}}
+{\footnotesize\ttfamily server.\+L\+O\+G\+\_\+\+L\+E\+V\+EL = logging.\+I\+N\+FO}
+
+\mbox{\Hypertarget{namespaceserver_a6e3160a2459a5f5c0b05d31bea269c07}\label{namespaceserver_a6e3160a2459a5f5c0b05d31bea269c07}} 
+\index{server@{server}!L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT@{L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\index{L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT@{L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT}!server@{server}}
+\subsubsection{\texorpdfstring{L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT}{LOG\_PATH\_DEFAULT}}
+{\footnotesize\ttfamily string server.\+L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT = \char`\"{}/tmp\char`\"{}}
+
+
+
+Defaults files to log. 
+
+\mbox{\Hypertarget{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}\label{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}} 
+\index{server@{server}!log\+File@{log\+File}}
+\index{log\+File@{log\+File}!server@{server}}
+\subsubsection{\texorpdfstring{log\+File}{logFile}}
+{\footnotesize\ttfamily string server.\+log\+File = \hyperlink{namespaceserver_a45d593b7c621a117aaef105bf59d9fd5}{log\+Path} + \hyperlink{namespaceserver_ae9611c1fa51131280e6b7c2e7ea199af}{L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}
+
+\mbox{\Hypertarget{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}\label{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}} 
+\index{server@{server}!logger@{logger}}
+\index{logger@{logger}!server@{server}}
+\subsubsection{\texorpdfstring{logger}{logger}}
+{\footnotesize\ttfamily server.\+logger = \hyperlink{namespaceserver_a44a7428717edc164d7dd564478da2da3}{configure\+Logger}(\hyperlink{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}{log\+File})}
+
+\mbox{\Hypertarget{namespaceserver_a45d593b7c621a117aaef105bf59d9fd5}\label{namespaceserver_a45d593b7c621a117aaef105bf59d9fd5}} 
+\index{server@{server}!log\+Path@{log\+Path}}
+\index{log\+Path@{log\+Path}!server@{server}}
+\subsubsection{\texorpdfstring{log\+Path}{logPath}}
+{\footnotesize\ttfamily def server.\+log\+Path = \char`\"{}\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_a8f2c905b49be657a873ebe6d354d4b47}\label{namespaceserver_a8f2c905b49be657a873ebe6d354d4b47}} 
+\index{server@{server}!M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}}
+\index{M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS@{M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}!server@{server}}
+\subsubsection{\texorpdfstring{M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}{MAX\_OPEN\_CONNECTIONS}}
+{\footnotesize\ttfamily int server.\+M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS = 5}
+
+\mbox{\Hypertarget{namespaceserver_a100b5332a3005033a437d4240302698d}\label{namespaceserver_a100b5332a3005033a437d4240302698d}} 
+\index{server@{server}!max\+Bytes@{max\+Bytes}}
+\index{max\+Bytes@{max\+Bytes}!server@{server}}
+\subsubsection{\texorpdfstring{max\+Bytes}{maxBytes}}
+{\footnotesize\ttfamily int server.\+max\+Bytes = 1024}
+
+\mbox{\Hypertarget{namespaceserver_abd54d09502b28ddf1b7c67d7128f0770}\label{namespaceserver_abd54d09502b28ddf1b7c67d7128f0770}} 
+\index{server@{server}!M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME@{M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME}}
+\index{M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME@{M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME}!server@{server}}
+\subsubsection{\texorpdfstring{M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME}{MISSED\_FILENAME}}
+{\footnotesize\ttfamily int server.\+M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME = 2}
+
+\mbox{\Hypertarget{namespaceserver_ac3607b92a19b8b6e55eec69cd0e45e6d}\label{namespaceserver_ac3607b92a19b8b6e55eec69cd0e45e6d}} 
+\index{server@{server}!N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON@{N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}}
+\index{N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON@{N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}!server@{server}}
+\subsubsection{\texorpdfstring{N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}{NOT\_STARTED\_CONNECTION}}
+{\footnotesize\ttfamily int server.\+N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON = 4}
+
+\mbox{\Hypertarget{namespaceserver_a0d0a0c96488e0f2fb395618dd4658135}\label{namespaceserver_a0d0a0c96488e0f2fb395618dd4658135}} 
+\index{server@{server}!open\+Connections@{open\+Connections}}
+\index{open\+Connections@{open\+Connections}!server@{server}}
+\subsubsection{\texorpdfstring{open\+Connections}{openConnections}}
+{\footnotesize\ttfamily list server.\+open\+Connections = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceserver_af6312e19169c5addc1dafc4954287d67}\label{namespaceserver_af6312e19169c5addc1dafc4954287d67}} 
+\index{server@{server}!outputs@{outputs}}
+\index{outputs@{outputs}!server@{server}}
+\subsubsection{\texorpdfstring{outputs}{outputs}}
+{\footnotesize\ttfamily list server.\+outputs = \mbox{[}$\,$\mbox{]}}
+
+\mbox{\Hypertarget{namespaceserver_a064d84330983ae4788826100a0238c78}\label{namespaceserver_a064d84330983ae4788826100a0238c78}} 
+\index{server@{server}!P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT@{P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\index{P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT@{P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT}!server@{server}}
+\subsubsection{\texorpdfstring{P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT}{PATH\_BINARY\_FILE\_DEFAULT}}
+{\footnotesize\ttfamily string server.\+P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT = \char`\"{}/root/fota/otaserver/bin\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_aa3f9ad91c62b5372a5e677c50b853605}\label{namespaceserver_aa3f9ad91c62b5372a5e677c50b853605}} 
+\index{server@{server}!P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT@{P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\index{P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT@{P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT}!server@{server}}
+\subsubsection{\texorpdfstring{P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT}{PATH\_DATABASE\_DEFAULT}}
+{\footnotesize\ttfamily string server.\+P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT = \char`\"{}/root/fota/otaserver/database/devices2update.\+txt\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_a34ef43a269b2139fb82ac42e3d9e525a}\label{namespaceserver_a34ef43a269b2139fb82ac42e3d9e525a}} 
+\index{server@{server}!path\+Binary\+Files@{path\+Binary\+Files}}
+\index{path\+Binary\+Files@{path\+Binary\+Files}!server@{server}}
+\subsubsection{\texorpdfstring{path\+Binary\+Files}{pathBinaryFiles}}
+{\footnotesize\ttfamily def server.\+path\+Binary\+Files = \char`\"{}\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_accc83f0ac9fb96c740cb3df16517e927}\label{namespaceserver_accc83f0ac9fb96c740cb3df16517e927}} 
+\index{server@{server}!port@{port}}
+\index{port@{port}!server@{server}}
+\subsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily int server.\+port = \char`\"{}\char`\"{}}
+
+\mbox{\Hypertarget{namespaceserver_aa0fba16fbbcb0260d63ddce950cecb42}\label{namespaceserver_aa0fba16fbbcb0260d63ddce950cecb42}} 
+\index{server@{server}!P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT@{P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT}}
+\index{P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT@{P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT}!server@{server}}
+\subsubsection{\texorpdfstring{P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT}{PORT\_DEFAULT}}
+{\footnotesize\ttfamily int server.\+P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT = 4000}
+
+\mbox{\Hypertarget{namespaceserver_accef440b565edfb162319da0f775b284}\label{namespaceserver_accef440b565edfb162319da0f775b284}} 
+\index{server@{server}!readable@{readable}}
+\index{readable@{readable}!server@{server}}
+\subsubsection{\texorpdfstring{readable}{readable}}
+{\footnotesize\ttfamily server.\+readable}
+
+\mbox{\Hypertarget{namespaceserver_a1da647756067c40eea52b91451e82ad5}\label{namespaceserver_a1da647756067c40eea52b91451e82ad5}} 
+\index{server@{server}!R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE@{R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE}}
+\index{R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE@{R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE}!server@{server}}
+\subsubsection{\texorpdfstring{R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE}{READY\_TO\_UPDATE}}
+{\footnotesize\ttfamily int server.\+R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE = 10}
+
+\mbox{\Hypertarget{namespaceserver_ae005445cadfc079ed27cd779020f5f32}\label{namespaceserver_ae005445cadfc079ed27cd779020f5f32}} 
+\index{server@{server}!serversocket@{serversocket}}
+\index{serversocket@{serversocket}!server@{server}}
+\subsubsection{\texorpdfstring{serversocket}{serversocket}}
+{\footnotesize\ttfamily server.\+serversocket = socket.\+socket (socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)}
+
+\mbox{\Hypertarget{namespaceserver_a995df52292d049e26620aefae8eb4e1d}\label{namespaceserver_a995df52292d049e26620aefae8eb4e1d}} 
+\index{server@{server}!sock@{sock}}
+\index{sock@{sock}!server@{server}}
+\subsubsection{\texorpdfstring{sock}{sock}}
+{\footnotesize\ttfamily server.\+sock = socket.\+socket(socket.\+A\+F\+\_\+\+I\+N\+ET, socket.\+S\+O\+C\+K\+\_\+\+S\+T\+R\+E\+AM)}
+
+\mbox{\Hypertarget{namespaceserver_ac636d4745eb8df94294d20a79e9736c2}\label{namespaceserver_ac636d4745eb8df94294d20a79e9736c2}} 
+\index{server@{server}!S\+U\+C\+C\+E\+S\+S\+F\+UL@{S\+U\+C\+C\+E\+S\+S\+F\+UL}}
+\index{S\+U\+C\+C\+E\+S\+S\+F\+UL@{S\+U\+C\+C\+E\+S\+S\+F\+UL}!server@{server}}
+\subsubsection{\texorpdfstring{S\+U\+C\+C\+E\+S\+S\+F\+UL}{SUCCESSFUL}}
+{\footnotesize\ttfamily int server.\+S\+U\+C\+C\+E\+S\+S\+F\+UL = 0}
+
+\mbox{\Hypertarget{namespaceserver_a6c2bf59cef00216ae7fee937e55f013d}\label{namespaceserver_a6c2bf59cef00216ae7fee937e55f013d}} 
+\index{server@{server}!target@{target}}
+\index{target@{target}!server@{server}}
+\subsubsection{\texorpdfstring{target}{target}}
+{\footnotesize\ttfamily server.\+target}
+
+\mbox{\Hypertarget{namespaceserver_abcf4d8f2c33b95345413f5e15c24a01e}\label{namespaceserver_abcf4d8f2c33b95345413f5e15c24a01e}} 
+\index{server@{server}!T\+I\+M\+E\+O\+UT@{T\+I\+M\+E\+O\+UT}}
+\index{T\+I\+M\+E\+O\+UT@{T\+I\+M\+E\+O\+UT}!server@{server}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+O\+UT}{TIMEOUT}}
+{\footnotesize\ttfamily int server.\+T\+I\+M\+E\+O\+UT = 30}
+
+\mbox{\Hypertarget{namespaceserver_a91d094730b5907a9e14d0f4098b490b9}\label{namespaceserver_a91d094730b5907a9e14d0f4098b490b9}} 
+\index{server@{server}!T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON@{T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}}
+\index{T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON@{T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}!server@{server}}
+\subsubsection{\texorpdfstring{T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}{TIMEOUT\_CONNECTION}}
+{\footnotesize\ttfamily int server.\+T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON = 7}
+
+\mbox{\Hypertarget{namespaceserver_a6d2a5626a7ca491da6005e14db1de116}\label{namespaceserver_a6d2a5626a7ca491da6005e14db1de116}} 
+\index{server@{server}!U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE@{U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE}}
+\index{U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE@{U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE}!server@{server}}
+\subsubsection{\texorpdfstring{U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE}{UNABLE\_BUFFERING\_CODE}}
+{\footnotesize\ttfamily int server.\+U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE = 5}
+
+\mbox{\Hypertarget{namespaceserver_ae93172172b034664ce8a47255943b867}\label{namespaceserver_ae93172172b034664ce8a47255943b867}} 
+\index{server@{server}!U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID@{U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID}}
+\index{U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID@{U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID}!server@{server}}
+\subsubsection{\texorpdfstring{U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID}{UNFORMATTED\_MCUID}}
+{\footnotesize\ttfamily int server.\+U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID = 3}
+
+\mbox{\Hypertarget{namespaceserver_ae355ef915b96ba835f2a760f4b441679}\label{namespaceserver_ae355ef915b96ba835f2a760f4b441679}} 
+\index{server@{server}!U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT@{U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT}}
+\index{U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT@{U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT}!server@{server}}
+\subsubsection{\texorpdfstring{U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT}{UNPROPER\_FILE\_FORMAT}}
+{\footnotesize\ttfamily int server.\+U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT = 6}
+
+\mbox{\Hypertarget{namespaceserver_accc7fda5853169f8f74f25dfb423b576}\label{namespaceserver_accc7fda5853169f8f74f25dfb423b576}} 
+\index{server@{server}!writable@{writable}}
+\index{writable@{writable}!server@{server}}
+\subsubsection{\texorpdfstring{writable}{writable}}
+{\footnotesize\ttfamily server.\+writable}
+

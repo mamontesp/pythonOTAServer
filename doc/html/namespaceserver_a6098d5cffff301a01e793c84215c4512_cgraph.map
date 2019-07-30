@@ -1,0 +1,7 @@
+<map id="server.bufferData" name="server.bufferData">
+<area shape="rect" id="node2" href="$namespaceserver.html#a4889d0db3f3503cc61340252fabc2c24" title="server.sendUpdate" alt="" coords="176,56,308,83"/>
+<area shape="rect" id="node3" href="$namespaceserver.html#ad6f5a9a8c8e233d0537dc69dc6de98f6" title="server.validateCodeChunk" alt="" coords="356,5,532,32"/>
+<area shape="rect" id="node5" href="$namespaceserver.html#a2e99d18201fed087163454b021b7c007" title="server.closeConnection" alt="" coords="365,56,523,83"/>
+<area shape="rect" id="node4" href="$namespaceserver.html#aa317dc86338d02253076787cc8e5d997" title="server.readArgs" alt="" coords="596,5,711,32"/>
+<area shape="rect" id="node6" href="$namespaceserver.html#a4ab7e63c5f934dfea50b006468f9efca" title="server.prepareUpdate" alt="" coords="580,81,727,108"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="server.lookForClientInDatabase" name="server.lookForClientInDatabase">
+<area shape="rect" id="node2" href="$namespaceserver.html#a4c51be10ba9f982375f4c0a426078a96" title="server.verifyClientId" alt="" coords="275,5,414,32"/>
+<area shape="rect" id="node5" href="$namespacetests.html#ab9d8846c7694143044a37e86e9447600" title="tests.testLookForClientIn\lDatabaseExist" alt="" coords="260,57,429,98"/>
+<area shape="rect" id="node7" href="$namespacetests.html#aa01c1b55c064d435f5ce63b79f8042a5" title="tests.testLookForClientIn\lDatabaseDoesNotExist" alt="" coords="260,122,429,163"/>
+<area shape="rect" id="node3" href="$namespaceserver.html#ac1ec62c626a3425033381ef5718ce12b" title="server.acceptConnections" alt="" coords="487,5,661,32"/>
+<area shape="rect" id="node4" href="$namespaceserver.html#a240f07b12d57cfa5cff5612501fe7dc8" title="server.createServer" alt="" coords="719,5,855,32"/>
+<area shape="rect" id="node6" href="$namespacetests.html#a625a9a5cd2f728455da250e9ba37d457" title="tests.testValidateCodeChunk\lNoValid" alt="" coords="477,89,671,130"/>
+</map>

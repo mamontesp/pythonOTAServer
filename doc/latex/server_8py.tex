@@ -1,0 +1,115 @@
+\hypertarget{server_8py}{}\section{server.\+py File Reference}
+\label{server_8py}\index{server.\+py@{server.\+py}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceserver}{server}
+\item 
+ \hyperlink{namespaceServer_1_1py}{Server.\+py}
+\begin{DoxyCompactList}\small\item\em Create a server and enable R\+E\+ST A\+PI for firmware updates. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceserver_aa317dc86338d02253076787cc8e5d997}{server.\+read\+Args} ()
+\item 
+def \hyperlink{namespaceserver_a44a7428717edc164d7dd564478da2da3}{server.\+configure\+Logger} (log\+File)
+\item 
+def \hyperlink{namespaceserver_a240f07b12d57cfa5cff5612501fe7dc8}{server.\+create\+Server} (connections\+List, clients\+List)
+\item 
+def \hyperlink{namespaceserver_ac1ec62c626a3425033381ef5718ce12b}{server.\+accept\+Connections} (connections\+List, clients\+List, sock, logger)
+\item 
+def \hyperlink{namespaceserver_a4e6504daf55d2ef34d4d2ea5b30074f3}{server.\+verify\+Started\+Connection} (connections, connection)
+\item 
+def \hyperlink{namespaceserver_a26f3a1d49ee9e013ed77fbcb273a99be}{server.\+get\+M\+C\+U\+ID} (connection, address, logger)
+\item 
+def \hyperlink{namespaceserver_a4c51be10ba9f982375f4c0a426078a96}{server.\+verify\+Client\+Id} (connection, mcuid, logger)
+\item 
+def \hyperlink{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}{server.\+look\+For\+Client\+In\+Database} (mcuid, logger)
+\item 
+def \hyperlink{namespaceserver_a2e99d18201fed087163454b021b7c007}{server.\+close\+Connection} (connection, logger)
+\item 
+def \hyperlink{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}{server.\+prepare\+Update} (client\+Info, clients\+List, logger)
+\item 
+def \hyperlink{namespaceserver_a6098d5cffff301a01e793c84215c4512}{server.\+buffer\+Data} (filename, binary\+File\+Lines, logger)
+\item 
+def \hyperlink{namespaceserver_a4889d0db3f3503cc61340252fabc2c24}{server.\+send\+Update} (connection, address, mcuid, client\+To\+Update, sock, logger)
+\item 
+def \hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{server.\+validate\+Code\+Chunk} (codechunk)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceserver_a3ae1ac2f6b7f0e83705066a294c6af9b}{server.\+D\+E\+B\+U\+G\+\_\+\+ON} = 1
+\begin{DoxyCompactList}\small\item\em Enable 1 Disable 0 Debug. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceserver_a6e3160a2459a5f5c0b05d31bea269c07}{server.\+L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/tmp\char`\"{}
+\begin{DoxyCompactList}\small\item\em Defaults files to log. \end{DoxyCompactList}\item 
+string \hyperlink{namespaceserver_ae9611c1fa51131280e6b7c2e7ea199af}{server.\+L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/otaserver.\+log\char`\"{}
+\item 
+\hyperlink{namespaceserver_a623756b923995322c8ea575f3b9e70ba}{server.\+L\+O\+G\+\_\+\+L\+E\+V\+EL} = logging.\+I\+N\+FO
+\item 
+int \hyperlink{namespaceserver_ac636d4745eb8df94294d20a79e9736c2}{server.\+S\+U\+C\+C\+E\+S\+S\+F\+UL} = 0
+\item 
+int \hyperlink{namespaceserver_aa1f32b90430e9bda83de3d5e601402d5}{server.\+C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED} = 1
+\item 
+int \hyperlink{namespaceserver_abd54d09502b28ddf1b7c67d7128f0770}{server.\+M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME} = 2
+\item 
+int \hyperlink{namespaceserver_ae93172172b034664ce8a47255943b867}{server.\+U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID} = 3
+\item 
+int \hyperlink{namespaceserver_a02bffbe3ff309c8cca6cfdc9fe84b335}{server.\+A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON} = 4
+\item 
+int \hyperlink{namespaceserver_ac3607b92a19b8b6e55eec69cd0e45e6d}{server.\+N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON} = 4
+\item 
+int \hyperlink{namespaceserver_a6d2a5626a7ca491da6005e14db1de116}{server.\+U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE} = 5
+\item 
+int \hyperlink{namespaceserver_ae355ef915b96ba835f2a760f4b441679}{server.\+U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT} = 6
+\item 
+int \hyperlink{namespaceserver_a91d094730b5907a9e14d0f4098b490b9}{server.\+T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON} = 7
+\item 
+int \hyperlink{namespaceserver_a4782abb5e785dbf608b8b8d553bbac12}{server.\+I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK} = 8
+\item 
+int \hyperlink{namespaceserver_aabc8079ca922bed2eba00ad2cbc5d354}{server.\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE} = 9
+\item 
+int \hyperlink{namespaceserver_a1da647756067c40eea52b91451e82ad5}{server.\+R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE} = 10
+\item 
+int \hyperlink{namespaceserver_abcf4d8f2c33b95345413f5e15c24a01e}{server.\+T\+I\+M\+E\+O\+UT} = 30
+\item 
+string \hyperlink{namespaceserver_abad27332b11c625d6b59b5fc1ca4b2b2}{server.\+H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT} = \textquotesingle{}\textquotesingle{}
+\item 
+int \hyperlink{namespaceserver_aa0fba16fbbcb0260d63ddce950cecb42}{server.\+P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT} = 4000
+\item 
+string \hyperlink{namespaceserver_a064d84330983ae4788826100a0238c78}{server.\+P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/root/fota/otaserver/bin\char`\"{}
+\item 
+string \hyperlink{namespaceserver_aa3f9ad91c62b5372a5e677c50b853605}{server.\+P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT} = \char`\"{}/root/fota/otaserver/database/devices2update.\+txt\char`\"{}
+\item 
+string \hyperlink{namespaceserver_a097162d68fd6d2855bf5eb81507db414}{server.\+allowed\+Update} = b\textquotesingle{}@4\#\textquotesingle{}
+\item 
+string \hyperlink{namespaceserver_ae86ca5f489b3b8161c0ab91cbef0d8e6}{server.\+banned\+Update} = b\textquotesingle{}@0\#\textquotesingle{}
+\item 
+string \hyperlink{namespaceserver_ad00458dfe9ab743680203b756f8345bf}{server.\+ack\+Client} = b\textquotesingle{}@\textquotesingle{}
+\item 
+int \hyperlink{namespaceserver_a49c2646e7b6a517fe077d830219c58d4}{server.\+buffer\+Size\+File} = 300
+\item 
+int \hyperlink{namespaceserver_a100b5332a3005033a437d4240302698d}{server.\+max\+Bytes} = 1024
+\item 
+string \hyperlink{namespaceserver_a34ef43a269b2139fb82ac42e3d9e525a}{server.\+path\+Binary\+Files} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_ad56bacd311418978d78a8d1467a221a0}{server.\+database\+Name} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_a4230afe85d97e78a1df6181d40cbe0b7}{server.\+host} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_accc83f0ac9fb96c740cb3df16517e927}{server.\+port} = \char`\"{}\char`\"{}
+\item 
+string \hyperlink{namespaceserver_a45d593b7c621a117aaef105bf59d9fd5}{server.\+log\+Path} = \char`\"{}\char`\"{}
+\item 
+list \hyperlink{namespaceserver_acc620e319dd97213c1d3758ea4de7f68}{server.\+inputs} = \mbox{[}$\,$\mbox{]}
+\item 
+def \hyperlink{namespaceserver_aea7e1efc19535ee9bab8400a812b43a9}{server.\+args} = read\+Args()
+\item 
+string \hyperlink{namespaceserver_ab968a55cbe8af171a0fcbae9a876cab4}{server.\+log\+File} = log\+Path + L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT
+\item 
+def \hyperlink{namespaceserver_abfa1d56012bc320e4b26361390f6fc24}{server.\+logger} = configure\+Logger(log\+File)
+\item 
+list \hyperlink{namespaceserver_a734e47a5cf907dc2e128358488a9c3e7}{server.\+connections\+List} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{namespaceserver_acc42864cdf2e6dd395c42dd780cbde1d}{server.\+clients\+List} = \mbox{[}$\,$\mbox{]}
+\end{DoxyCompactItemize}

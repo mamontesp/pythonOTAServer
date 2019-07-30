@@ -1,0 +1,209 @@
+\hypertarget{namespacetests}{}\section{tests Namespace Reference}
+\label{namespacetests}\index{tests@{tests}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespacetests_ab9d8846c7694143044a37e86e9447600}{test\+Look\+For\+Client\+In\+Database\+Exist} ()
+\item 
+def \hyperlink{namespacetests_aa01c1b55c064d435f5ce63b79f8042a5}{test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist} ()
+\item 
+def \hyperlink{namespacetests_a1305f09454544d106db05e825d2ae813}{test\+Prepare\+Update\+Non\+Existing\+Client} ()
+\item 
+def \hyperlink{namespacetests_a257095677e195c3499fa13fb7eb08a3e}{test\+Validate\+Code\+Chunk\+Empty} ()
+\item 
+def \hyperlink{namespacetests_a4d364f808ece8a89192b5fa6bd230906}{test\+Validate\+Code\+Chunk\+Valid} ()
+\item 
+def \hyperlink{namespacetests_a625a9a5cd2f728455da250e9ba37d457}{test\+Validate\+Code\+Chunk\+No\+Valid} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{namespacetests_aa01c1b55c064d435f5ce63b79f8042a5}\label{namespacetests_aa01c1b55c064d435f5ce63b79f8042a5}} 
+\index{tests@{tests}!test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist@{test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist}}
+\index{test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist@{test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist}!tests@{tests}}
+\subsubsection{\texorpdfstring{test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist()}{testLookForClientInDatabaseDoesNotExist()}}
+{\footnotesize\ttfamily def tests.\+test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+13 \textcolor{keyword}{def }\hyperlink{namespacetests_aa01c1b55c064d435f5ce63b79f8042a5}{testLookForClientInDatabaseDoesNotExist}():
+14      mcuid = \textcolor{stringliteral}{"00000000000000000000000000"}
+15      clientInfo = []
+16      \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}{server.lookForClientInDatabase}(mcuid, clientInfo) != 
+      server.SUCCESSFUL):
+17           server.printDebugL1(\textcolor{stringliteral}{"Successful test"})
+18      \textcolor{keywordflow}{else}:
+19           server.printDebugL1(\textcolor{stringliteral}{"Unsuccessfull test"})
+20 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_aa01c1b55c064d435f5ce63b79f8042a5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_aa01c1b55c064d435f5ce63b79f8042a5_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetests_ab9d8846c7694143044a37e86e9447600}\label{namespacetests_ab9d8846c7694143044a37e86e9447600}} 
+\index{tests@{tests}!test\+Look\+For\+Client\+In\+Database\+Exist@{test\+Look\+For\+Client\+In\+Database\+Exist}}
+\index{test\+Look\+For\+Client\+In\+Database\+Exist@{test\+Look\+For\+Client\+In\+Database\+Exist}!tests@{tests}}
+\subsubsection{\texorpdfstring{test\+Look\+For\+Client\+In\+Database\+Exist()}{testLookForClientInDatabaseExist()}}
+{\footnotesize\ttfamily def tests.\+test\+Look\+For\+Client\+In\+Database\+Exist (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+5 \textcolor{keyword}{def }\hyperlink{namespacetests_ab9d8846c7694143044a37e86e9447600}{testLookForClientInDatabaseExist}():
+6      mcuid = \textcolor{stringliteral}{"0001100023593110965955141"}
+7      clientInfo = []
+8      \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_a998e5671e2ab0c79b9abe44e87e203a0}{server.lookForClientInDatabase}(mcuid, clientInfo) == 
+      server.SUCCESSFUL):
+9           server.printDebugL1(\textcolor{stringliteral}{"Successful test"})
+10      \textcolor{keywordflow}{else}:
+11           server.printDebugL1(\textcolor{stringliteral}{"Unsuccessfull test"})
+12 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_ab9d8846c7694143044a37e86e9447600_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_ab9d8846c7694143044a37e86e9447600_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetests_a1305f09454544d106db05e825d2ae813}\label{namespacetests_a1305f09454544d106db05e825d2ae813}} 
+\index{tests@{tests}!test\+Prepare\+Update\+Non\+Existing\+Client@{test\+Prepare\+Update\+Non\+Existing\+Client}}
+\index{test\+Prepare\+Update\+Non\+Existing\+Client@{test\+Prepare\+Update\+Non\+Existing\+Client}!tests@{tests}}
+\subsubsection{\texorpdfstring{test\+Prepare\+Update\+Non\+Existing\+Client()}{testPrepareUpdateNonExistingClient()}}
+{\footnotesize\ttfamily def tests.\+test\+Prepare\+Update\+Non\+Existing\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+21 \textcolor{keyword}{def }\hyperlink{namespacetests_a1305f09454544d106db05e825d2ae813}{testPrepareUpdateNonExistingClient}():
+22      clientInfo = [\textcolor{stringliteral}{'0001100023593110965955141'},\textcolor{stringliteral}{'AN2295\_TWR\_K60.S19'},\textcolor{stringliteral}{'16'}]
+23      clientsList= []
+24      \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_a4ab7e63c5f934dfea50b006468f9efca}{server.prepareUpdate}(clientInfo, clientsList) == server.SUCCESSFUL):
+25           server.printDebugL1(\textcolor{stringliteral}{"\{\} Successful test"}.format(testPrepareUpdateNonExistingClient.\_\_name\_\_))
+26      \textcolor{keywordflow}{else}:
+27           server.printDebugL1(\textcolor{stringliteral}{"\{\} Unsuccessful test"}.format(testPrepareUpdateNonExistingClient.\_\_name\_\_))
+28 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a1305f09454544d106db05e825d2ae813_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a1305f09454544d106db05e825d2ae813_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetests_a257095677e195c3499fa13fb7eb08a3e}\label{namespacetests_a257095677e195c3499fa13fb7eb08a3e}} 
+\index{tests@{tests}!test\+Validate\+Code\+Chunk\+Empty@{test\+Validate\+Code\+Chunk\+Empty}}
+\index{test\+Validate\+Code\+Chunk\+Empty@{test\+Validate\+Code\+Chunk\+Empty}!tests@{tests}}
+\subsubsection{\texorpdfstring{test\+Validate\+Code\+Chunk\+Empty()}{testValidateCodeChunkEmpty()}}
+{\footnotesize\ttfamily def tests.\+test\+Validate\+Code\+Chunk\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+29 \textcolor{keyword}{def }\hyperlink{namespacetests_a257095677e195c3499fa13fb7eb08a3e}{testValidateCodeChunkEmpty}():
+30      codechunk = \textcolor{stringliteral}{""}
+31      \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{server.validateCodeChunk}(codechunk) == server.INVALID\_CODE\_CHUNK):
+32           server.printDebugL1(\textcolor{stringliteral}{"ChunkEmpty Successful test"})
+33      \textcolor{keywordflow}{else}:
+34           server.printDebugL1(\textcolor{stringliteral}{"ChunkEmpty Unsuccessful test"})
+35 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a257095677e195c3499fa13fb7eb08a3e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a257095677e195c3499fa13fb7eb08a3e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetests_a625a9a5cd2f728455da250e9ba37d457}\label{namespacetests_a625a9a5cd2f728455da250e9ba37d457}} 
+\index{tests@{tests}!test\+Validate\+Code\+Chunk\+No\+Valid@{test\+Validate\+Code\+Chunk\+No\+Valid}}
+\index{test\+Validate\+Code\+Chunk\+No\+Valid@{test\+Validate\+Code\+Chunk\+No\+Valid}!tests@{tests}}
+\subsubsection{\texorpdfstring{test\+Validate\+Code\+Chunk\+No\+Valid()}{testValidateCodeChunkNoValid()}}
+{\footnotesize\ttfamily def tests.\+test\+Validate\+Code\+Chunk\+No\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+43 \textcolor{keyword}{def }\hyperlink{namespacetests_a625a9a5cd2f728455da250e9ba37d457}{testValidateCodeChunkNoValid}():
+44      codechunk = \textcolor{stringliteral}{"S786969"}
+45      \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{server.validateCodeChunk}(codechunk) == server.INVALID\_CODE\_CHUNK):
+46           server.printDebugL1(\textcolor{stringliteral}{"ChunkNoValid Successful test"})
+47      \textcolor{keywordflow}{else}:
+48           server.printDebugL1(\textcolor{stringliteral}{"ChunkNoValid Unsuccessful test"})
+49           
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a625a9a5cd2f728455da250e9ba37d457_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{namespacetests_a4d364f808ece8a89192b5fa6bd230906}\label{namespacetests_a4d364f808ece8a89192b5fa6bd230906}} 
+\index{tests@{tests}!test\+Validate\+Code\+Chunk\+Valid@{test\+Validate\+Code\+Chunk\+Valid}}
+\index{test\+Validate\+Code\+Chunk\+Valid@{test\+Validate\+Code\+Chunk\+Valid}!tests@{tests}}
+\subsubsection{\texorpdfstring{test\+Validate\+Code\+Chunk\+Valid()}{testValidateCodeChunkValid()}}
+{\footnotesize\ttfamily def tests.\+test\+Validate\+Code\+Chunk\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+36 \textcolor{keyword}{def }\hyperlink{namespacetests_a4d364f808ece8a89192b5fa6bd230906}{testValidateCodeChunkValid}():
+37      codechunk = \textcolor{stringliteral}{"S197AAKA9779"}
+38      \textcolor{keywordflow}{if} (\hyperlink{namespaceserver_ad6f5a9a8c8e233d0537dc69dc6de98f6}{server.validateCodeChunk}(codechunk) == server.SUCCESSFUL):
+39           server.printDebugL1(\textcolor{stringliteral}{"ChunkValid Successful test"})
+40      \textcolor{keywordflow}{else}:
+41           server.printDebugL1(\textcolor{stringliteral}{"ChunkValid Unsuccessful test"})
+42 
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a4d364f808ece8a89192b5fa6bd230906_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacetests_a4d364f808ece8a89192b5fa6bd230906_icgraph}
+\end{center}
+\end{figure}

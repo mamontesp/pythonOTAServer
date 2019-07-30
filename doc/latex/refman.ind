@@ -1,0 +1,381 @@
+\begin{theindex}
+
+  \item {\+\_\+\+\_\+init\+\_\+\+\_\+}
+    \subitem {customlogger\+::\+Custom\+Logger}, \hyperpage{40}
+
+  \indexspace
+
+  \item {A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}
+    \subitem {server}, \hyperpage{26}
+  \item {accept\+Connections}
+    \subitem {server}, \hyperpage{17}
+  \item {ack\+Client}
+    \subitem {client}, \hyperpage{12}
+    \subitem {No\+Client}, \hyperpage{14}
+    \subitem {server}, \hyperpage{26}
+  \item {allowed\+Update}
+    \subitem {server}, \hyperpage{26}
+  \item {approved\+Update}
+    \subitem {client}, \hyperpage{12}
+    \subitem {No\+Client}, \hyperpage{14}
+  \item {args}
+    \subitem {server}, \hyperpage{27}
+
+  \indexspace
+
+  \item {B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE}
+    \subitem {server}, \hyperpage{27}
+  \item {banned\+Update}
+    \subitem {server}, \hyperpage{27}
+  \item {binary\+Code}
+    \subitem {client}, \hyperpage{12}
+    \subitem {No\+Client}, \hyperpage{14}
+  \item {buf}
+    \subitem {client}, \hyperpage{12}
+  \item {buffer\+Data}
+    \subitem {server}, \hyperpage{17}
+  \item {buffer\+Size\+File}
+    \subitem {server}, \hyperpage{27}
+
+  \indexspace
+
+  \item {C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED}
+    \subitem {server}, \hyperpage{27}
+  \item {client}, \hyperpage{11}
+    \subitem {ack\+Client}, \hyperpage{12}
+    \subitem {approved\+Update}, \hyperpage{12}
+    \subitem {binary\+Code}, \hyperpage{12}
+    \subitem {buf}, \hyperpage{12}
+    \subitem {data}, \hyperpage{12}
+    \subitem {finished\+Update}, \hyperpage{12}
+    \subitem {H\+O\+ST}, \hyperpage{12}
+    \subitem {host}, \hyperpage{12}
+    \subitem {P\+O\+RT}, \hyperpage{13}
+    \subitem {port}, \hyperpage{13}
+    \subitem {s}, \hyperpage{13}
+    \subitem {sock}, \hyperpage{13}
+    \subitem {T\+I\+M\+E\+O\+UT}, \hyperpage{13}
+    \subitem {verify\+Finished\+Update}, \hyperpage{11}
+  \item {clientaddr}
+    \subitem {server}, \hyperpage{27}
+  \item {clients\+List}
+    \subitem {server}, \hyperpage{27}
+  \item {clientsock}
+    \subitem {server}, \hyperpage{27}
+  \item {close\+Connection}
+    \subitem {server}, \hyperpage{18}
+  \item {configure\+Logger}
+    \subitem {server}, \hyperpage{19}
+  \item {connect\+Socket}
+    \subitem {server}, \hyperpage{20}, \hyperpage{28}
+  \item {connected\+Clients}
+    \subitem {server}, \hyperpage{28}
+  \item {connections\+List}
+    \subitem {server}, \hyperpage{28}
+  \item {create\+Server}
+    \subitem {server}, \hyperpage{20}
+  \item {customlogger}, \hyperpage{13}
+  \item {customlogger.\+Custom\+Logger}, \hyperpage{39}
+  \item {customlogger.\+py}, \hyperpage{41}
+  \item {customlogger\+::\+Custom\+Logger}
+    \subitem {\+\_\+\+\_\+init\+\_\+\+\_\+}, \hyperpage{40}
+    \subitem {level}, \hyperpage{40}
+    \subitem {logger}, \hyperpage{40}
+    \subitem {write}, \hyperpage{40}
+
+  \indexspace
+
+  \item {D\+E\+B\+U\+G\+\_\+\+ON}
+    \subitem {server}, \hyperpage{28}
+  \item {data}
+    \subitem {client}, \hyperpage{12}
+    \subitem {No\+Client}, \hyperpage{14}
+    \subitem {server}, \hyperpage{28}
+  \item {database\+Name}
+    \subitem {server}, \hyperpage{28}
+
+  \indexspace
+
+  \item {exceptional}
+    \subitem {server}, \hyperpage{28}
+  \item {excepts}
+    \subitem {server}, \hyperpage{29}
+
+  \indexspace
+
+  \item {finished\+Update}
+    \subitem {client}, \hyperpage{12}
+    \subitem {No\+Client}, \hyperpage{15}
+
+  \indexspace
+
+  \item {get\+M\+C\+U\+ID}
+    \subitem {server}, \hyperpage{20}
+
+  \indexspace
+
+  \item {H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT}
+    \subitem {server}, \hyperpage{29}
+  \item {H\+O\+ST}
+    \subitem {client}, \hyperpage{12}
+    \subitem {No\+Client}, \hyperpage{15}
+  \item {host}
+    \subitem {client}, \hyperpage{12}
+    \subitem {server}, \hyperpage{29}
+
+  \indexspace
+
+  \item {I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK}
+    \subitem {server}, \hyperpage{29}
+  \item {inputs}
+    \subitem {server}, \hyperpage{29}
+
+  \indexspace
+
+  \item {L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}
+    \subitem {server}, \hyperpage{29}
+  \item {L\+O\+G\+\_\+\+L\+E\+V\+EL}
+    \subitem {server}, \hyperpage{29}
+  \item {L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT}
+    \subitem {server}, \hyperpage{29}
+  \item {level}
+    \subitem {customlogger\+::\+Custom\+Logger}, \hyperpage{40}
+  \item {log\+File}
+    \subitem {server}, \hyperpage{30}
+  \item {log\+Path}
+    \subitem {server}, \hyperpage{30}
+  \item {logger}
+    \subitem {customlogger\+::\+Custom\+Logger}, \hyperpage{40}
+    \subitem {server}, \hyperpage{30}
+  \item {look\+For\+Client\+In\+Database}
+    \subitem {server}, \hyperpage{21}
+
+  \indexspace
+
+  \item {M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}
+    \subitem {server}, \hyperpage{30}
+  \item {M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME}
+    \subitem {server}, \hyperpage{30}
+  \item {max\+Bytes}
+    \subitem {server}, \hyperpage{30}
+
+  \indexspace
+
+  \item {N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}
+    \subitem {server}, \hyperpage{30}
+  \item {No\+Client}, \hyperpage{13}
+    \subitem {ack\+Client}, \hyperpage{14}
+    \subitem {approved\+Update}, \hyperpage{14}
+    \subitem {binary\+Code}, \hyperpage{14}
+    \subitem {data}, \hyperpage{14}
+    \subitem {finished\+Update}, \hyperpage{15}
+    \subitem {H\+O\+ST}, \hyperpage{15}
+    \subitem {P\+O\+RT}, \hyperpage{15}
+    \subitem {s}, \hyperpage{15}
+    \subitem {verify\+Finished\+Update}, \hyperpage{14}
+
+  \indexspace
+
+  \item {open\+Connections}
+    \subitem {server}, \hyperpage{31}
+  \item {outputs}
+    \subitem {server}, \hyperpage{31}
+
+  \indexspace
+
+  \item {P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT}
+    \subitem {server}, \hyperpage{31}
+  \item {P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT}
+    \subitem {server}, \hyperpage{31}
+  \item {P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT}
+    \subitem {server}, \hyperpage{31}
+  \item {P\+O\+RT}
+    \subitem {client}, \hyperpage{13}
+    \subitem {No\+Client}, \hyperpage{15}
+  \item {path\+Binary\+Files}
+    \subitem {server}, \hyperpage{31}
+  \item {port}
+    \subitem {client}, \hyperpage{13}
+    \subitem {server}, \hyperpage{31}
+  \item {prepare\+Update}
+    \subitem {server}, \hyperpage{22}
+
+  \indexspace
+
+  \item {R\+E\+A\+D\+M\+E.\+md}, \hyperpage{41}
+  \item {R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE}
+    \subitem {server}, \hyperpage{32}
+  \item {read\+Args}
+    \subitem {server}, \hyperpage{23}
+  \item {readable}
+    \subitem {server}, \hyperpage{31}
+
+  \indexspace
+
+  \item {s}
+    \subitem {client}, \hyperpage{13}
+    \subitem {No\+Client}, \hyperpage{15}
+  \item {S\+U\+C\+C\+E\+S\+S\+F\+UL}
+    \subitem {server}, \hyperpage{32}
+  \item {send\+Update}
+    \subitem {server}, \hyperpage{23}
+  \item {Server}, \hyperpage{15}
+  \item {server}, \hyperpage{15}
+    \subitem {A\+L\+R\+E\+A\+D\+Y\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}, 
+		\hyperpage{26}
+    \subitem {accept\+Connections}, \hyperpage{17}
+    \subitem {ack\+Client}, \hyperpage{26}
+    \subitem {allowed\+Update}, \hyperpage{26}
+    \subitem {args}, \hyperpage{27}
+    \subitem {B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+D\+E\+\_\+\+I\+N\+C\+O\+M\+P\+L\+E\+TE}, 
+		\hyperpage{27}
+    \subitem {banned\+Update}, \hyperpage{27}
+    \subitem {buffer\+Data}, \hyperpage{17}
+    \subitem {buffer\+Size\+File}, \hyperpage{27}
+    \subitem {C\+L\+I\+E\+N\+T\+\_\+\+U\+N\+V\+E\+R\+I\+F\+I\+ED}, 
+		\hyperpage{27}
+    \subitem {clientaddr}, \hyperpage{27}
+    \subitem {clients\+List}, \hyperpage{27}
+    \subitem {clientsock}, \hyperpage{27}
+    \subitem {close\+Connection}, \hyperpage{18}
+    \subitem {configure\+Logger}, \hyperpage{19}
+    \subitem {connect\+Socket}, \hyperpage{20}, \hyperpage{28}
+    \subitem {connected\+Clients}, \hyperpage{28}
+    \subitem {connections\+List}, \hyperpage{28}
+    \subitem {create\+Server}, \hyperpage{20}
+    \subitem {D\+E\+B\+U\+G\+\_\+\+ON}, \hyperpage{28}
+    \subitem {data}, \hyperpage{28}
+    \subitem {database\+Name}, \hyperpage{28}
+    \subitem {exceptional}, \hyperpage{28}
+    \subitem {excepts}, \hyperpage{29}
+    \subitem {get\+M\+C\+U\+ID}, \hyperpage{20}
+    \subitem {H\+O\+S\+T\+\_\+\+D\+E\+F\+A\+U\+LT}, \hyperpage{29}
+    \subitem {host}, \hyperpage{29}
+    \subitem {I\+N\+V\+A\+L\+I\+D\+\_\+\+C\+O\+D\+E\+\_\+\+C\+H\+U\+NK}, 
+		\hyperpage{29}
+    \subitem {inputs}, \hyperpage{29}
+    \subitem {L\+O\+G\+\_\+\+F\+I\+L\+E\+N\+A\+M\+E\+\_\+\+D\+E\+F\+A\+U\+LT}, 
+		\hyperpage{29}
+    \subitem {L\+O\+G\+\_\+\+L\+E\+V\+EL}, \hyperpage{29}
+    \subitem {L\+O\+G\+\_\+\+P\+A\+T\+H\+\_\+\+D\+E\+F\+A\+U\+LT}, 
+		\hyperpage{29}
+    \subitem {log\+File}, \hyperpage{30}
+    \subitem {log\+Path}, \hyperpage{30}
+    \subitem {logger}, \hyperpage{30}
+    \subitem {look\+For\+Client\+In\+Database}, \hyperpage{21}
+    \subitem {M\+A\+X\+\_\+\+O\+P\+E\+N\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+O\+NS}, 
+		\hyperpage{30}
+    \subitem {M\+I\+S\+S\+E\+D\+\_\+\+F\+I\+L\+E\+N\+A\+ME}, 
+		\hyperpage{30}
+    \subitem {max\+Bytes}, \hyperpage{30}
+    \subitem {N\+O\+T\+\_\+\+S\+T\+A\+R\+T\+E\+D\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}, 
+		\hyperpage{30}
+    \subitem {open\+Connections}, \hyperpage{31}
+    \subitem {outputs}, \hyperpage{31}
+    \subitem {P\+A\+T\+H\+\_\+\+B\+I\+N\+A\+R\+Y\+\_\+\+F\+I\+L\+E\+\_\+\+D\+E\+F\+A\+U\+LT}, 
+		\hyperpage{31}
+    \subitem {P\+A\+T\+H\+\_\+\+D\+A\+T\+A\+B\+A\+S\+E\+\_\+\+D\+E\+F\+A\+U\+LT}, 
+		\hyperpage{31}
+    \subitem {P\+O\+R\+T\+\_\+\+D\+E\+F\+A\+U\+LT}, \hyperpage{31}
+    \subitem {path\+Binary\+Files}, \hyperpage{31}
+    \subitem {port}, \hyperpage{31}
+    \subitem {prepare\+Update}, \hyperpage{22}
+    \subitem {R\+E\+A\+D\+Y\+\_\+\+T\+O\+\_\+\+U\+P\+D\+A\+TE}, 
+		\hyperpage{32}
+    \subitem {read\+Args}, \hyperpage{23}
+    \subitem {readable}, \hyperpage{31}
+    \subitem {S\+U\+C\+C\+E\+S\+S\+F\+UL}, \hyperpage{32}
+    \subitem {send\+Update}, \hyperpage{23}
+    \subitem {serversocket}, \hyperpage{32}
+    \subitem {sock}, \hyperpage{32}
+    \subitem {T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}, 
+		\hyperpage{32}
+    \subitem {T\+I\+M\+E\+O\+UT}, \hyperpage{32}
+    \subitem {target}, \hyperpage{32}
+    \subitem {U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE}, 
+		\hyperpage{32}
+    \subitem {U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID}, 
+		\hyperpage{33}
+    \subitem {U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT}, 
+		\hyperpage{33}
+    \subitem {validate\+Code\+Chunk}, \hyperpage{24}
+    \subitem {verify\+Client\+Id}, \hyperpage{25}
+    \subitem {verify\+Started\+Connection}, \hyperpage{26}
+    \subitem {writable}, \hyperpage{33}
+  \item {Server.\+py}, \hyperpage{33}
+  \item {server.\+py}, \hyperpage{41}
+  \item {serversocket}
+    \subitem {server}, \hyperpage{32}
+  \item {sock}
+    \subitem {client}, \hyperpage{13}
+    \subitem {server}, \hyperpage{32}
+
+  \indexspace
+
+  \item {T\+I\+M\+E\+O\+U\+T\+\_\+\+C\+O\+N\+N\+E\+C\+T\+I\+ON}
+    \subitem {server}, \hyperpage{32}
+  \item {T\+I\+M\+E\+O\+UT}
+    \subitem {client}, \hyperpage{13}
+    \subitem {server}, \hyperpage{32}
+  \item {target}
+    \subitem {server}, \hyperpage{32}
+  \item {test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist}
+    \subitem {tests}, \hyperpage{33}
+  \item {test\+Look\+For\+Client\+In\+Database\+Exist}
+    \subitem {tests}, \hyperpage{34}
+  \item {test\+Prepare\+Update\+Non\+Existing\+Client}
+    \subitem {tests}, \hyperpage{35}
+  \item {test\+Validate\+Code\+Chunk\+Empty}
+    \subitem {tests}, \hyperpage{35}
+  \item {test\+Validate\+Code\+Chunk\+No\+Valid}
+    \subitem {tests}, \hyperpage{36}
+  \item {test\+Validate\+Code\+Chunk\+Valid}
+    \subitem {tests}, \hyperpage{36}
+  \item {tests}, \hyperpage{33}
+    \subitem {test\+Look\+For\+Client\+In\+Database\+Does\+Not\+Exist}, 
+		\hyperpage{33}
+    \subitem {test\+Look\+For\+Client\+In\+Database\+Exist}, 
+		\hyperpage{34}
+    \subitem {test\+Prepare\+Update\+Non\+Existing\+Client}, 
+		\hyperpage{35}
+    \subitem {test\+Validate\+Code\+Chunk\+Empty}, \hyperpage{35}
+    \subitem {test\+Validate\+Code\+Chunk\+No\+Valid}, \hyperpage{36}
+    \subitem {test\+Validate\+Code\+Chunk\+Valid}, \hyperpage{36}
+  \item {tests/\+No\+Client.\+py}, \hyperpage{44}
+  \item {tests/client.\+py}, \hyperpage{43}
+  \item {tests/parallelize/multiprocessing/server.\+py}, \hyperpage{42}
+  \item {tests/parallelize/select\+Approach/client.\+py}, 
+		\hyperpage{44}
+  \item {tests/parallelize/select\+Approach/server.\+py}, 
+		\hyperpage{43}
+  \item {tests/tests.\+py}, \hyperpage{44}
+
+  \indexspace
+
+  \item {U\+N\+A\+B\+L\+E\+\_\+\+B\+U\+F\+F\+E\+R\+I\+N\+G\+\_\+\+C\+O\+DE}
+    \subitem {server}, \hyperpage{32}
+  \item {U\+N\+F\+O\+R\+M\+A\+T\+T\+E\+D\+\_\+\+M\+C\+U\+ID}
+    \subitem {server}, \hyperpage{33}
+  \item {U\+N\+P\+R\+O\+P\+E\+R\+\_\+\+F\+I\+L\+E\+\_\+\+F\+O\+R\+M\+AT}
+    \subitem {server}, \hyperpage{33}
+
+  \indexspace
+
+  \item {validate\+Code\+Chunk}
+    \subitem {server}, \hyperpage{24}
+  \item {verify\+Client\+Id}
+    \subitem {server}, \hyperpage{25}
+  \item {verify\+Finished\+Update}
+    \subitem {client}, \hyperpage{11}
+    \subitem {No\+Client}, \hyperpage{14}
+  \item {verify\+Started\+Connection}
+    \subitem {server}, \hyperpage{26}
+
+  \indexspace
+
+  \item {writable}
+    \subitem {server}, \hyperpage{33}
+  \item {write}
+    \subitem {customlogger\+::\+Custom\+Logger}, \hyperpage{40}
+
+\end{theindex}

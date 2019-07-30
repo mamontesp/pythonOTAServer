@@ -1,0 +1,9 @@
+<map id="tests.testLookForClientInDatabaseExist" name="tests.testLookForClientInDatabaseExist">
+<area shape="rect" id="node2" href="$namespaceserver.html#a998e5671e2ab0c79b9abe44e87e203a0" title="server.lookForClientInDatabase" alt="" coords="223,31,429,57"/>
+<area shape="rect" id="node3" href="$namespaceserver.html#a2e99d18201fed087163454b021b7c007" title="server.closeConnection" alt="" coords="477,31,636,57"/>
+<area shape="rect" id="node4" href="$namespaceserver.html#a4ab7e63c5f934dfea50b006468f9efca" title="server.prepareUpdate" alt="" coords="684,5,831,32"/>
+<area shape="rect" id="node5" href="$namespaceserver.html#a6098d5cffff301a01e793c84215c4512" title="server.bufferData" alt="" coords="879,5,1001,32"/>
+<area shape="rect" id="node6" href="$namespaceserver.html#a4889d0db3f3503cc61340252fabc2c24" title="server.sendUpdate" alt="" coords="1049,31,1181,57"/>
+<area shape="rect" id="node7" href="$namespaceserver.html#ad6f5a9a8c8e233d0537dc69dc6de98f6" title="server.validateCodeChunk" alt="" coords="1229,31,1405,57"/>
+<area shape="rect" id="node8" href="$namespaceserver.html#aa317dc86338d02253076787cc8e5d997" title="server.readArgs" alt="" coords="1453,31,1568,57"/>
+</map>

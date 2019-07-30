@@ -1,0 +1,13 @@
+<map id="server.prepareUpdate" name="server.prepareUpdate">
+<area shape="rect" id="node2" href="$namespaceserver.html#ac1ec62c626a3425033381ef5718ce12b" title="server.acceptConnections" alt="" coords="917,231,1092,258"/>
+<area shape="rect" id="node4" href="$namespaceserver.html#a2e99d18201fed087163454b021b7c007" title="server.closeConnection" alt="" coords="215,231,373,258"/>
+<area shape="rect" id="node12" href="$namespacetests.html#a1305f09454544d106db05e825d2ae813" title="tests.testPrepareUpdateNon\lExistingClient" alt="" coords="200,53,388,94"/>
+<area shape="rect" id="node3" href="$namespaceserver.html#a240f07b12d57cfa5cff5612501fe7dc8" title="server.createServer" alt="" coords="1149,231,1285,258"/>
+<area shape="rect" id="node5" href="$namespaceserver.html#a998e5671e2ab0c79b9abe44e87e203a0" title="server.lookForClientInDatabase" alt="" coords="436,126,643,152"/>
+<area shape="rect" id="node10" href="$namespaceserver.html#a4889d0db3f3503cc61340252fabc2c24" title="server.sendUpdate" alt="" coords="473,256,605,283"/>
+<area shape="rect" id="node6" href="$namespaceserver.html#a4c51be10ba9f982375f4c0a426078a96" title="server.verifyClientId" alt="" coords="706,155,845,182"/>
+<area shape="rect" id="node7" href="$namespacetests.html#ab9d8846c7694143044a37e86e9447600" title="tests.testLookForClientIn\lDatabaseExist" alt="" coords="691,89,860,130"/>
+<area shape="rect" id="node9" href="$namespacetests.html#aa01c1b55c064d435f5ce63b79f8042a5" title="tests.testLookForClientIn\lDatabaseDoesNotExist" alt="" coords="691,24,860,65"/>
+<area shape="rect" id="node8" href="$namespacetests.html#a625a9a5cd2f728455da250e9ba37d457" title="tests.testValidateCodeChunk\lNoValid" alt="" coords="908,24,1101,65"/>
+<area shape="rect" id="node11" href="$namespaceserver.html#a6098d5cffff301a01e793c84215c4512" title="server.bufferData" alt="" coords="714,307,837,334"/>
+</map>
