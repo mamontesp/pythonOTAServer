@@ -14,6 +14,7 @@ import logging.handlers
 import datetime
 import sys
 import argparse
+import errno
 
 ##Enable 1 Disable 0 Debug
 DEBUG_ON = 1
@@ -36,6 +37,7 @@ TIMEOUT_CONNECTION = 7
 INVALID_CODE_CHUNK = 8
 BUFFERING_CODE_INCOMPLETE = 9
 READY_TO_UPDATE = 10
+CONNECTION_CLOSED_BY_CLIENT = 11
 
 TIMEOUT = 30 #Timeout for open sockets
 HOST_DEFAULT = '' #The server hostname or IP address
@@ -125,12 +127,10 @@ def acceptConnections(connectionsList, clientsList, sock, logger):
           connection, address = sock.accept()
           logger.info("Accepted connection from {}".format(connection))
           if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
-               connectionsList.append(connection)
                #Verify if id client belongs to database
                mcuid = getMCUID(connection, address, logger)
                date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
                logFile = logPath + "/" + str(mcuid) + "-" + date +".txt"
-                
                print("logfile {}".format(logFile))
                logger = configureLogger(logFile)
                statusIdClient, clientInfo = verifyClientId(connection, mcuid, logger)
@@ -199,6 +199,8 @@ def lookForClientInDatabase(mcuid, logger):
 def closeConnection(connection, logger):
      logger.info("Close of connection has been requested")
      connection.close()
+     logFile = logPath + LOG_FILENAME_DEFAULT
+     logger = configureLogger(logFile)
      return SUCCESSFUL
 
 def prepareUpdate(clientInfo, clientsList, logger):
@@ -256,13 +258,23 @@ def sendUpdate(connection, address, mcuid, clientToUpdate, sock, logger):
                     if (receivedData == ackClient):
                          continue
                     else:
-                         closeConnection()
+                         closeConnection(connection, logger)
                          return TIMEOUT_CONNECTION
                except socket.timeout as e:
                          logger.error("Timeout exceed {}".format(e))
+                         closeConnection(connection, logger)
+                         return TIMEOUT_CONNECTION
                except socket.error as e:
                     logger.error("Error receiving data: {}".format(e))
-                    
+                    closeConnection(connection, logger)
+                    return CONNECTION_CLOSED_BY_CLIENT
+               except IOError as e:
+                    logger.error("IOError: {}".format(e))
+                    if e.errno == errno.EPIPE:
+                         logger.error("Broken pipe by client side")
+                         closeConnection(connection, logger)
+                         return CONNECTION_CLOSED_BY_CLIENT
+                         
           else:
                continue 
      logger.info("Update finished")

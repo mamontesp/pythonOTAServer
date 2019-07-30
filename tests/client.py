@@ -12,8 +12,8 @@ import time
 ackClient = b"@"
 approvedUpdate = b"@4#"
 
-#HOST = '127.0.0.1' #The server hostname or IP address
-HOST = '209.97.145.137' #The server hostname or IP address
+HOST = '127.0.0.1' #The server hostname or IP address
+#HOST = '209.97.145.137' #The server hostname or IP address
 PORT = 4000 #Port selected from server side to run communication
 
 binaryCode = []
@@ -27,7 +27,7 @@ def verifyFinishedUpdate(data):
      
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
-s.sendall(b'@0001200049152150965955141#')
+s.sendall("@0001200049152150965955141#")
 data = s.recv(1024)
 print ("First data {}".format(data))
 if (data == approvedUpdate):
