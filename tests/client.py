@@ -25,7 +25,6 @@ def verifyFinishedUpdate(data):
      else:
           return 1
      
-print ("Hellooooo")
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 s.sendall(b'@0001200049152150965955141#')
