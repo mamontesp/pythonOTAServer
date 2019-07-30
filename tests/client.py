@@ -30,6 +30,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 s.sendall(b'@0001200049152150965955141#')
 data = s.recv(1024)
+print ("First data {}".format(data))
 if (data == approvedUpdate):
      print ("Update has been approved")
      s.send(ackClient)
