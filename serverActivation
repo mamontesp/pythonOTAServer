@@ -4,11 +4,6 @@ echo "OTA server as service update"
 
 SERVICE=otaserver.service
 
-clean_a_service()
-{
-echo "Cleaning a service"
-}
-
 systemctl stop $SERVICE
 systemctl daemon-reload
 systemctl enable $SERVICE
