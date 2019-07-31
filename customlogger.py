@@ -10,6 +10,9 @@ class CustomLogger(object):
           #Needs a logger and a logger level
           self.logger = logger
           self.level = level
+     
+     def changeLogger(self, logger):
+          self.logger = logger
           
      def write(self, message):
           #Only log if there is a message (not just a new line)

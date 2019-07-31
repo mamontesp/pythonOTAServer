@@ -1,20 +1,20 @@
 #!/usr/bin/env python
 
 ##@package Server.py
-#Create a server and enable REST API for firmware updates
+#Create a server and enabling it for firmware updates
 
 from customlogger import CustomLogger
 import socket
 import re
 import os
-
-##Login libraries
-import logging
-import logging.handlers
 import datetime
 import sys
 import argparse
 import errno
+
+##Login libraries
+import logging
+import logging.handlers
 
 ##Enable 1 Disable 0 Debug
 DEBUG_ON = 1
@@ -52,27 +52,6 @@ allowedUpdate = b'@4#' #Frame sent from server to ack MCUID provided by client
 bannedUpdate = b'@0#'  #Frame sent from server to deny update to client that requested it
 ackClient = b'@'
 
-bufferSizeFile = 300 # Number of lines per file to buffered by server
-maxBytes = 1024     #Bytes to be received by connection
-
-#Binary file location
-pathBinaryFiles = ""
-
-#Database name file 
-databaseName = ""
-
-#Host
-host = ""
-
-#Port 
-port = ""
-
-#Log path
-logPath = ""
-
-#List of socket inputs
-inputs = []
-
 def readArgs():
      parser = argparse.ArgumentParser(description="OTA server in python")
      parser.add_argument("-db", "--dbname", help="Database file name (path included)", default=PATH_DATABASE_DEFAULT)
@@ -83,216 +62,7 @@ def readArgs():
      args = parser.parse_args()
      return args
 
-def configureLogger(logFile):
-     # Logger name
-     logger = logging.getLogger(logFile)
-     # Set the log level to LOG_LEVEL
-     logger.setLevel(LOG_LEVEL)
-     # Make a handler that wirtes to a file, making a new file at midnight and keeping
-     # 3 backups
-     handler = logging.handlers.TimedRotatingFileHandler(logFile, when="midnight", backupCount =3)
-     #Format each log message like this
-     formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
-     #Attach the formatter to the handler
-     handler.setFormatter(formatter)
-     #Attach the handler to the logger
-     logger.addHandler(handler)
-     #Replacement of stdout with loggin to file at INFO level
-     sys.stdout = CustomLogger(logger, logging.INFO)
-     #Replacement of stdout with loggin to file at ERROR level
-     sys.stderr = CustomLogger(logger, logging.ERROR)
-     return logger
- 
-def createServer(connectionsList, clientsList):
-     ## Create server
-     # AF_INET: For Ipv4 connections
-     # SOCK_STREAM: For use of TCP/IP stack
-     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-     hostname = socket.gethostname()
-     logger.info("Hostname {}".format(hostname))
-     #Cleaning previous connections
-     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
-     #For binding address and port
-     # 0.0.0.0 because that makes our server available over any IP address
-     sock.bind((host,port))
-     #Listen argument: Maximum in queue pendings
-     sock.listen(5)
-     inputs.append(sock)
-     logger.info("Server ready to listen")
-     acceptConnections(connectionsList, clientsList, sock, logger)
-
-def acceptConnections(connectionsList, clientsList, sock, logger):
-     while True:
-          #Accept the connection from the address
-          sock.setblocking(1)
-          connection, address = sock.accept()
-          logFile = logPath + LOG_FILENAME_DEFAULT
-          logger = configureLogger(logFile)
-          logger.info("Accepted connection from {}".format(connection))
-          if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
-               #Verify if id client belongs to database
-               mcuid, statusMCUID = getMCUID(connection, address, logger)
-               
-               if (statusMCUID == UNFORMATTED_MCUID):
-                    closeConnection(connection, logger)
-                    continue
-               
-               date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
-               logFile = logPath + "/" + mcuid + "-" + date +".txt"
-               logger.info("logfile {}".format(logFile))
-               logger = configureLogger(logFile)    
-               
-               statusIdClient, clientInfo = verifyClientId(connection, mcuid, logger)
-               if (statusIdClient == SUCCESSFUL):
-                    connection.send(allowedUpdate)
-                    logger.info("Allowing update to {}".format(mcuid))
-                    logger.info("Starting update to {}".format(mcuid))
-                    prepareUpdate(clientInfo, clientsList, logger)
-                    sendUpdate(connection, address, mcuid, clientsList, sock, logger)
-               else:
-                    logger.warning("Banned connection from {}".format(address))
-                    logger.error("Closing connection")
-                    connection.send(bannedUpdate)
-                    closeConnection(connection, logger)
-     
-     
-def verifyStartedConnection(connections, connection):
-     for conn in connections:
-          if(conn == connection):
-               return ALREADY_STARTED_CONNECTION
-     connections.append(connection)
-     return NOT_STARTED_CONNECTION
-
-def getMCUID(connection, address, logger):
-     receivedData = connection.recv(maxBytes).decode("utf8")
-     logger.info("Server has received data {} from {}".format(receivedData, address))
-     #mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
-     mcuid = re.findall("^\@([0-9A-F]*)#$", receivedData)
-     logger.info("MCUID {} ".format(mcuid))
-     if(len(mcuid) == 1):
-          logger.info("MCUID {} valid format ".format(mcuid[0]))
-          return mcuid[0], VALID_MCUID
-     else:
-          logger.info("MCUID {} invalid format ".format(receivedData))
-          return receivedData, UNFORMATTED_MCUID
-
-
-def verifyClientId(connection, mcuid, logger):
-     ## Verify client trying connection
-     clientInfo = []
-     statusClient, clientInfo = lookForClientInDatabase(mcuid, logger)
-     if(statusClient== SUCCESSFUL):
-          logger.info("Client Info {}".format(clientInfo))
-          logger.info("Client {} exists in database".format(mcuid))
-          return SUCCESSFUL, clientInfo
-     else:
-          logger.error("Client {} does not exist in database".format(mcuid))
-          return CLIENT_UNVERIFIED, clientInfo
-                   
-def lookForClientInDatabase(mcuid, logger):
-     ##Verify existence of client in database for firmware update
-     clientInfo = []
-     logger.info("Opening file {}, to verify MCUID {}".format(databaseName,mcuid))
-     try:
-          with open(databaseName, 'r') as file:
-               for line in file:
-                    clientInfo = line.split(',')
-                    if (len(clientInfo) == 3):
-                         if (clientInfo[0] == mcuid):
-                             return SUCCESSFUL, clientInfo
-                         else:
-                              continue
-                    else:
-                         return UNPROPER_FILE_FORMAT, clientInfo
-          file.close()
-     except:
-          logger.error("Error opening file")
-     return CLIENT_UNVERIFIED, clientInfo
-
-def closeConnection(connection, logger):
-     logger.info("Close of connection has been requested")
-     connection.close()
-     return SUCCESSFUL
-
-def prepareUpdate(clientInfo, clientsList, logger):
-     logger.info("Preparing update for {}".format(clientInfo))
-     #Buffer data from file to be sent to specific client
-     binaryFileLines = []
-     bufferingStatus = bufferData(clientInfo[1], binaryFileLines, logger)
-     logger.info("Status prepare update {}".format(bufferingStatus))
-     if (bufferingStatus == SUCCESSFUL):
-          FWVersion = re.findall(r"([0-9A-F]+)", clientInfo[2])
-          binaryFileLines.append("@{}##".format(FWVersion[0]))
-          logger.info("Code buffer done successfully") 
-          clientsList.append({"mcuid":clientInfo[0], "filename":clientInfo[1], "codelines": binaryFileLines, "status": READY_TO_UPDATE})                 
-          return SUCCESSFUL
-     if (bufferingStatus == BUFFERING_CODE_INCOMPLETE):
-          ##Pending development
-          logger.info("Incomplete buffering code")
-          return BUFFERING_CODE_INCOMPLETE
-     else:
-          return UNABLE_BUFFERING_CODE
-
-def bufferData(filename, binaryFileLines, logger):
-     countLines = 0
-     path = pathBinaryFiles+"/"+ filename
-     if (os.path.exists(path)== False):
-          logger.error("Required file does not exist {}".format(path))
-          return UNABLE_BUFFERING_CODE
-     with open(path, 'r') as file:
-          logger.info("Opening file {}".format(path))
-          line = file.readline()
-          countLines += 1
-          while (line and countLines < bufferSizeFile):
-               line = file.readline()
-               chunk = re.findall(r'^S1+[0-9A-F]+\w|^S2+[0-9A-F]+\w|^S3+[0-9A-F]+\w', line)
-               if (len(chunk)>0):
-                    binaryFileLines.append(chunk[0])
-               countLines += 1
-          if(file.readline() == ''):
-               file.close()
-               return SUCCESSFUL
-          file.close()
-          return BUFFERING_CODE_INCOMPLETE
-     return UNABLE_BUFFERING_CODE
-
-def sendUpdate(connection, address, mcuid, clientToUpdate, sock, logger):
-     sock.settimeout(TIMEOUT)
-     for codechunk in clientToUpdate[0]['codelines']:
-          if (validateCodeChunk(codechunk) == SUCCESSFUL):
-               logger.info("Data from server {}".format(codechunk))
-               try:
-                    connection.send(codechunk.encode())
-                    receivedData = connection.recv(1024)
-                    logger.info("Data from client: {}".format(receivedData))
-                    if (receivedData == ackClient):
-                         continue
-                    else:
-                         closeConnection(connection, logger)
-                         return TIMEOUT_CONNECTION
-               except socket.timeout as e:
-                         logger.error("Timeout exceed {}".format(e))
-                         closeConnection(connection, logger)
-                         return TIMEOUT_CONNECTION
-               except socket.error as e:
-                    logger.error("Error receiving data: {}".format(e))
-                    closeConnection(connection, logger)
-                    return CONNECTION_CLOSED_BY_CLIENT
-               except IOError as e:
-                    logger.error("IOError: {}".format(e))
-                    if e.errno == errno.EPIPE:
-                         logger.error("Broken pipe by client side")
-                         closeConnection(connection, logger)
-                         return CONNECTION_CLOSED_BY_CLIENT
-                         
-          else:
-               continue 
-     logger.info("Update finished")
-     closeConnection(connection, logger)
-     sock.setblocking(0)
-     return SUCCESSFUL
-
-def  validateCodeChunk(codechunk):
+def validateCodeChunk(codechunk):
      match1 = re.search(r'^S1+[0-9A-F]+\w|^S2+[0-9A-F]+\w|^S3+[0-9A-F]+\w', codechunk)
      match2 = re.search(r'^@([0-9A-F]{1,2})##$', codechunk)
      if match1 or match2:
@@ -300,17 +70,240 @@ def  validateCodeChunk(codechunk):
      else:
           return INVALID_CODE_CHUNK
      
+class Server:
+     
+     def __init__(self, logFile, pathBinaryFiles, databaseName, host, port, logPath):
+          self.bufferSizeFile = 300 # Number of lines per file to buffered by server
+          self.maxBytes = 1024     #Bytes to be received by connection
+          self.logFile = logFile
+          self.pathBinaryFiles = pathBinaryFiles
+          self.databaseName = databaseName
+          self.host = host
+          self.port = port
+          self.logPath = logPath
+          
+           # AF_INET: For Ipv4 connections
+          # SOCK_STREAM: For use of TCP/IP stack
+          self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+          self.configureLogger(self.logFile)
+          self.connectionsList = [] # List of client connections being attended by the server in one moment
+          self.clientsList = [] #List of mcuid, name of file and firmware version from devices being updated
+                    
+     def configureLogger(self, logFile):
+          # Logger name
+          self.logger = logging.getLogger(self.logFile)
+          # Set the log level to LOG_LEVEL
+          self.logger.setLevel(LOG_LEVEL)
+          #Remove previous handlers
+          while (len(self.logger.handlers) > 0):
+               h = self.logger.handlers[0]
+               self.logger.removeHandler(h)
+          # Make a handler that wirtes to a file, making a new file at midnight and keeping
+          # 3 backups
+          handler = logging.handlers.TimedRotatingFileHandler(logFile, when="midnight", backupCount =3)
+          #Format each log message like this
+          formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+          #Attach the formatter to the handler
+          handler.setFormatter(formatter)
+          #Attach the handler to the logger
+          self.logger.addHandler(handler)
+            #Replacement of stdout with logging to file at INFO level
+          sys.stdout = CustomLogger(self.logger, logging.INFO)
+          #Replacement of stdout with logging to file at ERROR level
+          sys.stderr = CustomLogger(self.logger, logging.ERROR)
+     
+     def changeLogFile(self, logFile):
+          self.logger.info("Changing log file")
+          self.logFile = logFile
+          self.configureLogger(logFile)
+          
+     def startServer(self):          
+          #Cleaning previous connections
+          self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR,1)
+          #For binding address and port
+          # 0.0.0.0 because that makes our server available over any IP address
+          self.sock.bind((self.host,self.port))
+          #Listen argument: Maximum in queue pendings
+          self.sock.listen(5)
+          self.logger.info("Server ready to listen")
+          self.acceptConnections()
+     
+     def acceptConnections(self):
+          while True:
+               #Accept the connection from the address
+               self.sock.setblocking(1)
+               connection, address = self.sock.accept()
+               self.changeLogFile(self.logPath + LOG_FILENAME_DEFAULT)
+               self.logger.info("Accepted connection from {}".format(connection))
+               if (self.verifyStartedConnection(connection) == NOT_STARTED_CONNECTION):
+                    #Verify if id client belongs to database
+                    mcuid, statusMCUID = self.getMCUID(connection, address)
+                    
+                    if (statusMCUID == UNFORMATTED_MCUID):
+                         self.closeConnection(connection)
+                         continue
+                    date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
+                    self.configureLogger(self.logPath + "/" + mcuid + "-" + date +".txt")
+                    
+                    statusIdClient, clientInfo = self.verifyClientId(connection, mcuid)
+                    if (statusIdClient == SUCCESSFUL):
+                         connection.send(allowedUpdate)
+                         self.logger.info("Allowing update to {}".format(mcuid))
+                         self.logger.info("Starting update to {}".format(mcuid))
+                         self.prepareUpdate(clientInfo)
+                         self.sendUpdate(connection, address, mcuid)
+                    else:
+                         self.logger.warning("Banned connection from {}".format(address))
+                         self.logger.error("Closing connection")
+                         connection.send(bannedUpdate)
+                         self.closeConnection(connection)
+          
+          
+     def verifyStartedConnection(self, connection):
+          for conn in self.connectionsList:
+               if(conn == connection):
+                    return ALREADY_STARTED_CONNECTION
+          self.connectionsList.append(connection)
+          return NOT_STARTED_CONNECTION
+     
+     def getMCUID(self, connection, address):
+          receivedData = connection.recv(self.maxBytes).decode("utf8")
+          self.logger.info("Server has received data {} from {}".format(receivedData, address))
+          #mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
+          mcuid = re.findall("^\@([0-9A-F]*)#$", receivedData)
+          self.logger.info("MCUID {} ".format(mcuid))
+          if(len(mcuid) == 1):
+               self.logger.info("MCUID {} valid format ".format(mcuid[0]))
+               return mcuid[0], VALID_MCUID
+          else:
+               self.logger.info("MCUID {} invalid format ".format(receivedData))
+               return receivedData, UNFORMATTED_MCUID
+     
+     
+     def verifyClientId(self, connection, mcuid):
+          ## Verify client trying connection
+          clientInfo = []
+          statusClient, clientInfo = self.lookForClientInDatabase(mcuid)
+          if(statusClient== SUCCESSFUL):
+               self.logger.info("Client Info {}".format(clientInfo))
+               self.logger.info("Client {} exists in database".format(mcuid))
+               return SUCCESSFUL, clientInfo
+          else:
+               self.logger.error("Client {} does not exist in database".format(mcuid))
+               return CLIENT_UNVERIFIED, clientInfo
+                        
+     def lookForClientInDatabase(self, mcuid):
+          ##Verify existence of client in database for firmware update
+          clientInfo = []
+          self.logger.info("Opening file {}, to verify MCUID {}".format(self.databaseName,mcuid))
+          try:
+               with open(self.databaseName, 'r') as file:
+                    for line in file:
+                         clientInfo = line.split(',')
+                         if (len(clientInfo) == 3):
+                              if (clientInfo[0] == mcuid):
+                                  return SUCCESSFUL, clientInfo
+                              else:
+                                   continue
+                         else:
+                              return UNPROPER_FILE_FORMAT, clientInfo
+               file.close()
+          except:
+               self.logger.error("Error opening file")
+          return CLIENT_UNVERIFIED, clientInfo
+     
+     def closeConnection(self, connection):
+          self.logger.info("Close of connection has been requested")
+          connection.close()
+          return SUCCESSFUL
+     
+     def prepareUpdate(self, clientInfo):
+          self.logger.info("Preparing update for {}".format(clientInfo))
+          #Buffer data from file to be sent to specific client
+          binaryFileLines = []
+          bufferingStatus = self.bufferData(clientInfo[1], binaryFileLines)
+          self.logger.info("Status prepare update {}".format(bufferingStatus))
+          if (bufferingStatus == SUCCESSFUL):
+               FWVersion = re.findall(r"([0-9A-F]+)", clientInfo[2])
+               binaryFileLines.append("@{}##".format(FWVersion[0]))
+               self.logger.info("Code buffer done successfully") 
+               self.clientsList.append({"mcuid":clientInfo[0], "filename":clientInfo[1], "codelines": binaryFileLines, "status": READY_TO_UPDATE})                 
+               return SUCCESSFUL
+          if (bufferingStatus == BUFFERING_CODE_INCOMPLETE):
+               ##Pending development
+               self.logger.info("Incomplete buffering code")
+               return BUFFERING_CODE_INCOMPLETE
+          else:
+               return UNABLE_BUFFERING_CODE
+     
+     def bufferData(self, filename, binaryFileLines):
+          countLines = 0
+          path = self.pathBinaryFiles+"/"+ filename
+          if (os.path.exists(path)== False):
+               self.logger.error("Required file does not exist {}".format(path))
+               return UNABLE_BUFFERING_CODE
+          with open(path, 'r') as file:
+               self.logger.info("Opening file {}".format(path))
+               line = file.readline()
+               countLines += 1
+               while (line and countLines < self.bufferSizeFile):
+                    line = file.readline()
+                    chunk = re.findall(r'^S1+[0-9A-F]+\w|^S2+[0-9A-F]+\w|^S3+[0-9A-F]+\w', line)
+                    if (len(chunk)>0):
+                         binaryFileLines.append(chunk[0])
+                    countLines += 1
+               if(file.readline() == ''):
+                    file.close()
+                    return SUCCESSFUL
+               file.close()
+               return BUFFERING_CODE_INCOMPLETE
+          return UNABLE_BUFFERING_CODE
+     
+     def sendUpdate(self, connection, address, mcuid):
+          self.sock.settimeout(TIMEOUT)
+          for codechunk in self.clientsList[0]['codelines']:
+               if (validateCodeChunk(codechunk) == SUCCESSFUL):
+                    self.logger.info("Data from server {}".format(codechunk))
+                    try:
+                         connection.send(codechunk.encode())
+                         receivedData = connection.recv(1024)
+                         self.logger.info("Data from client: {}".format(receivedData))
+                         if (receivedData == ackClient):
+                              continue
+                         else:
+                              self.closeConnection(connection)
+                              return TIMEOUT_CONNECTION
+                    except socket.timeout as e:
+                              self.logger.error("Timeout exceed {}".format(e))
+                              self.closeConnection(connection)
+                              return TIMEOUT_CONNECTION
+                    except socket.error as e:
+                         self.logger.error("Error receiving data: {}".format(e))
+                         self.closeConnection(connection)
+                         return CONNECTION_CLOSED_BY_CLIENT
+                    except IOError as e:
+                         self.logger.error("IOError: {}".format(e))
+                         if e.errno == errno.EPIPE:
+                              self.logger.error("Broken pipe by client side")
+                              self.closeConnection(connection)
+                              return CONNECTION_CLOSED_BY_CLIENT
+                              
+               else:
+                    continue 
+          self.logger.info("Update finished")
+          self.closeConnection(connection)
+          self.sock.setblocking(0)
+          return SUCCESSFUL
+     
 if __name__ == "__main__":
      args = readArgs()
-     databaseName = args.dbname
-     pathBinaryFiles = args.pathbinaryfiles
-     host=args.host
-     port=int(args.port)
-     logPath=args.logpath
-     logFile = logPath + LOG_FILENAME_DEFAULT
-     logger = configureLogger(logFile)
+     databaseNameArg = args.dbname
+     pathBinaryFilesArg = args.pathbinaryfiles
+     hostArg=args.host
+     portArg=int(args.port)
+     logPathArg = args.logpath
+     logFileArg = logPathArg + LOG_FILENAME_DEFAULT
      
-     connectionsList = [] # List of client connections being attended by the server in one moment
-     clientsList = [] #List of mcuid, name of file and firmware version from devices being updated
-     createServer(connectionsList, clientsList)
+     myServer = Server(logFileArg, pathBinaryFilesArg, databaseNameArg, hostArg, portArg, logPathArg)
+     myServer.startServer()
    
