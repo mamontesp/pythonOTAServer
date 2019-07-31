@@ -39,9 +39,7 @@ if (data == approvedUpdate):
           data = s.recv(1024)
           binaryCode.append(data)
           finishedUpdate = verifyFinishedUpdate(data)
-          time.sleep(5)
+          time.sleep(1)
           s.send(ackClient)  
           print ("Received data {}".format(data))
-          
-     print ("Binary code{}".format(binaryCode))
      s.close()

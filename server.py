@@ -28,16 +28,17 @@ LOG_LEVEL =logging.INFO #Could be e.g "DEBUG" or "WARNING"
 SUCCESSFUL = 0
 CLIENT_UNVERIFIED = 1
 MISSED_FILENAME = 2
-UNFORMATTED_MCUID = 3
-ALREADY_STARTED_CONNECTION = 4
-NOT_STARTED_CONNECTION = 4
-UNABLE_BUFFERING_CODE = 5
-UNPROPER_FILE_FORMAT = 6
-TIMEOUT_CONNECTION = 7
-INVALID_CODE_CHUNK = 8
-BUFFERING_CODE_INCOMPLETE = 9
-READY_TO_UPDATE = 10
-CONNECTION_CLOSED_BY_CLIENT = 11
+VALID_MCUID = 3
+UNFORMATTED_MCUID = 4
+ALREADY_STARTED_CONNECTION = 5
+NOT_STARTED_CONNECTION = 6
+UNABLE_BUFFERING_CODE = 7
+UNPROPER_FILE_FORMAT = 8
+TIMEOUT_CONNECTION = 9
+INVALID_CODE_CHUNK = 10
+BUFFERING_CODE_INCOMPLETE = 11
+READY_TO_UPDATE = 12
+CONNECTION_CLOSED_BY_CLIENT = 13
 
 TIMEOUT = 30 #Timeout for open sockets
 HOST_DEFAULT = '' #The server hostname or IP address
@@ -125,14 +126,22 @@ def acceptConnections(connectionsList, clientsList, sock, logger):
           #Accept the connection from the address
           sock.setblocking(1)
           connection, address = sock.accept()
+          logFile = logPath + LOG_FILENAME_DEFAULT
+          logger = configureLogger(logFile)
           logger.info("Accepted connection from {}".format(connection))
           if (verifyStartedConnection(connectionsList, connection) == NOT_STARTED_CONNECTION):
                #Verify if id client belongs to database
-               mcuid = getMCUID(connection, address, logger)
+               mcuid, statusMCUID = getMCUID(connection, address, logger)
+               
+               if (statusMCUID == UNFORMATTED_MCUID):
+                    closeConnection(connection, logger)
+                    continue
+               
                date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
-               logFile = logPath + "/" + str(mcuid) + "-" + date +".txt"
-               print("logfile {}".format(logFile))
-               logger = configureLogger(logFile)
+               logFile = logPath + "/" + mcuid + "-" + date +".txt"
+               logger.info("logfile {}".format(logFile))
+               logger = configureLogger(logFile)    
+               
                statusIdClient, clientInfo = verifyClientId(connection, mcuid, logger)
                if (statusIdClient == SUCCESSFUL):
                     connection.send(allowedUpdate)
@@ -155,14 +164,18 @@ def verifyStartedConnection(connections, connection):
      return NOT_STARTED_CONNECTION
 
 def getMCUID(connection, address, logger):
-     receivedData = connection.recv(maxBytes)
-     logger.info("Server has received data from {}".format(address))
-     mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
-                        
+     receivedData = connection.recv(maxBytes).decode("utf8")
+     logger.info("Server has received data {} from {}".format(receivedData, address))
+     #mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
+     mcuid = re.findall("^\@([0-9A-F]*)#$", receivedData)
+     logger.info("MCUID {} ".format(mcuid))
      if(len(mcuid) == 1):
-          return mcuid[0]
+          logger.info("MCUID {} valid format ".format(mcuid[0]))
+          return mcuid[0], VALID_MCUID
      else:
-          return UNFORMATTED_MCUID
+          logger.info("MCUID {} invalid format ".format(receivedData))
+          return receivedData, UNFORMATTED_MCUID
+
 
 def verifyClientId(connection, mcuid, logger):
      ## Verify client trying connection
@@ -199,8 +212,6 @@ def lookForClientInDatabase(mcuid, logger):
 def closeConnection(connection, logger):
      logger.info("Close of connection has been requested")
      connection.close()
-     logFile = logPath + LOG_FILENAME_DEFAULT
-     logger = configureLogger(logFile)
      return SUCCESSFUL
 
 def prepareUpdate(clientInfo, clientsList, logger):
@@ -212,7 +223,6 @@ def prepareUpdate(clientInfo, clientsList, logger):
      if (bufferingStatus == SUCCESSFUL):
           FWVersion = re.findall(r"([0-9A-F]+)", clientInfo[2])
           binaryFileLines.append("@{}##".format(FWVersion[0]))
-          logger.info("Buffered code {}".format(binaryFileLines))
           logger.info("Code buffer done successfully") 
           clientsList.append({"mcuid":clientInfo[0], "filename":clientInfo[1], "codelines": binaryFileLines, "status": READY_TO_UPDATE})                 
           return SUCCESSFUL
