@@ -45,8 +45,8 @@ def testValidateCodeChunkNoValid():
      if (server.validateCodeChunk(codechunk) == server.INVALID_CODE_CHUNK):
           server.printDebugL1("ChunkNoValid Successful test")
      else:
-          server.printDebugL1("ChunkNoValid Unsuccessful test")
-          
+          server.printDebugL1("ChunkNoValid Unsuccessful test")     
+
 if __name__ == "__main__":
      testLookForClientInDatabaseExist()
      testLookForClientInDatabaseDoesNotExist()
