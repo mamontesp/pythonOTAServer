@@ -22,6 +22,10 @@ import logging.handlers
 DEBUG_ON = 1
 MAX_CLIENTS = 5
 
+## True for debug in console just error messages
+## False for save log in file
+DEBUG_IN_CONSOLE = False
+
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
 LOG_FILENAME_DEFAULT = "/otaserver.log"
@@ -82,11 +86,12 @@ class CustomThread(threading.Thread):
           threading.Thread.__init__(self, target=target, args=(connection, address))
 
 def threadKiller(threadsList):
-     logging.error("Hunting...")
+     #logging.error("Hunting...")
      while True:
           for thd in threadsList:
+               #logging.error("Len threadList {}.".format(len(threadsList)))
                if not thd.is_alive():
-                    logging.error("Killing client {}".format(threadsList.index(thd) + 1))
+                    #logging.error("Killing client {}.".format(threadsList.index(thd) + 1))
                     threadsList.remove(thd)
                     break
           time.sleep(1)
@@ -111,43 +116,44 @@ class Server:
           self.threadsList = []
                     
      def configureLogger(self, logFile):
-          self.logger = logging.getLogger()
-          self.logger.setLevel(logging.ERROR)
-          
-          formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
-          handler2 = logging.StreamHandler(sys.stdout)
-          handler2.setFormatter(formatter)
-          self.logger.addHandler(handler2)
-     """ # Logger name
-          self.logger = logging.getLogger(self.logFile)
-          # Set the log level to LOG_LEVEL
-          self.logger.setLevel(LOG_LEVEL)
-          #Remove previous handlers
-          while (len(self.logger.handlers) > 0):
-               h = self.logger.handlers[0]
-               self.logger.removeHandler(h)
-          # Make a handler that writes to a file, making a new file at midnight and keeping
-          # 3 backups
-          #handler = logging.handlers.TimedRotatingFileHandler(logFile, when="midnight", backupCount =3)
-          #handler.setLevel(logging.INFO)
-          
-          handler2 = logging.StreamHandler(sys.stdout)
-          handler2.setLevel(logging.DEBUG)
-          
-          #Format each log message like this
-          formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
-          #Attach the formatter to the handler
-          #handler.setFormatter(formatter)
-          handler2.setFormatter(formatter)
-          
-          #Attach the handler to the logger
-          #self.logger.addHandler(handler)
-          self.logger.addHandler(handler2)
-          #Replacement of stdout with logging to file at INFO level
-          sys.stdout = CustomLogger(self.logger, logging.INFO)
-          #Replacement of stdout with logging to file at ERROR level
-          sys.stderr = CustomLogger(self.logger, logging.ERROR)
-     """
+          if (DEBUG_IN_CONSOLE==True):
+               self.logger = logging.getLogger()
+               self.logger.setLevel(logging.ERROR)
+               #Remove previous handlers
+               while (len(self.logger.handlers) > 0):
+                    h = self.logger.handlers[0]
+                    self.logger.removeHandler(h)          
+     
+               formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+               handler2 = logging.StreamHandler(sys.stdout)
+               handler2.setFormatter(formatter)
+               self.logger.addHandler(handler2)
+          else:
+               # Logger name
+               self.logger = logging.getLogger(self.logFile)
+               # Set the log level to LOG_LEVEL
+               self.logger.setLevel(LOG_LEVEL)
+               #Remove previous handlers
+               while (len(self.logger.handlers) > 0):
+                    h = self.logger.handlers[0]
+                    self.logger.removeHandler(h)
+               # Make a handler that writes to a file, making a new file at midnight and keeping
+               # 3 backups
+               handler = logging.handlers.TimedRotatingFileHandler(logFile, when="midnight", backupCount =3)
+               handler.setLevel(logging.INFO)
+               
+               #Format each log message like this
+               formatter = logging.Formatter('%(asctime)s %(levelname)-8s %(message)s')
+               #Attach the formatter to the handler
+               handler.setFormatter(formatter)
+               
+               #Attach the handler to the logger
+               self.logger.addHandler(handler)
+               #Replacement of stdout with logging to file at INFO level
+               sys.stdout = CustomLogger(self.logger, logging.INFO)
+               #Replacement of stdout with logging to file at ERROR level
+               sys.stderr = CustomLogger(self.logger, logging.ERROR)
+     
      def changeLogFile(self, logFile):
           self.logger.info("Changing log file")
           self.logFile = logFile
@@ -172,13 +178,13 @@ class Server:
                     try:
                          connection, address = self.sock.accept()
                     except KeyboardInterrupt:
-                         self.logger.error("Trying to escape by keyboard")
+                         self.logger.warning("Trying to escape by keyboard")
                          continue
                     except socket.timeout as e:
                          continue
                     self.threadsList.append(CustomThread(self.acceptConnections, connection, address))
                     self.threadsList[-1].start()
-                    logging.error("There are {}".format(len(self.threadsList)))
+                    self.logger.info("There are {}".format(len(self.threadsList)))
                     
      
      def acceptConnections(self, connection, address):
@@ -206,7 +212,7 @@ class Server:
                     return FINISHED_UPDATE
                else:
                     self.logger.warning("Banned connection from {}".format(address))
-                    self.logger.error("Closing connection")
+                    self.logger.info("Closing connection")
                     connection.send(bannedUpdate)
                     self.closeConnection(connection)
                     return BANNED_CONNECTION
@@ -266,7 +272,7 @@ class Server:
           return CLIENT_UNVERIFIED, clientInfo
      
      def closeConnection(self, connection):
-          self.logger.info("Close of connection has been requested")
+          self.logger.error("Close of connection has been requested")
           connection.close()
           return SUCCESSFUL
      
@@ -313,7 +319,7 @@ class Server:
           return UNABLE_BUFFERING_CODE
      
      def sendUpdate(self, connection, address, mcuid):
-          self.sock.settimeout(TIMEOUT)
+          connection.settimeout(TIMEOUT)
           for codechunk in self.clientsList[0]['codelines']:
                if (validateCodeChunk(codechunk) == SUCCESSFUL):
                     self.logger.info("Data from server {}".format(codechunk))
@@ -326,8 +332,8 @@ class Server:
                          else:
                               return TIMEOUT_CONNECTION
                     except socket.timeout as e:
-                              self.logger.error("Timeout exceed {}".format(e))
-                              return TIMEOUT_CONNECTION
+                         self.logger.error("Timeout exceed {}".format(e))
+                         return TIMEOUT_CONNECTION
                     except socket.error as e:
                          self.logger.error("Error receiving data: {}".format(e))
                          return CONNECTION_CLOSED_BY_CLIENT
@@ -337,22 +343,15 @@ class Server:
                               self.logger.error("Broken pipe by client side")
                               return CONNECTION_CLOSED_BY_CLIENT
                     except KeyboardInterrupt:
-                         return CONNECTION_CLOSED_BY_SERVER
-                         
-                              
+                         return CONNECTION_CLOSED_BY_SERVER   
                else:
                     continue 
           self.logger.info("Update finished")
           self.closeConnection(connection)
-          self.sock.setblocking(0)
+          connection.setblocking(0)
           return SUCCESSFUL
      
-if __name__ == "__main__":
-     """myThreadsList = []
-     for i in range(5):
-          myThreadsList.append(CustomThread(i, rn.random()*10, rn.random()*5, printer))
-          myThreadsList[-1].start()"""
-          
+if __name__ == "__main__":          
      args = readArgs()
      databaseNameArg = args.dbname
      pathBinaryFilesArg = args.pathbinaryfiles
