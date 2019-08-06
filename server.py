@@ -320,6 +320,10 @@ class Server:
      
      def sendUpdate(self, connection, address, mcuid):
           connection.settimeout(TIMEOUT)
+          receivedData = connection.recv(1024)
+          self.logger.info("Data from client: {}".format(receivedData))
+          if (receivedData != ackClient):
+               return TIMEOUT_CONNECTION
           for codechunk in self.clientsList[0]['codelines']:
                if (validateCodeChunk(codechunk) == SUCCESSFUL):
                     self.logger.info("Data from server {}".format(codechunk))
