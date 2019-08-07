@@ -324,7 +324,7 @@ class Server:
           self.logger.info("Data from client: {}".format(receivedData))
           if (receivedData != ackClient):
                return TIMEOUT_CONNECTION
-          connection.send("S12345".encode())
+          connection.send("Q12345".encode())
           receivedData = connection.recv(1024)
           if (receivedData != ackClient):
                return TIMEOUT_CONNECTION
