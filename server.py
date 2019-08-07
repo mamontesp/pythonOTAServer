@@ -324,6 +324,10 @@ class Server:
           self.logger.info("Data from client: {}".format(receivedData))
           if (receivedData != ackClient):
                return TIMEOUT_CONNECTION
+          connection.send("S12345".encode())
+          receivedData = connection.recv(1024)
+          if (receivedData != ackClient):
+               return TIMEOUT_CONNECTION
           for codechunk in self.clientsList[0]['codelines']:
                if (validateCodeChunk(codechunk) == SUCCESSFUL):
                     self.logger.info("Data from server {}".format(codechunk))
