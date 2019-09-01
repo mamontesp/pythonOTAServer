@@ -1,0 +1,59 @@
+2019-07-31 16:11:11,221 ERROR    Traceback (most recent call last):
+2019-07-31 16:11:11,221 ERROR      File "tests.py", line 60, in <module>
+2019-07-31 16:11:11,221 ERROR    testLookForClientInDatabaseExist()
+2019-07-31 16:11:11,221 ERROR      File "tests.py", line 17, in testLookForClientInDatabaseExist
+2019-07-31 16:11:11,221 ERROR    if (myServer.lookForClientInDatabase(mcuid, clientInfo) == myServer.SUCCESSFUL):
+2019-07-31 16:11:11,221 ERROR    TypeError
+2019-07-31 16:11:11,221 ERROR    :
+2019-07-31 16:11:11,221 ERROR    lookForClientInDatabase() takes exactly 2 arguments (3 given)
+2019-07-31 16:12:00,474 ERROR    Traceback (most recent call last):
+2019-07-31 16:12:00,475 ERROR      File "tests.py", line 59, in <module>
+2019-07-31 16:12:00,475 ERROR    testLookForClientInDatabaseExist()
+2019-07-31 16:12:00,475 ERROR      File "tests.py", line 8, in testLookForClientInDatabaseExist
+2019-07-31 16:12:00,475 ERROR    if (myServer.lookForClientInDatabase(mcuid, clientInfo) == myServer.SUCCESSFUL):
+2019-07-31 16:12:00,475 ERROR    TypeError
+2019-07-31 16:12:00,475 ERROR    :
+2019-07-31 16:12:00,475 ERROR    lookForClientInDatabase() takes exactly 2 arguments (3 given)
+2019-07-31 16:13:07,865 INFO     Opening file ./../database/devices2update.txt, to verify MCUID 0001100023593110965955141
+2019-07-31 16:13:07,865 ERROR    Traceback (most recent call last):
+2019-07-31 16:13:07,865 ERROR      File "tests.py", line 58, in <module>
+2019-07-31 16:13:07,865 ERROR    testLookForClientInDatabaseExist()
+2019-07-31 16:13:07,865 ERROR      File "tests.py", line 7, in testLookForClientInDatabaseExist
+2019-07-31 16:13:07,866 ERROR    if (myServer.lookForClientInDatabase(mcuid) == myServer.SUCCESSFUL):
+2019-07-31 16:13:07,866 ERROR    AttributeError
+2019-07-31 16:13:07,866 ERROR    :
+2019-07-31 16:13:07,866 ERROR    Server instance has no attribute 'SUCCESSFUL'
+2019-07-31 16:13:40,409 INFO     Opening file ./../database/devices2update.txt, to verify MCUID 0001100023593110965955141
+2019-07-31 16:13:40,410 INFO     Unsuccessfull test
+2019-07-31 16:13:40,410 ERROR    Traceback (most recent call last):
+2019-07-31 16:13:40,410 ERROR      File "tests.py", line 59, in <module>
+2019-07-31 16:13:40,410 ERROR    testLookForClientInDatabaseDoesNotExist()
+2019-07-31 16:13:40,410 ERROR      File "tests.py", line 15, in testLookForClientInDatabaseDoesNotExist
+2019-07-31 16:13:40,410 ERROR    if (myServer.lookForClientInDatabase(mcuid, clientInfo) != myServer.SUCCESSFUL):
+2019-07-31 16:13:40,410 ERROR    TypeError
+2019-07-31 16:13:40,410 ERROR    :
+2019-07-31 16:13:40,410 ERROR    lookForClientInDatabase() takes exactly 2 arguments (3 given)
+2019-07-31 16:14:17,093 INFO     ------------------------------------------------
+2019-07-31 16:14:17,093 INFO     Opening file ./../database/devices2update.txt, to verify MCUID 0001100023593110965955141
+2019-07-31 16:14:17,094 INFO     Unsuccessfull test
+2019-07-31 16:14:17,094 ERROR    Traceback (most recent call last):
+2019-07-31 16:14:17,094 ERROR      File "tests.py", line 60, in <module>
+2019-07-31 16:14:17,094 ERROR    testLookForClientInDatabaseDoesNotExist()
+2019-07-31 16:14:17,094 ERROR      File "tests.py", line 15, in testLookForClientInDatabaseDoesNotExist
+2019-07-31 16:14:17,094 ERROR    if (myServer.lookForClientInDatabase(mcuid, clientInfo) != myServer.SUCCESSFUL):
+2019-07-31 16:14:17,094 ERROR    TypeError
+2019-07-31 16:14:17,094 ERROR    :
+2019-07-31 16:14:17,094 ERROR    lookForClientInDatabase() takes exactly 2 arguments (3 given)
+2019-07-31 16:16:00,723 INFO     ------------------------------------------------
+2019-07-31 16:16:00,723 INFO     Opening file ./../database/devices2update.txt, to verify MCUID 0001100023593110965955141
+2019-07-31 16:16:00,723 INFO     Unsuccessfull test
+2019-07-31 16:16:00,723 INFO     Opening file ./../database/devices2update.txt, to verify MCUID 00000000000000000000000000
+2019-07-31 16:16:00,723 INFO     Successful test
+2019-07-31 16:16:00,723 INFO     Preparing update for ['0001100023593110965955141', 'AN2295_TWR_K60.S19', '16']
+2019-07-31 16:16:00,724 INFO     Opening file ./../bin/AN2295_TWR_K60.S19
+2019-07-31 16:16:00,725 INFO     Status prepare update 0
+2019-07-31 16:16:00,725 INFO     Code buffer done successfully
+2019-07-31 16:16:00,725 INFO     testPrepareUpdateNonExistingClient Successful test
+2019-07-31 16:16:00,725 INFO     ChunkEmpty Successful test
+2019-07-31 16:16:00,725 INFO     ChunkValid Successful test
+2019-07-31 16:16:00,725 INFO     ChunkNoValid Successful test

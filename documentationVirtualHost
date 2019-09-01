@@ -1,0 +1,44 @@
+How to setup a virtual host locally with XAMPP in Ubuntu
+
+To setup a custom virtual, we need to follow these steps:
+
+1. Allow the usage of the vhosts.conf file editing the httpd.conf file.
+2. Now create a custom domain in the hosts file of the system (/etc/hosts).
+3. Create your own virtual host.
+4. Start apache.
+5. Test it.
+
+1. Allow the usage of the vhosts.conf file editing the httpd.conf file.
+sudo gedit /opt/lampp/etc/httpd.conf
+
+In line 487
+# Virtual hosts
+#Include etc/extra/httpd-vhosts.conf
+Uncommenting that line
+
+2. Now create a custom domain in the hosts file of the system (/etc/hosts).
+sudo gedit /etc/hosts
+
+Add a line 
+127.0.0.5	exampleproject
+
+3. Create your own virtual host.
+sudo gedit /opt/lampp/etc/extra/httpd-vhosts.conf
+Add at the end:
+
+<VirtualHost *:80>
+    DocumentRoot "/opt/lampp/htdocs"
+    ServerName localhost
+</VirtualHost>
+
+<VirtualHost 127.0.0.2:80>
+    DocumentRoot "/opt/lampp/htdocs/lsapp/public"
+    <Directory "/opt/lampp/htdocs/lsapp/public">
+    Options All
+    AllowOverride All
+    Require all granted
+    </Directory>
+    ServerName lsapp.dev
+    ErrorLog "/opt/lampp/htdocs/lsapp/logs/lsapp.com-error_log"
+    CustomLog "/opt/lampp/htdocs/lsapp/logs/lsapp.com-access_log" common
+</VirtualHost>

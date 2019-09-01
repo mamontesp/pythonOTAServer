@@ -1,0 +1,35 @@
+uint8 SIM808_TCPIP_MessageSend(char *strSend)
+{  
+  checkUART_overrun();
+  printf_port(uart_SIM808, "AT+CIPSEND\n");
+  
+  getchar_sim808(SHORTFACTOR);
+  getchar_sim808(SHORTFACTOR);
+  getchar_sim808(SHORTFACTOR);
+  getchar_sim808(SHORTFACTOR);
+  
+  checkUART_overrun();
+  printf_port(uart_SIM808, "%s\n", strSend);  
+  
+  checkUART_overrun();
+  
+  if(uart_SIM808 == UART0)
+  {
+    uart0_putchar(UART0_BASE_PTR, 0x1A); // Ctrl+Z.
+  }   
+  else if(uart_SIM808 == UART1)
+  {
+    uart_putchar(UART1_BASE_PTR, 0x1A); // Ctrl+Z.
+  }
+  else
+  {
+    uart_putchar(UART2_BASE_PTR, 0x1A); // Ctrl+Z.
+  }  
+  
+  if(compare_CommandSimple("SEND OK", LONGFACTOR))
+  {
+    return 1; 
+  }
+
+  return 0; 
+}

@@ -4,6 +4,7 @@
 #Create a server and enabling it for firmware updates
 
 from customlogger import CustomLogger
+from customthread import CustomThread
 import socket
 import re
 import os
@@ -24,7 +25,7 @@ MAX_CLIENTS = 5
 
 ## True for debug in console just error messages
 ## False for save log in file
-DEBUG_IN_CONSOLE = False
+DEBUG_IN_CONSOLE = True
 
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
@@ -60,7 +61,7 @@ PATH_DATABASE_DEFAULT = "/root/fota/otaserver/database/devices2update.txt"
 
 #Standard dataframes 
 allowedUpdate = b'@4#' #Frame sent from server to ack MCUID provided by client
-bannedUpdate = b'@0#'  #Frame sent from server to deny update to client that requested it
+closedConnection = b'@0#'  #Frame sent from server to deny update to client that requested it
 ackClient = b'@'
 
 def readArgs():
@@ -80,10 +81,6 @@ def validateCodeChunk(codechunk):
           return SUCCESSFUL
      else:
           return INVALID_CODE_CHUNK
-     
-class CustomThread(threading.Thread):
-     def __init__(self, target, connection, address):
-          threading.Thread.__init__(self, target=target, args=(connection, address))
 
 def threadKiller(threadsList):
      #logging.error("Hunting...")
@@ -118,7 +115,7 @@ class Server:
      def configureLogger(self, logFile):
           if (DEBUG_IN_CONSOLE==True):
                self.logger = logging.getLogger()
-               self.logger.setLevel(logging.ERROR)
+               self.logger.setLevel(logging.INFO)
                #Remove previous handlers
                while (len(self.logger.handlers) > 0):
                     h = self.logger.handlers[0]
@@ -171,20 +168,25 @@ class Server:
           self.sock.setblocking(1)
           killer = threading.Thread(target=threadKiller, args=(self.threadsList,))
           killer.start()
-          
-          while True:
+          breaker = 0
+          while (breaker == 0):
                # Accept the connection from the address       
                if (len(self.threadsList) < MAX_CLIENTS):
                     try:
                          connection, address = self.sock.accept()
+                         connection.settimeout(TIMEOUT)
                     except KeyboardInterrupt:
                          self.logger.warning("Trying to escape by keyboard")
-                         continue
+                         breaker = 1
                     except socket.timeout as e:
-                         continue
+                    		 self.closeConnection(connection)
+                    		 continue
                     self.threadsList.append(CustomThread(self.acceptConnections, connection, address))
                     self.threadsList[-1].start()
                     self.logger.info("There are {}".format(len(self.threadsList)))
+               else:
+                    self.logger.info("Lists of threads is full. More than 5 connections open")
+          sys.exit()
                     
      
      def acceptConnections(self, connection, address):
@@ -193,11 +195,12 @@ class Server:
           
           if (self.verifyStartedConnection(connection) == NOT_STARTED_CONNECTION):
                #Verify if id client belongs to database
+               self.logger.info("Actual connection has not been started")
                mcuid, statusMCUID = self.getMCUID(connection, address)
                
-               if (statusMCUID == UNFORMATTED_MCUID):
+               if (statusMCUID == UNFORMATTED_MCUID or statusMCUID == TIMEOUT_CONNECTION):
                     self.closeConnection(connection)
-                    return UNFORMATTED_MCUID
+                    return statusMCUID
                     
                date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
                self.configureLogger(self.logPath + "/" + mcuid + "-" + date +".txt")
@@ -213,7 +216,6 @@ class Server:
                else:
                     self.logger.warning("Banned connection from {}".format(address))
                     self.logger.info("Closing connection")
-                    connection.send(bannedUpdate)
                     self.closeConnection(connection)
                     return BANNED_CONNECTION
           
@@ -226,17 +228,21 @@ class Server:
           return NOT_STARTED_CONNECTION
      
      def getMCUID(self, connection, address):
-          receivedData = connection.recv(self.maxBytes).decode("utf8")
-          self.logger.info("Server has received data {} from {}".format(receivedData, address))
-          #mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
-          mcuid = re.findall("^\@([0-9A-F]*)#$", receivedData)
-          self.logger.info("MCUID {} ".format(mcuid))
-          if(len(mcuid) == 1):
-               self.logger.info("MCUID {} valid format ".format(mcuid[0]))
-               return mcuid[0], VALID_MCUID
-          else:
-               self.logger.info("MCUID {} invalid format ".format(receivedData))
-               return receivedData, UNFORMATTED_MCUID
+     			try:
+				      receivedData = connection.recv(self.maxBytes).decode("utf8")
+				      self.logger.info("Server has received data {} from {}".format(receivedData, address))
+				      #mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
+				      mcuid = re.findall("^\@([0-9A-F]*)#$", receivedData)
+				      self.logger.info("MCUID {} ".format(mcuid))
+				      if(len(mcuid) == 1):
+				           self.logger.info("MCUID {} valid format ".format(mcuid[0]))
+				           return mcuid[0], VALID_MCUID
+				      else:
+				           self.logger.info("MCUID {} invalid format ".format(receivedData))
+				           return receivedData, UNFORMATTED_MCUID
+     			except socket.timeout as e:
+				      self.logger.error("Timeout exceed {}".format(e))
+				      return 0, TIMEOUT_CONNECTION
      
      
      def verifyClientId(self, connection, mcuid):
@@ -272,7 +278,9 @@ class Server:
           return CLIENT_UNVERIFIED, clientInfo
      
      def closeConnection(self, connection):
-          self.logger.error("Close of connection has been requested")
+          self.logger.info("Close of connection has been requested")
+          self.logger.info("Send {}".format(closedConnection))
+          connection.send(closedConnection)
           connection.close()
           return SUCCESSFUL
      
@@ -319,7 +327,6 @@ class Server:
           return UNABLE_BUFFERING_CODE
      
      def sendUpdate(self, connection, address, mcuid):
-          connection.settimeout(TIMEOUT)
           receivedData = connection.recv(1024)
           self.logger.info("Data from client: {}".format(receivedData))
           if (receivedData != ackClient):
@@ -351,8 +358,6 @@ class Server:
                else:
                     continue 
           self.logger.info("Update finished")
-          self.closeConnection(connection)
-          connection.setblocking(0)
           return SUCCESSFUL
      
 if __name__ == "__main__":          

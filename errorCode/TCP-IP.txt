@@ -1,0 +1,87 @@
+#include "main.h" 
+#include "delays.h"   
+#include "gpio.h" 
+#include "uart.h"
+#include "SIM808.h"
+#include "string.h"
+
+extern int printf_port (unsigned char channel, const char *fmt, ...);
+ 
+/************** Define Input ****************************/
+
+#define PB1       GPIO_PinMode(Button, INPUT)
+#define PB1_READ  GPIO_ReadPinInput(Button) 
+
+/************* Define Leds for FRDM-26Z128 *************/  
+#define GREEN   PORTE, 29  //LED 3
+#define BLUE    PORTB, 1   //LED 4
+#define YELLOW  PORTB, 2   //LED 1
+   
+/**************** UART PINS DEFINITION *****************/ 
+#define UART2_Tx_Test     PORTE, 22, 4   
+#define UART2_Rx_Test     PORTE, 23, 4    
+#define PORT_UART_DEBUG   UART2 
+    
+#define UART0_Tx_SIM808   PORTE, 20, 4
+#define UART0_Rx_SIM808   PORTE, 21, 4  
+
+/*************** SIM808 PINS DEFINITION ****************/ 
+#define Batt_Pwr_Ctrl     PORTE, 31  // On/Off Battery.
+#define SIM808_Pwr_Key    PORTC, 7   // On/Off Sim808. 
+#define PORT_UART_SIM808  UART0 
+
+
+
+
+int main()                
+{ 
+
+  setup();      
+   
+  
+  printf_port(PORT_UART_DEBUG, "Welcome to SIM808 .\n\n");
+  time_delay_ms(500); 
+ 
+  if(SIM808_Echo()) 
+  {
+    if(SIM808_TCPIP_ClientInit_LowPower("209.97.145.137", "4000", "internet.itelcel.com", "webgprs", "webgprs2002"))
+    {
+      GPIO_WritePinOutput(YELLOW,HIGH); //Cliente conectado al servidor
+      time_delay_ms(500);
+      SIM808_TCPIP_MessageSend("@0001200049152150965955141#"); //Envio del ID al servidor "Cliente pide conexion"
+    }
+  
+   }
+    
+ 
+  
+   printf_port(PORT_UART_DEBUG, "End \n\n"); 
+
+
+void setup(void)   
+{   
+  /*Configure I/O ports.*/  
+
+  // Output init pin. 
+  GPIO_PinMode(GREEN,     OUTPUT); 
+  GPIO_PinMode(BLUE,    OUTPUT);  
+  GPIO_PinMode(YELLOW,  OUTPUT);
+  GPIO_PinMode(Batt_Pwr_Ctrl,  OUTPUT);
+
+  
+    
+  /*Configure Uart.*/
+  uart_config(PORT_UART_DEBUG, UART2_Tx_Test, UART2_Rx_Test); // Tx and Rx.
+  uart_init(PORT_UART_DEBUG, 24000, 9600); // Bus clock at 24Mhz and baud rate 9600.
+      
+  uart_config(PORT_UART_SIM808, UART0_Tx_SIM808, UART0_Rx_SIM808); // Tx and Rx.
+  uart0_init(48000, 19200);   // Bus clock at 48MHz and baud rate 19200 (Terminal port: 19200).  
+  
+  GPIO_WritePinOutput(Batt_Pwr_Ctrl, HIGH); // SIM808 is switched power On.
+  time_delay_ms(100);  
+  printf_port(PORT_UART_DEBUG, "POWERING SIM808 \n");
+  
+  SIM808_Init(UART0, SIM808_Pwr_Key);  
+  printf_port(PORT_UART_DEBUG, "SIM808 ON \n");  // sim808 power on 
+   
+} 
