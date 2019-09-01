@@ -13,8 +13,8 @@ import threading
 ackClient = b"@"
 approvedUpdate = b"@4#"
 #HOST = '192.168.1.105' #Localhost in local network
-HOST = '127.0.0.1' #Localhost in laptop
-#HOST = '209.97.145.137' #The server hostname or IP address
+#HOST = '127.0.0.1' #Localhost in laptop
+HOST = '209.97.145.137' #The server hostname or IP address
 PORT = 4000 #Port selected from server side to run communication
 
 binaryCode = []
