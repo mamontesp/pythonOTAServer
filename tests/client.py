@@ -40,9 +40,10 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
 
 #sleepThread.start()
-receivingThread.start()
-time.sleep(35)
+#receivingThread.start()
+#time.sleep(35)
 s.sendall("@0001100023593110965955141#")
+#s.sendall("@0001200049152150965955141#")
 data = s.recv(1024)
 print ("First data {}".format(data))
 if (data == approvedUpdate):

@@ -25,7 +25,7 @@ MAX_CLIENTS = 5
 
 ## True for debug in console just error messages
 ## False for save log in file
-DEBUG_IN_CONSOLE = True
+DEBUG_IN_CONSOLE = False
 
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
@@ -109,7 +109,6 @@ class Server:
           self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
           self.configureLogger(self.logFile)
           self.connectionsList = [] # List of client connections being attended by the server in one moment
-          self.clientsList = [] #List of mcuid, name of file and firmware version from devices being updated
           self.threadsList = []
                     
      def configureLogger(self, logFile):
@@ -171,7 +170,7 @@ class Server:
           breaker = 0
           while (breaker == 0):
                # Accept the connection from the address       
-               if (len(self.threadsList) < MAX_CLIENTS):
+               if (len(self.threadsList) <= MAX_CLIENTS):
                     try:
                          connection, address = self.sock.accept()
                          connection.settimeout(TIMEOUT)
@@ -184,8 +183,6 @@ class Server:
                     self.threadsList.append(CustomThread(self.acceptConnections, connection, address))
                     self.threadsList[-1].start()
                     self.logger.info("There are {}".format(len(self.threadsList)))
-               else:
-                    self.logger.info("Lists of threads is full. More than 5 connections open")
           sys.exit()
                     
      
@@ -209,16 +206,18 @@ class Server:
                     connection.send(allowedUpdate)
                     self.logger.info("Allowing update to {}".format(mcuid))
                     self.logger.info("Starting update to {}".format(mcuid))
-                    self.prepareUpdate(clientInfo)
-                    self.sendUpdate(connection, address, mcuid)
-                    self.closeConnection(connection)
-                    return FINISHED_UPDATE
+                    status, client = self.prepareUpdate(clientInfo)
+                    if (status == SUCCESSFUL):
+				                self.sendUpdate(client, connection, address, mcuid)
+				                self.closeConnection(connection)
+				                return FINISHED_UPDATE
+                    else:
+				                return status
                else:
                     self.logger.warning("Banned connection from {}".format(address))
                     self.logger.info("Closing connection")
                     self.closeConnection(connection)
                     return BANNED_CONNECTION
-          
           
      def verifyStartedConnection(self, connection):
           for conn in self.connectionsList:
@@ -231,7 +230,6 @@ class Server:
      			try:
 				      receivedData = connection.recv(self.maxBytes).decode("utf8")
 				      self.logger.info("Server has received data {} from {}".format(receivedData, address))
-				      #mcuid = re.findall("^\@(\d{25})[0-9]*#$", receivedData.decode("utf-8"))
 				      mcuid = re.findall("^\@([0-9A-F]*)#$", receivedData)
 				      self.logger.info("MCUID {} ".format(mcuid))
 				      if(len(mcuid) == 1):
@@ -243,7 +241,6 @@ class Server:
      			except socket.timeout as e:
 				      self.logger.error("Timeout exceed {}".format(e))
 				      return 0, TIMEOUT_CONNECTION
-     
      
      def verifyClientId(self, connection, mcuid):
           ## Verify client trying connection
@@ -282,6 +279,7 @@ class Server:
           self.logger.info("Send {}".format(closedConnection))
           connection.send(closedConnection)
           connection.close()
+          self.connectionsList.remove(connection)
           return SUCCESSFUL
      
      def prepareUpdate(self, clientInfo):
@@ -293,15 +291,15 @@ class Server:
           if (bufferingStatus == SUCCESSFUL):
                FWVersion = re.findall(r"([0-9A-F]+)", clientInfo[2])
                binaryFileLines.append("@{}##".format(FWVersion[0]))
-               self.logger.info("Code buffer done successfully") 
-               self.clientsList.append({"mcuid":clientInfo[0], "filename":clientInfo[1], "codelines": binaryFileLines, "status": READY_TO_UPDATE})                 
-               return SUCCESSFUL
+               self.logger.info("Code buffer done successfully")               
+               client = {"mcuid":clientInfo[0], "filename":clientInfo[1], "codelines": binaryFileLines, "status": READY_TO_UPDATE}
+               return SUCCESSFUL, client
           if (bufferingStatus == BUFFERING_CODE_INCOMPLETE):
                ##Pending development
                self.logger.info("Incomplete buffering code")
-               return BUFFERING_CODE_INCOMPLETE
+               return BUFFERING_CODE_INCOMPLETE, None
           else:
-               return UNABLE_BUFFERING_CODE
+               return UNABLE_BUFFERING_CODE, None
      
      def bufferData(self, filename, binaryFileLines):
           countLines = 0
@@ -326,12 +324,12 @@ class Server:
                return BUFFERING_CODE_INCOMPLETE
           return UNABLE_BUFFERING_CODE
      
-     def sendUpdate(self, connection, address, mcuid):
+     def sendUpdate(self, client, connection, address, mcuid):
           receivedData = connection.recv(1024)
           self.logger.info("Data from client: {}".format(receivedData))
           if (receivedData != ackClient):
                return TIMEOUT_CONNECTION
-          for codechunk in self.clientsList[0]['codelines']:
+          for codechunk in client['codelines']:
                if (validateCodeChunk(codechunk) == SUCCESSFUL):
                     self.logger.info("Data from server {}".format(codechunk))
                     try:

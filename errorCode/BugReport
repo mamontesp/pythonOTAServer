@@ -4,20 +4,21 @@
 
 3.- Nunca hemos tenido acceso a la consola del servidor, justo para no "meter la mano" y que puedas tu tener el control del ambiente como del script al 100%: Ok
 
-4.- En la definición del protocolo, se pide que se cierre la conexion 30 segundos despues de no haber ninguna transmisión, en cualquier parte del script, ya sea desde el establecimiento de la conexión hasta la espera de la última confirmación por parte del cliente; es decir en cualquier parte del proceso de comunicación: El servidor envia el 
+4.- En la definición del protocolo, se pide que se cierre la conexion 30 segundos despues de no haber ninguna transmisión, en cualquier parte del script, ya sea desde el establecimiento de la conexión hasta la espera de la última confirmación por parte del cliente; es decir en cualquier parte del proceso de comunicación: Se han hecho las correcciones pertinentes para que la excepción de timeout se levante en cualquiera de las secciones del envio de la actualización: Desde que se abre la conexión se cuenta el timeout para el envio de MCUID y de cada uno de los ack esperados. 
 
-5.- Hemos observado, que al establecerse la conexión, al principio,  hay un tiempo de espera de 5 minutos si el cliente no le contesto nada, no se espera 30 segundos, aqui no hay un cierre de conexión.
 
-6.  Cuando uno avanza en el protocolo, (ya hubo algunas tramas enviadas por el cliente) la espera del servidor es de 30 segundos,,, despues de este tiempo se queda "congelada/ignorada" la conexión 
-pero no se cierra. 
+5.- Hemos observado, que al establecerse la conexión, al principio,  hay un tiempo de espera de 5 minutos si el cliente no le contesto nada, no se espera 30 segundos, aqui no hay un cierre de conexión: Corregido dentro del punto 4.
 
-7.- Y detectamos que no se cierra porque no llega un aviso de que la conexión esta cerrada por parte del servidor. Esto si sucede cuando se hace el proceso completo de bajar el archivo S19 y al final si se cierra la conexión (lo cual es correcto).
 
-8.- La acumulación de sesiones/conexiones permite generarle carga al servidor de manera poco eficiente y/o saturarlo.
+6.  Cuando uno avanza en el protocolo, (ya hubo algunas tramas enviadas por el cliente) la espera del servidor es de 30 segundos,,, despues de este tiempo se queda "congelada/ignorada" la conexión pero no se cierra: Había un error por que no se enviaba el caracter de cierre de conexión por parte del servidor. Ya ha sido corregido
 
-9.- En el protocolo se propone cerrar las conexiones a los 30 segundos para que de esta manera el servidor, pueda tener "limpieza" tan pronto hay algun error de cualquier tipo o desconexión por parte del cliente.
+7.- Y detectamos que no se cierra porque no llega un aviso de que la conexión esta cerrada por parte del servidor. Esto si sucede cuando se hace el proceso completo de bajar el archivo S19 y al final si se cierra la conexión (lo cual es correcto): Ok
 
-10.- Observamos tambien que al pasar algo en el servidor (no sabemos que es, pues solo lo usamos como cliente),  se queda frezeado el script o al menos ya no permite tener alguna conexión más. Esto 
-es importante de resolver pues, la idea es que NO lo administremos desde consola y el solo, pueda recuperarse y pueda correr el script desde el arranque o reinicio del servidor si es que fuese necesario.
+8.- La acumulación de sesiones/conexiones permite generarle carga al servidor de manera poco eficiente y/o saturarlo: El máximo de sesiones que puede aceptar el servidor se ha fijado en 5. Sin embargo si ustedes consideran que puede ser mayor, por favor dejenme saber.
 
-11.- Estos son elementos de garantía del trabajo realizado y no de soporte.
+9.- En el protocolo se propone cerrar las conexiones a los 30 segundos para que de esta manera el servidor, pueda tener "limpieza" tan pronto hay algun error de cualquier tipo o desconexión por parte del cliente: Estas limpiezas se están haciendo cada segundo, si el hilo de una conexión no está vivo se elimina de la lista de hilos. 
+
+10.- Observamos tambien que al pasar algo en el servidor (no sabemos que es, pues solo lo usamos como cliente),  se queda frezeado el script o al menos ya no permite tener alguna conexión más. Esto es importante de resolver pues, la idea es que NO lo administremos desde consola y el solo, pueda recuperarse y pueda correr el script desde el arranque o reinicio del servidor si es que fuese necesario: Cuando se abren más de 5 conexiones el servidor no atiende más solicitudes. Tenemos que revisar que ocasiona que no se cierren las conexiones.
+
+
+11.- Estos son elementos de garantía del trabajo realizado y no de soporte: De acuerdo, antes no se había recibido un reporte detallado para poder corregir. 
