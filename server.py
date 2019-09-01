@@ -25,7 +25,7 @@ MAX_CLIENTS = 5
 
 ## True for debug in console just error messages
 ## False for save log in file
-DEBUG_IN_CONSOLE = True
+DEBUG_IN_CONSOLE = False
 
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
