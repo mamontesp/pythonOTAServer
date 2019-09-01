@@ -208,11 +208,11 @@ class Server:
                     self.logger.info("Starting update to {}".format(mcuid))
                     status, client = self.prepareUpdate(clientInfo)
                     if (status == SUCCESSFUL):
-				                self.sendUpdate(client, connection, address, mcuid)
-				                self.closeConnection(connection)
-				                return FINISHED_UPDATE
+				                 self.sendUpdate(client, connection, address, mcuid)
+				                 self.closeConnection(connection)
+				                 return FINISHED_UPDATE
                     else:
-				                return status
+				                 return status
                else:
                     self.logger.warning("Banned connection from {}".format(address))
                     self.logger.info("Closing connection")
