@@ -21,11 +21,11 @@ import logging.handlers
 
 ##Enable 1 Disable 0 Debug
 DEBUG_ON = 1
-MAX_CLIENTS = 5
+MAX_CLIENTS = 25
 
 ## True for debug in console just error messages
 ## False for save log in file
-DEBUG_IN_CONSOLE = False
+DEBUG_IN_CONSOLE = True
 
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
@@ -178,7 +178,7 @@ class Server:
                          self.logger.warning("Trying to escape by keyboard")
                          breaker = 1
                     except socket.timeout as e:
-                    		 self.closeConnection(connection)
+                    		 self.closeConnection(connection, 1)
                     		 continue
                     self.threadsList.append(CustomThread(self.acceptConnections, connection, address))
                     self.threadsList[-1].start()
@@ -196,7 +196,7 @@ class Server:
                mcuid, statusMCUID = self.getMCUID(connection, address)
                
                if (statusMCUID == UNFORMATTED_MCUID or statusMCUID == TIMEOUT_CONNECTION):
-                    self.closeConnection(connection)
+                    self.closeConnection(connection, 1)
                     return statusMCUID
                     
                date = datetime.datetime.now().strftime("%d-%m-%y_%H-%M")
@@ -209,14 +209,14 @@ class Server:
                     status, client = self.prepareUpdate(clientInfo)
                     if (status == SUCCESSFUL):
 				                 self.sendUpdate(client, connection, address, mcuid)
-				                 self.closeConnection(connection)
+				                 self.closeConnection(connection, 0)
 				                 return FINISHED_UPDATE
                     else:
 				                 return status
                else:
                     self.logger.warning("Banned connection from {}".format(address))
                     self.logger.info("Closing connection")
-                    self.closeConnection(connection)
+                    self.closeConnection(connection, 1)
                     return BANNED_CONNECTION
           
      def verifyStartedConnection(self, connection):
@@ -274,10 +274,11 @@ class Server:
                self.logger.error("Error opening file")
           return CLIENT_UNVERIFIED, clientInfo
      
-     def closeConnection(self, connection):
+     def closeConnection(self, connection, error):
           self.logger.info("Close of connection has been requested")
-          self.logger.info("Send {}".format(closedConnection))
-          connection.send(closedConnection)
+          if (error == 1):
+               self.logger.info("Send {}".format(closedConnection))
+               connection.send(closedConnection)
           connection.close()
           self.connectionsList.remove(connection)
           return SUCCESSFUL
