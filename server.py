@@ -25,7 +25,7 @@ MAX_CLIENTS = 25
 
 ## True for debug in console just error messages
 ## False for save log in file
-DEBUG_IN_CONSOLE = True
+DEBUG_IN_CONSOLE = False
 
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
@@ -194,8 +194,10 @@ class Server:
                #Verify if id client belongs to database
                self.logger.info("Actual connection has not been started")
                mcuid, statusMCUID = self.getMCUID(connection, address)
-               
-               if (statusMCUID == UNFORMATTED_MCUID or statusMCUID == TIMEOUT_CONNECTION):
+               if (statusMCUID == TIMEOUT_CONNECTION):
+                    self.closeConnection(connection, 0)
+                    return statusMCUID
+               if (statusMCUID == UNFORMATTED_MCUID):
                     self.closeConnection(connection, 1)
                     return statusMCUID
                     
@@ -326,7 +328,11 @@ class Server:
           return UNABLE_BUFFERING_CODE
      
      def sendUpdate(self, client, connection, address, mcuid):
-          receivedData = connection.recv(1024)
+          try:
+               receivedData = connection.recv(1024)
+          except socket.timeout as e:
+               self.logger.error("Timeout exceed {}".format(e))
+               return TIMEOUT_CONNECTION
           self.logger.info("Data from client: {}".format(receivedData))
           if (receivedData != ackClient):
                return TIMEOUT_CONNECTION

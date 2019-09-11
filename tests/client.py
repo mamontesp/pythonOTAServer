@@ -45,6 +45,7 @@ s.connect((HOST, PORT))
 s.sendall("@0001100023593110965955141#")
 #s.sendall("@0001200049152150965955141#")
 data = s.recv(1024)
+time.sleep(35)
 print ("First data {}".format(data))
 if (data == approvedUpdate):
      print ("Update has been approved")
