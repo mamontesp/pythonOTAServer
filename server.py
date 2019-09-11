@@ -215,7 +215,7 @@ class Server:
 				                 return FINISHED_UPDATE
                     else:
                     		 self.closeConnection(connection, 1)
-				                 return status
+                    		 return status
                else:
                     self.logger.warning("Banned connection from {}".format(address))
                     self.logger.info("Closing connection")
