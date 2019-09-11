@@ -95,7 +95,7 @@ def threadKiller(threadsList):
 
 class Server:
      def __init__(self, logFile, pathBinaryFiles, databaseName, host, port, logPath):
-          self.bufferSizeFile = 300 # Number of lines per file to buffered by server
+          self.bufferSizeFile = 600 # Number of lines per file to buffered by server
           self.maxBytes = 1024     #Bytes to be received by connection
           self.logFile = logFile
           self.pathBinaryFiles = pathBinaryFiles
