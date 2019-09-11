@@ -13,8 +13,8 @@ import threading
 ackClient = b"@"
 approvedUpdate = b"@4#"
 #HOST = '192.168.1.105' #Localhost in local network
-HOST = '127.0.0.1' #Localhost in laptop
-#HOST = '209.97.145.137' #The server hostname or IP address
+#HOST = '127.0.0.1' #Localhost in laptop
+HOST = '209.97.145.137' #The server hostname or IP address
 PORT = 4000 #Port selected from server side to run communication
 
 binaryCode = []
@@ -42,10 +42,11 @@ s.connect((HOST, PORT))
 #sleepThread.start()
 #receivingThread.start()
 #time.sleep(35)
+#s.sendall("@2132100022323593453346456#")
 s.sendall("@0001100023593110965955141#")
 #s.sendall("@0001200049152150965955141#")
 data = s.recv(1024)
-time.sleep(35)
+#time.sleep(35)
 print ("First data {}".format(data))
 if (data == approvedUpdate):
      print ("Update has been approved")
