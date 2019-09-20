@@ -25,8 +25,8 @@ MAX_CLIENTS = 25
 
 ## True for debug in console just error messages
 ## False for save log in file
-DEBUG_IN_CONSOLE = False
-
+DEBUG_IN_CONSOLE = True
+BUFFER_SIZE_FILE = 2000
 ##Defaults files to log
 LOG_PATH_DEFAULT="/tmp"
 LOG_FILENAME_DEFAULT = "/otaserver.log"
@@ -95,7 +95,7 @@ def threadKiller(threadsList):
 
 class Server:
      def __init__(self, logFile, pathBinaryFiles, databaseName, host, port, logPath):
-          self.bufferSizeFile = 600 # Number of lines per file to buffered by server
+          self.bufferSizeFile = BUFFER_SIZE_FILE # Number of lines per file to buffered by server
           self.maxBytes = 1024     #Bytes to be received by connection
           self.logFile = logFile
           self.pathBinaryFiles = pathBinaryFiles

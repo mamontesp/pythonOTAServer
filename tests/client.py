@@ -42,8 +42,14 @@ s.connect((HOST, PORT))
 #sleepThread.start()
 #receivingThread.start()
 #time.sleep(35)
-#s.sendall("@2132100022323593453346456#")
-s.sendall("@0001100023593110965955141#")
+
+#Test s19
+s.sendall("@2132100022323593453346456#")
+
+#AN2295_TWR_K60.S19
+#s.sendall("@0001100023593110965955141#")
+
+#Template.s19
 #s.sendall("@0001200049152150965955141#")
 data = s.recv(1024)
 #time.sleep(35)
